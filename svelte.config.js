@@ -7,6 +7,9 @@ const config = {
   kit: {
     adapter: staticAdapter(),
   },
+  scss: {
+    prependData: `@import './src/style/app.scss';`
+  }
 };
 
 export default config;
