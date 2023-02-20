@@ -12,8 +12,9 @@
     "tauri": "tauri"
   },
   "dependencies": {
-    "@tauri-apps/api": "^1.2.0",
-    "flowbite-svelte": "^0.29.13"
+    "@svelteuidev/composables": "^0.10.0",
+    "@svelteuidev/core": "^0.10.0",
+    "@tauri-apps/api": "^1.2.0"
   },
   "devDependencies": {
     "@sveltejs/adapter-static": "^1.0.6",

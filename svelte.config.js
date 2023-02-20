@@ -6,9 +6,6 @@ const config = {
   preprocess: [vitePreprocess()],
   kit: {
     adapter: staticAdapter(),
-  },
-  scss: {
-    prependData: `@import './src/style/app.scss';`
   }
 };
 
