@@ -13,7 +13,6 @@ Specifically, it's an app for apartment rental management, built for the owner. 
 
 # Optional features
 - [ ] Calculate apartment final price (apartment month-based price + tourist tax)
-
 - [ ] Calculate tourist tax based on guests. see [how to](https://www.ovest.com/it/la-tassa-di-soggiorno-in-italia/)
 - [ ] Export data table using multiple formats (PDF, CSV, ...)
 - [ ] Detect if usb stick is plugged in and export guests info to it if permission is granted
