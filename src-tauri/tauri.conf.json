@@ -3,12 +3,11 @@
     "beforeDevCommand": "pnpm dev",
     "beforeBuildCommand": "pnpm build",
     "devPath": "http://localhost:1420",
-    "distDir": "../build",
-    "withGlobalTauri": false
+    "distDir": "../build"
   },
   "package": {
     "productName": "casine",
-    "version": "0.0.0"
+    "version": "0.1.0"
   },
   "tauri": {
     "allowlist": {
@@ -20,11 +19,11 @@
     },
     "bundle": {
       "active": true,
-      "category": "DeveloperTool",
-      "copyright": "",
-      "deb": {
-        "depends": []
-      },
+      "identifier": "com.mitch.casine",
+      "category": "Business",
+      "shortDescription": "Gestionale per Le casine di Cervia",
+      "longDescription": "Si tratta di un gestionale per Le casine di Cervia, che si occupa di affitti estivi di appartamenti a Cervia",
+      "copyright": "MIT",
       "externalBin": [],
       "icon": [
         "icons/32x32.png",
@@ -33,8 +32,10 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "identifier": "com.tauri.dev",
-      "longDescription": "",
+      "targets": "all",
+      "deb": {
+        "depends": []
+      },
       "macOS": {
         "entitlements": null,
         "exceptionDomain": "",
@@ -43,8 +44,6 @@
         "signingIdentity": null
       },
       "resources": [],
-      "shortDescription": "",
-      "targets": "all",
       "windows": {
         "certificateThumbprint": null,
         "digestAlgorithm": "sha256",
@@ -59,11 +58,12 @@
     },
     "windows": [
       {
-        "fullscreen": false,
+        "title": "Le Casine di Cervia",
         "height": 600,
-        "resizable": true,
-        "title": "casine",
-        "width": 800
+        "width": 1000,
+        "minHeight": 600,
+        "minWidth": 1000,
+        "center": true
       }
     ]
   }
