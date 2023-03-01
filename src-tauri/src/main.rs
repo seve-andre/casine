@@ -3,11 +3,19 @@
     windows_subsystem = "windows"
 )]
 
-// Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
+pub mod commands;
+pub mod db;
+pub mod errors;
+pub mod models;
+pub mod schema;
+
+use crate::commands::*;
 
 fn main() {
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![])
+        .invoke_handler(tauri::generate_handler![
+            db_commands::get_apartments_in_house
+        ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
