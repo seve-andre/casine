@@ -1,10 +1,9 @@
 <script lang="ts">
-  import { Button } from "@svelteuidev/core"
+  import { Button } from "flowbite-svelte"
 
   export let disabled = false
-  // export let icon = null
 </script>
 
-<Button {disabled}>
+<Button on:click pill {disabled}>
   <slot />
 </Button>

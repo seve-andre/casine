@@ -1,6 +1,4 @@
 <script lang="ts">
-  import { TextInput, ActionIcon } from "@svelteuidev/core"
-  import { Cross2, MagnifyingGlass } from "radix-icons-svelte"
 
   export let placeholder: string
   export let text: string
@@ -11,7 +9,7 @@
 </script>
 
 <div class="search-input">
-  <TextInput bind:value={text} aria-label={placeholder} {placeholder} icon={MagnifyingGlass} variant="filled">
+  <!-- <TextInput bind:value={text} aria-label={placeholder} {placeholder} icon={MagnifyingGlass} variant="filled">
     <svelte:fragment slot="rightSection">
       {#if text.length > 0}
         <ActionIcon title="Cancella" on:click={resetText}>
@@ -22,7 +20,7 @@
   </TextInput>
   <ActionIcon color="blue" variant="filled" title={placeholder} size={36}>
     <MagnifyingGlass size={20} />
-  </ActionIcon>
+  </ActionIcon> -->
 </div>
 
 <style>

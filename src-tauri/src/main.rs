@@ -1,6 +1,6 @@
 #![cfg_attr(
-    all(not(debug_assertions), target_os = "windows"),
-    windows_subsystem = "windows"
+  all(not(debug_assertions), target_os = "windows"),
+  windows_subsystem = "windows"
 )]
 
 pub mod commands;
@@ -12,10 +12,10 @@ pub mod schema;
 use crate::commands::*;
 
 fn main() {
-    tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![
-            db_commands::get_apartments_in_house
-        ])
-        .run(tauri::generate_context!())
-        .expect("error while running tauri application");
+  tauri::Builder::default()
+      .invoke_handler(tauri::generate_handler![
+          db_commands::get_apartments_in_house
+      ])
+      .run(tauri::generate_context!())
+      .expect("error while running tauri application");
 }

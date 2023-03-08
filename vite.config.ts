@@ -1,10 +1,10 @@
-import { defineConfig } from "vite";
-import { sveltekit } from "@sveltejs/kit/vite";
+import { fileURLToPath, URL } from "url"
+import { defineConfig } from 'vite'
+import { sveltekit } from "@sveltejs/kit/vite"
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [sveltekit()],
-
   // Vite options tailored for Tauri development and only applied in `tauri dev` or `tauri build`
   // prevent vite from obscuring rust errors
   clearScreen: false,
@@ -24,4 +24,9 @@ export default defineConfig({
     // produce sourcemaps for debug builds
     sourcemap: !!process.env.TAURI_DEBUG,
   },
-});
+  resolve: {
+    alias: [
+      { find: "@", replacement: fileURLToPath(new URL("./src", import.meta.url)) }
+    ]
+  }
+})
