@@ -26,7 +26,7 @@
       </Navbar>
     </header>
   {/if}
-  <main class="p-10 h-screen flex-auto overflow-hidden bg-gray-50 dark:bg-gray-900">
+  <main class="px-10 py-5 h-screen flex-auto overflow-hidden bg-gray-50 dark:bg-gray-900">
     <slot />
   </main>
 </div>
