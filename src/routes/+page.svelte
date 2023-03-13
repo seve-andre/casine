@@ -1,9 +1,8 @@
 <script lang="ts">
   import { Heading, Tooltip } from "flowbite-svelte"
-  import { goto } from "$app/navigation"
   import FilledButton from "@/lib/ui-components/button/FilledButton.svelte"
   import type { Apartment } from "@/models/Apartment"
-  import { gotoApartmentInHouse, gotoBookings, gotoPrices } from "./navigation"
+  import { gotoApartmentInHouse, gotoBookings, gotoPrices } from "./navigation-utils"
 
   let apartmentsHouseA: Apartment[] = [
     {
