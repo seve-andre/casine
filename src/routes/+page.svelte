@@ -34,7 +34,7 @@
 </script>
 
 <div class="home-container">
-  <div class="apartment-selection">
+  <div class="apartment-selection flex flex-col gap-4">
     <Heading customSize="text-2xl font-bold">Casa A</Heading>
     <div class="grid grid-cols-3 gap-4">
       {#each apartmentsHouseA as apartment}
@@ -45,13 +45,15 @@
       {/each}
     </div>
   </div>
-  <div class="bookings-utils">
+  <div class="bookings-utils flex flex-col gap-4">
     <Heading tag="h2" customSize="text-xl font-semibold">Utili</Heading>
-    <FilledButton on:click={() => gotoBookings()}>Prenotazioni</FilledButton>
-    <Tooltip placement="bottom">Vedi prenotazioni</Tooltip>
+    <div class="grid grid-cols-3 gap-4">
+      <FilledButton on:click={() => gotoBookings()}>Prenotazioni</FilledButton>
+      <Tooltip placement="bottom">Vedi prenotazioni</Tooltip>
 
-    <FilledButton on:click={() => gotoPrices()}>Prezzi</FilledButton>
-    <Tooltip placement="bottom">Vedi prezzi</Tooltip>
+      <FilledButton on:click={() => gotoPrices()}>Prezzi</FilledButton>
+      <Tooltip placement="bottom">Vedi prezzi</Tooltip>
+    </div>
   </div>
   <div class="form" />
 </div>
