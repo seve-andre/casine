@@ -1,8 +1,8 @@
 <script lang="ts">
+  import { gotoApartmentInHouse, gotoBookings, gotoPrices } from "./navigation-utils"
   import { Heading, Tooltip } from "flowbite-svelte"
   import FilledButton from "@/lib/ui-components/button/FilledButton.svelte"
   import type { Apartment } from "@/models/Apartment"
-  import { gotoApartmentInHouse, gotoBookings, gotoPrices } from "./navigation-utils"
 
   let apartmentsHouseA: Apartment[] = [
     {
@@ -66,7 +66,7 @@
     grid-auto-flow: row;
     grid-template-areas:
       "apartment-selection form"
-      "bookings-utils .";
+      "bookings-utils form";
     height: 100%;
   }
 
