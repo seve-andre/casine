@@ -78,14 +78,16 @@
     {/if}
   </div>
 
-  {#if currentStep != 1}
-    <PaginationItem class="flex items-center" on:click={prevStep}>
-      <LeftArrow clazz="mr-2 w-5 h-5" />
-      Torna a scelta periodo
+  <div class="flex space-x-3">
+    {#if currentStep != 1}
+      <PaginationItem class="flex items-center" on:click={prevStep}>
+        <LeftArrow clazz="mr-2 w-5 h-5" />
+        Torna a scelta periodo
+      </PaginationItem>
+    {/if}
+    <PaginationItem class="flex items-center" on:click={nextAction}>
+      {nextLabel}
+      <RightArrow clazz="ml-2 w-5 h-5" />
     </PaginationItem>
-  {/if}
-  <PaginationItem class="flex items-center" on:click={nextAction}>
-    {nextLabel}
-    <RightArrow clazz="ml-2 w-5 h-5" />
-  </PaginationItem>
+  </div>
 </div>
