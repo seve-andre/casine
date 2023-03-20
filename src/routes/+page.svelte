@@ -3,6 +3,7 @@
   import { Heading, Tooltip } from "flowbite-svelte"
   import FilledButton from "@/lib/ui-components/button/FilledButton.svelte"
   import type { Apartment } from "@/models/Apartment"
+  import NewGuestForm from "@/lib/page-components/NewGuestForm.svelte"
 
   let apartmentsHouseA: Apartment[] = [
     {
@@ -54,7 +55,9 @@
       <Tooltip placement="bottom">Vedi prezzi</Tooltip>
     </div>
   </div>
-  <div class="form" />
+  <div class="form">
+    <NewGuestForm />
+  </div>
 </div>
 
 <style>
@@ -62,7 +65,6 @@
     display: grid;
     grid-template-columns: 1fr 1.5fr;
     grid-template-rows: 1.5fr 1fr;
-    gap: 0px 0px;
     grid-auto-flow: row;
     grid-template-areas:
       "apartment-selection form"
@@ -80,5 +82,6 @@
 
   .form {
     grid-area: form;
+    padding-left: 5%;
   }
 </style>
