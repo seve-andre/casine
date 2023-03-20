@@ -19,10 +19,6 @@
       <Stepper onDone={() => (isApartmentEmpty = !isApartmentEmpty)} />
     {:else}
       <GuestsTable />
-
-      <!-- <GuestsTable
-        guests={guests}
-      /> -->
     {/if}
   </div>
 </div>
