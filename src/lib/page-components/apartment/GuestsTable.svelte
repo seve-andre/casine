@@ -3,7 +3,7 @@
   import type { Guest } from "@/models/Guest"
   import { Table, TableBody, TableBodyCell, TableBodyRow, TableHead, TableHeadCell } from "flowbite-svelte"
 
-  let guestsInfo = ["Nome", "Cognome", "Data di nascita", "Età"]
+  let guestsInfo = ["Nome", "Cognome", "Data di nascita"]
 
   // guests need to be mapped with only the values needed by the table
   let guests: Guest[] = [
@@ -21,12 +21,11 @@
     },
   ]
 
-  let guestsMapped = guests.map(g => ({
-    id: g.id,
-    firstName: g.first_name,
-    lastName: g.last_name,
-    birthDate: g.birth_date,
-    age: calculate_age(new Date(g.birth_date)),
+  let guestsMapped = guests.map(guest => ({
+    id: guest.id,
+    firstName: guest.first_name,
+    lastName: guest.last_name,
+    birthDate: new Date(guest.birth_date),
   }))
 </script>
 
@@ -41,8 +40,7 @@
       <TableBodyRow>
         <TableBodyCell>{guest.firstName}</TableBodyCell>
         <TableBodyCell>{guest.lastName}</TableBodyCell>
-        <TableBodyCell>{guest.birthDate}</TableBodyCell>
-        <TableBodyCell>{guest.age}</TableBodyCell>
+        <TableBodyCell>{guest.birthDate.toLocaleDateString("it-IT")}</TableBodyCell>
       </TableBodyRow>
     {/each}
   </TableBody>
