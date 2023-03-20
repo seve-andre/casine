@@ -3,20 +3,17 @@
   import RightArrow from "@/lib/ui-components/icon/RightArrow.svelte"
   import { Button, Helper, Input, Label, PaginationItem, StepIndicator } from "flowbite-svelte"
 
+  export let onDone: () => void
+
   let currentStep = 1
   let steps = ["1 - Scegli periodo", "2 - Aggiungi capogruppo"]
   const prevStep = () => (currentStep -= 1)
   const nextStep = () => {
     if (datesAreCorrect) {
-      console.log("greater")
       currentStep += 1
-    } else {
-      console.log(`less - ${startDate} < ${endDate}}`)
     }
   }
-  export let onDone: () => void
 
-  // const createGuest
   $: nextLabel = currentStep == 1 ? "Avanti" : "Fine"
   $: nextAction = currentStep == 1 ? nextStep : onDone
 
