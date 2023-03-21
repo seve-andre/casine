@@ -1,9 +1,8 @@
 <script>
-  import "../app.postcss"
+  import "@/app.postcss"
   import { Button, Navbar } from "flowbite-svelte"
-
   import { page } from "$app/stores"
-  import { goBack } from "./navigation-utils"
+  import { goBack } from "@/routes/navigation-utils"
   import LeftArrow from "@/lib/ui-components/icon/LeftArrow.svelte"
 </script>
 
