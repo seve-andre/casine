@@ -1,9 +1,15 @@
 <div align="center">
   <img src="https://github.com/seve-andre/casine/blob/main/public/casine.svg" alt="Le Casine di Cervia logo" height="150" />
+  
+  # casine
+  [![License](https://img.shields.io/github/license/seve-andre/casine)](https://github.com/seve-andre/casine/blob/master/LICENSE)
+  [![Stars](https://img.shields.io/github/stars/seve-andre/casine?style=flat&logo=github&label=stars)](https://github.com/seve-andre/casine/stargazers)
+  
+  Apartment management system. A total of 12 apartments inside 2 houses (A and B) rented by groups of people during summer
 </div>
 
-# Le Casine di Cervia
-Apartment management system, built for the owner. A total of 12 apartments inside 2 houses (A and B) rented by groups of people during summer
+<!-- Remove heading and replace it with screenshots of the app -->
+# Screenshots
 
 # Required features
 - [ ] Add guests to data table for fast visualization
@@ -24,7 +30,7 @@ Apartment management system, built for the owner. A total of 12 apartments insid
 - [ ] Build better UI & UX (skeleton-loaders, loading animations, lazy components, ...)
 - [ ] Add splashscreen when entering the app (skeleton-loader sorta thing)
 
-# Screenshots
+
 
 # Tauri + Svelte + Vite template
 This project uses the following:
