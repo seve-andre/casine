@@ -2,7 +2,8 @@
   <img src="https://github.com/seve-andre/casine/blob/main/public/casine.svg" alt="Le Casine di Cervia logo" height="150" />
 </div>
 
-*casine* is an apartment management system, built for the owner. Specifically, he rents the apartments inside of 2 houses (A and B), usually for a month. He wants to add guests inside a table in each apartment, see prices and calculate final price when rents end. For later versions, I also added optional features, such as better UX, exporting data, internationalization, dark mode and tourist tax automatic computation.
+# Le Casine di Cervia
+Apartment management system, built for the owner. A total of 12 apartments inside 2 houses (A and B) rented by groups of people during summer
 
 # Required features
 - [ ] Add guests to data table for fast visualization
