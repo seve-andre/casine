@@ -28,14 +28,24 @@ Apartment management system, built for the owner. A total of 12 apartments insid
 
 # Tauri + Svelte + Vite template
 This project uses the following:
-- [Tauri](https://tauri.app/): to build optimized, secure, and frontend-independent application for multi-platform deployment using [Rust](https://www.rust-lang.org) as backend
-- [Svelte](https://svelte.dev/): as frontend JS framework
-- [SvelteKit](https://kit.svelte.dev/): to rapidly develop a Svelte app (includes routing, accessibility, ...)
-- [Flowbite-Svelte](https://flowbite-svelte.com/): as Svelte-based UI framework with built-in UI components (buttons, chips, ...)
-- [Vite](https://vitejs.dev/): as frontend tool for faster development
-- [TypeScript](https://www.typescriptlang.org/): as main language for frontend
-- [Diesel - SQLite](https://diesel.rs/): ORM and Query Builder in Rust to store all infos about houses, apartments, guests, ...
+- [Tauri]: to build optimized, secure, and frontend-independent application for multi-platform deployment using [Rust] as backend
+- [Svelte]: as frontend JS framework
+- [SvelteKit]: to rapidly develop a Svelte app (includes routing, accessibility, ...)
+- [Flowbite-Svelte]: as Svelte-based UI framework with built-in UI components (buttons, chips, ...)
+- [Vite]: as frontend tool for faster development
+- [TypeScript]: as main language for frontend
+- [Diesel]: ORM and Query Builder in [Rust] to store all infos about houses, apartments, guests, ...
 
 # Why Tauri?
-[Tauri](https://tauri.app/) is a modern framework for building tiny, blazingly fast binaries for all major desktop platforms. It uses [Rust](https://www.rust-lang.org), a high-perfomance and secure programming language, as backend and any JS framework you want for the frontend ([Svelte](https://svelte.dev/) in my case). I've chosen Tauri over [Electron](https://www.electronjs.org/) after reading [this article](https://betterprogramming.pub/will-tauri-be-an-electron-killer-38fd6478004) that explains the differences between the two.
+[Tauri] is a modern framework for building tiny, blazingly fast binaries for all major desktop platforms. It uses [Rust], a high-perfomance and secure programming language, as backend and any JS framework you want for the frontend ([Svelte] in my case). I've chosen Tauri over [Electron] after reading [this article](https://betterprogramming.pub/will-tauri-be-an-electron-killer-38fd6478004) that explains the differences between the two.
 
+<!-- Links used -->
+[Tauri]: https://tauri.app/
+[Rust]: https://www.rust-lang.org
+[Svelte]: https://svelte.dev/
+[SvelteKit]: https://kit.svelte.dev/
+[Flowbite-Svelte]: https://flowbite-svelte.com/
+[Vite]: https://vitejs.dev/
+[TypeScript]: https://www.typescriptlang.org/
+[Diesel]: https://diesel.rs/
+[Electron]: https://www.electronjs.org/
