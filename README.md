@@ -12,25 +12,21 @@
 # Screenshots
 
 # Required features
-- [ ] Add guests to data table for fast visualization
-- [ ] See apartments prices
-- [ ] Make it as easy as possible for non-technical users (adding UI & UX components to better understand what's going on, such as snackbars, tooltips, alerts, ...)
-- [ ] See all guests
-- [ ] Search for guests inside apartment
-- [ ] Make guests info editable in data table
-- [ ] See bookings
+- [ ] add/remove guests
+- [ ] search for guests
+- [ ] edit guests data
+- [ ] see bookings
+- [ ] see apartments prices
+- [ ] make it as easy as possible for non-technical users (adding UI & UX components to better understand what's going on, such as snackbars, tooltips, alerts, ...)
 
 # Optional features
-- [ ] Calculate apartment final price (apartment month-based price + tourist tax)
-- [ ] Calculate tourist tax based on guests. see [how to](https://www.ovest.com/it/la-tassa-di-soggiorno-in-italia/)
-- [ ] Export data table using multiple formats (PDF, CSV, ...)
-- [ ] Detect if usb stick is plugged in and export guests info to it if permission is granted
-- [ ] Add i18n
-- [ ] Add dark theme support
-- [ ] Build better UI & UX (skeleton-loaders, loading animations, lazy components, ...)
-- [ ] Add splashscreen when entering the app (skeleton-loader sorta thing)
-
-
+- [ ] guests history
+- [ ] calculate apartment final price (apartment month-based price + [tourist tax](https://www.ovest.com/it/la-tassa-di-soggiorno-in-italia/))
+- [ ] export guests to multiple formats (PDF, CSV, ...)
+- [ ] i18n
+- [ ] dark theme
+- [ ] improve UI & UX even further (skeleton-loaders, loading animations, lazy components, ...)
+- [ ] add splashscreen
 
 # Tauri + Svelte + Vite template
 This project uses the following:
