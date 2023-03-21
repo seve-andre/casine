@@ -1,7 +1,7 @@
 <div align="center">
-  <img src="https://github.com/seve-andre/casine/blob/main/public/casine.svg" alt="Le Casine di Cervia logo" height="150" />
+  <img src="https://github.com/seve-andre/casine/blob/main/public/casine.svg" alt="Le Casine di Cervia logo" height="120" />
   
-  # casine
+  # Le Casine di Cervia
   [![License](https://img.shields.io/github/license/seve-andre/casine)](https://github.com/seve-andre/casine/blob/master/LICENSE)
   [![Stars](https://img.shields.io/github/stars/seve-andre/casine?style=flat&logo=github&label=stars)](https://github.com/seve-andre/casine/stargazers)
   
