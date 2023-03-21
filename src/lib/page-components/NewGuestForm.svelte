@@ -1,6 +1,7 @@
 <script lang="ts">
   import { Button, Heading, Helper, Input, Label, Select } from "flowbite-svelte"
   import FilledButton from "@/lib/ui-components/button/FilledButton.svelte"
+  import OutlinedButton from "@/lib/ui-components/button/OutlinedButton.svelte"
 
   let selectedApartment = 1
   let apartmentNumbers = Array.from({ length: 6 }, (_, i) => ({
@@ -21,6 +22,12 @@
   let firstNameTouched = false
   let lastNameTouched = false
   let birthDateTouched = false
+
+  const resetForm = () => {
+    firstName = undefined
+    lastName = undefined
+    birthDate = undefined
+  }
 </script>
 
 <form class="bg-gray-200 p-5 rounded-lg h-full flex flex-col gap-5">
@@ -90,7 +97,13 @@
   </div>
 
   <div class="flex-initial flex justify-end gap-5">
-    <Button pill outline color="red">reset</Button>
-    <FilledButton disabled={!isFormValid}>invia</FilledButton>
+    <OutlinedButton
+      color="red"
+      disabled={isFirstNameEmpty && isLastNameEmpty && isBirthDateEmpty}
+      on:click={() => resetForm()}
+    >
+      Reset
+    </OutlinedButton>
+    <FilledButton disabled={!isFormValid}>Aggiungi</FilledButton>
   </div>
 </form>
