@@ -1,7 +1,8 @@
-# What's this?
-Modern desktop app using Tauri (see [why Tauri](https://tauri.app/) and the [differences with Electron](https://betterprogramming.pub/will-tauri-be-an-electron-killer-38fd6478004)). Tauri uses Rust, a high-perfomance and secure programming language, as backend and any JS framework you want for the frontend (Svelte in my case).
+<div align="center">
+  <img src="https://github.com/seve-andre/casine/blob/main/public/casine.svg" alt="Le Casine di Cervia logo" height="150" />
+</div>
 
-Specifically, it's an app for apartment rental management, built for the owner. Specifically, he rents the apartments inside of 2 houses (A and B), usually for a month. He wants to add guests inside a table in each apartment, see prices and calculate final price when rents end. For later versions, I also added optional features, such as better UX, exporting data, internationalization, dark mode and tourist tax automatic computation.
+*casine* is an apartment management system, built for the owner. Specifically, he rents the apartments inside of 2 houses (A and B), usually for a month. He wants to add guests inside a table in each apartment, see prices and calculate final price when rents end. For later versions, I also added optional features, such as better UX, exporting data, internationalization, dark mode and tourist tax automatic computation.
 
 # Required features
 - [ ] Add guests to data table for fast visualization
@@ -33,3 +34,7 @@ This project uses the following:
 - [Vite](https://vitejs.dev/): as frontend tool for faster development
 - [TypeScript](https://www.typescriptlang.org/): as main language for frontend
 - [Diesel - SQLite](https://diesel.rs/): ORM and Query Builder in Rust to store all infos about houses, apartments, guests, ...
+
+# Why Tauri?
+[Tauri](https://tauri.app/) is a modern framework for building tiny, blazingly fast binaries for all major desktop platforms. It uses [Rust](https://www.rust-lang.org), a high-perfomance and secure programming language, as backend and any JS framework you want for the frontend ([Svelte](https://svelte.dev/) in my case). I've chosen Tauri over [Electron](https://www.electronjs.org/) after reading [this article](https://betterprogramming.pub/will-tauri-be-an-electron-killer-38fd6478004) that explains the differences between the two.
+
