@@ -32,6 +32,13 @@
     },
   ]
 
+  // apartments grouped by house_name
+  let apartmentsByHouse = apartments.reduce((r, ap) => {
+    r[ap.house_name] = r[ap.house_name] || []
+    r[ap.house_name].push(ap.apartment_number)
+    return r
+  }, Object.create(null))
+
   let apartmentHouseA = apartments.filter(a => a.house_name == "A")
 </script>
 
