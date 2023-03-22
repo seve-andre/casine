@@ -1,4 +1,4 @@
 export type Apartment = {
-    house_id: number,
+    house_name: string,
     apartment_number: number
 }

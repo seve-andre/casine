@@ -5,40 +5,42 @@
   import type { Apartment } from "@/models/Apartment"
   import NewGuestForm from "@/lib/page-components/NewGuestForm.svelte"
 
-  let apartmentsHouseA: Apartment[] = [
+  let apartments: Apartment[] = [
     {
-      house_id: 1,
+      house_name: "A",
       apartment_number: 1,
     },
     {
-      house_id: 1,
+      house_name: "A",
       apartment_number: 2,
     },
     {
-      house_id: 1,
+      house_name: "A",
       apartment_number: 3,
     },
     {
-      house_id: 1,
+      house_name: "A",
       apartment_number: 4,
     },
     {
-      house_id: 1,
+      house_name: "A",
       apartment_number: 5,
     },
     {
-      house_id: 1,
+      house_name: "A",
       apartment_number: 6,
     },
   ]
+
+  let apartmentHouseA = apartments.filter(a => a.house_name == "A")
 </script>
 
 <div class="home-container">
   <div class="apartment-selection flex flex-col gap-4">
     <Heading customSize="text-2xl font-bold">Casa A</Heading>
     <div class="grid grid-cols-3 gap-4">
-      {#each apartmentsHouseA as apartment}
-        <FilledButton on:click={() => gotoApartmentInHouse(apartment.apartment_number, "A")}>
+      {#each apartmentHouseA as apartment}
+        <FilledButton on:click={() => gotoApartmentInHouse(apartment.apartment_number, apartment.house_name)}>
           App. {apartment.apartment_number}
         </FilledButton>
         <Tooltip placement="bottom">Vai all'appartamento {apartment.apartment_number}</Tooltip>
