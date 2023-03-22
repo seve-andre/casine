@@ -7,7 +7,7 @@ use crate::schema::apartments;
 #[derive(Identifiable, Queryable, Associations, Serialize, Deserialize)]
 #[diesel(belongs_to(House, foreign_key=house_name), table_name = apartments)]
 pub struct Apartment {
-    id: i32,
-    house_name: String,
-    apartment_number: i32,
+    pub id: i32,
+    pub house_name: String,
+    pub apartment_number: i32,
 }
