@@ -6,10 +6,10 @@ use serde::{Deserialize, Serialize};
 #[derive(Identifiable, Queryable, Serialize, Deserialize)]
 #[diesel(table_name = guests)]
 pub struct Guest {
-    pub id: i32,
-    pub first_name: String,
-    pub last_name: String,
-    pub birth_date: NaiveDate,
+    id: i32,
+    first_name: String,
+    last_name: String,
+    birth_date: NaiveDate,
     /*pub birthplace: Option<String>,
     pub phone_number: Option<String>,
     pub nationality: Option<String>,
@@ -19,7 +19,7 @@ pub struct Guest {
 #[derive(Insertable, Serialize)]
 #[diesel(table_name = guests)]
 pub struct NewGuest<'a> {
-    pub first_name: &'a str,
-    pub last_name: &'a str,
-    pub birth_date: &'a NaiveDate,
+    first_name: &'a str,
+    last_name: &'a str,
+    birth_date: &'a NaiveDate,
 }

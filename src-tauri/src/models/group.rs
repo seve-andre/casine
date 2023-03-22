@@ -6,15 +6,15 @@ use serde::{Deserialize, Serialize};
 #[derive(Queryable, Identifiable, Serialize, Deserialize)]
 #[diesel(table_name = groups)]
 pub struct Group {
-    pub id: i32,
-    pub leader_id: i32,
-    pub nickname: Option<String>,
+    id: i32,
+    leader_id: i32,
+    nickname: Option<String>,
 }
 
 #[derive(Insertable, Serialize)]
 #[diesel(table_name = groups)]
 pub struct NewGroup<'a> {
-    pub nickname: Option<&'a str>,
+    nickname: Option<&'a str>,
 }
 
 #[derive(Insertable, Queryable, Associations, Serialize, Deserialize)]
