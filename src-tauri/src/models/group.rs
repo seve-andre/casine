@@ -21,6 +21,6 @@ pub struct NewGroup<'a> {
 #[diesel(belongs_to(Guest), belongs_to(Group))]
 #[diesel(table_name = group_members)]
 pub struct GroupMember {
-    guest_id: i32,
-    group_id: i32,
+    pub guest_id: i32,
+    pub group_id: i32,
 }
