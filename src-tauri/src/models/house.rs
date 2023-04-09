@@ -4,9 +4,9 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Identifiable, Queryable, Serialize, Deserialize)]
 #[diesel(table_name = houses)]
+#[diesel(primary_key(house_name))]
 pub struct House {
-    pub id: i32,
-    pub house_name: String,
+    pub house_name: char,
     pub street_type: String,
     pub street_name: String,
     pub street_number: i32,
