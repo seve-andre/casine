@@ -1,10 +1,10 @@
 use super::guest::Guest;
-use crate::schema::{group_members, groups};
+use crate::schema::{group_members, groupz};
 use diesel::{Associations, Identifiable, Insertable, Queryable};
 use serde::{Deserialize, Serialize};
 
 #[derive(Queryable, Identifiable, Serialize, Deserialize)]
-#[diesel(table_name = groups)]
+#[diesel(table_name = groupz)]
 pub struct Group {
     pub id: i32,
     pub leader_id: i32,
@@ -12,7 +12,7 @@ pub struct Group {
 }
 
 #[derive(Insertable, Serialize)]
-#[diesel(table_name = groups)]
+#[diesel(table_name = groupz)]
 pub struct NewGroup<'a> {
     pub nickname: Option<&'a str>,
 }
