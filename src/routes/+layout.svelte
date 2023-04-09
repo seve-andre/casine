@@ -1,9 +1,9 @@
 <script>
-  import "@/app.postcss"
+  import "~/app.postcss"
   import { Button, Navbar } from "flowbite-svelte"
   import { page } from "$app/stores"
-  import { goBack } from "@/routes/navigation-utils"
-  import LeftArrow from "@/lib/ui-components/icon/LeftArrow.svelte"
+  import { goBack } from "~/routes/navigation-utils"
+  import LeftArrow from "~/lib/ui-components/icon/LeftArrow.svelte"
 </script>
 
 <div class="flex flex-col h-screen">

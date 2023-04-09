@@ -1,7 +1,7 @@
 <script lang="ts">
   import { Button, Heading, Helper, Input, Label, Select } from "flowbite-svelte"
-  import FilledButton from "@/lib/ui-components/button/FilledButton.svelte"
-  import OutlinedButton from "@/lib/ui-components/button/OutlinedButton.svelte"
+  import FilledButton from "~/lib/ui-components/button/FilledButton.svelte"
+  import OutlinedButton from "~/lib/ui-components/button/OutlinedButton.svelte"
 
   let selectedApartment = 1
   let apartmentNumbers = Array.from({ length: 6 }, (_, i) => ({

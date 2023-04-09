@@ -1,9 +1,11 @@
 <script lang="ts">
   import { gotoApartmentInHouse, gotoBookings, gotoPrices } from "./navigation-utils"
   import { Heading, Tooltip } from "flowbite-svelte"
-  import FilledButton from "@/lib/ui-components/button/FilledButton.svelte"
-  import type { Apartment } from "@/models/Apartment"
-  import NewGuestForm from "@/lib/page-components/NewGuestForm.svelte"
+  import FilledButton from "~/lib/ui-components/button/FilledButton.svelte"
+  import type { Apartment } from "~/models/Apartment"
+  import NewGuestForm from "~/lib/page-components/NewGuestForm.svelte"
+  import { invoke } from "@tauri-apps/api/tauri"
+  import { onMount } from "svelte"
 
   let apartments: Apartment[] = [
     {
@@ -39,7 +41,15 @@
     return r
   }, Object.create(null))
 
-  let apartmentHouseA = apartments.filter(a => a.house_name == "A")
+  // let apartmentHouseA = apartments.filter(a => a.house_name == "A")
+
+  let apartmentHouseA: Apartment[]
+
+  async function retrieve_apartments() {
+    await invoke("get_apartments").then(data => (apartmentHouseA = data as Apartment[]))
+  }
+
+  onMount(() => retrieve_apartments())
 </script>
 
 <div class="home-container">

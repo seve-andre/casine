@@ -1,7 +1,7 @@
 <script lang="ts">
   import { page } from "$app/stores"
-  import GuestsTable from "@/lib/page-components/apartment/GuestsTable.svelte"
-  import Stepper from "@/lib/page-components/apartment/Stepper.svelte"
+  import GuestsTable from "~/lib/page-components/apartment/GuestsTable.svelte"
+  import Stepper from "~/lib/page-components/apartment/Stepper.svelte"
   import { Heading } from "flowbite-svelte"
 
   let isApartmentEmpty = true
