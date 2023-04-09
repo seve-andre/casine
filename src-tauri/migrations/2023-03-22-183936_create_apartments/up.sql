@@ -1,8 +1,9 @@
 CREATE TABLE apartments(
-    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-    house_name TEXT NOT NULL,
+    id INT AUTO_INCREMENT NOT NULL,
+    house_name CHAR(1) NOT NULL,
     apartment_number INT NOT NULL,
-    FOREIGN KEY (house_name) REFERENCES houses(house_name),
+    PRIMARY KEY (id),
+    CONSTRAINT FK_apartment_house FOREIGN KEY (house_name) REFERENCES houses(house_name),
     UNIQUE (house_name, apartment_number)
 );
 

@@ -1,9 +1,10 @@
 CREATE TABLE houses(
-    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-    house_name TEXT NOT NULL,
+    house_name CHAR(1) NOT NULL,
     street_type TEXT NOT NULL,
     street_name TEXT NOT NULL,
-    street_number INT NOT NULL CHECK(street_number > 0)
+    street_number INT NOT NULL,
+    PRIMARY KEY(house_name),
+    CHECK(street_number > 0)
 );
 
 INSERT INTO

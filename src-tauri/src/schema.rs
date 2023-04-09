@@ -1,19 +1,45 @@
 // @generated automatically by Diesel CLI.
-diesel::table! {
-    houses (id) {
-        id -> Integer,
-        house_name -> Text,
-        street_type -> Text,
-        street_name -> Text,
-        street_number -> Integer,
-    }
-}
 
 diesel::table! {
     apartments (id) {
         id -> Integer,
-        house_name -> Text,
+        house_name -> Char,
         apartment_number -> Integer,
+    }
+}
+
+diesel::table! {
+    apartments_prices (id) {
+        id -> Integer,
+        apartment_id -> Integer,
+        rent_month -> Integer,
+        price -> Decimal,
+    }
+}
+
+diesel::table! {
+    documents (id) {
+        id -> Integer,
+        leader_id -> Integer,
+        doc_type -> Varchar,
+        doc_number -> Varchar,
+        birthplace -> Text,
+        released_by -> Text,
+        residence -> Text,
+    }
+}
+
+diesel::table! {
+    group_members (guest_id, group_id) {
+        guest_id -> Integer,
+        group_id -> Integer,
+    }
+}
+
+diesel::table! {
+    groupz (id) {
+        id -> Integer,
+        nickname -> Nullable<Varchar>,
     }
 }
 
@@ -29,16 +55,11 @@ diesel::table! {
 }
 
 diesel::table! {
-    groups (id) {
-        id -> Integer,
-        nickname -> Nullable<Text>,
-    }
-}
-
-diesel::table! {
-    group_members (guest_id, group_id) {
-        guest_id -> Integer,
-        group_id -> Integer,
+    houses (house_name) {
+        house_name -> Char,
+        street_type -> Text,
+        street_name -> Text,
+        street_number -> Integer,
     }
 }
 
@@ -52,41 +73,21 @@ diesel::table! {
     }
 }
 
-diesel::table! {
-    apartments_price (id) {
-        id -> Integer,
-        apartment_id -> Integer,
-        rent_month -> Integer,
-        price -> Double,
-    }
-}
-
-diesel::table! {
-    documents (id) {
-        id -> Integer,
-        leader_id -> Integer,
-        doc_type -> Text,
-        doc_number -> Text,
-        birthplace -> Text,
-        released_by -> Text,
-        residence -> Text,
-    }
-}
-
-diesel::joinable!(apartments_price -> apartments (apartment_id));
+diesel::joinable!(apartments -> houses (house_name));
+diesel::joinable!(apartments_prices -> apartments (apartment_id));
 diesel::joinable!(documents -> guests (leader_id));
-diesel::joinable!(group_members -> groups (group_id));
+diesel::joinable!(group_members -> groupz (group_id));
 diesel::joinable!(group_members -> guests (guest_id));
 diesel::joinable!(rents -> apartments (apartment_id));
-diesel::joinable!(rents -> groups (group_id));
+diesel::joinable!(rents -> groupz (group_id));
 
 diesel::allow_tables_to_appear_in_same_query!(
-    houses,
     apartments,
-    guests,
-    groups,
-    group_members,
-    rents,
-    apartments_price,
+    apartments_prices,
     documents,
+    group_members,
+    groupz,
+    guests,
+    houses,
+    rents,
 );

@@ -1,5 +1,5 @@
-CREATE TABLE apartments_price(
-    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+CREATE TABLE apartments_prices(
+    id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     apartment_id INT NOT NULL,
     -- 1 to 12, where 1 is January and 12 is December
     rent_month INT NOT NULL CHECK(rent_month >= 1 AND rent_month <= 12),
