@@ -1,6 +1,6 @@
 <script lang="ts">
   import { gotoApartmentInHouse, gotoBookings, gotoPrices } from "./navigation-utils"
-  import { Heading, Tooltip } from "flowbite-svelte"
+  import { Button, Heading, Tooltip } from "flowbite-svelte"
   import FilledButton from "~/lib/ui-components/button/FilledButton.svelte"
   import type { Apartment } from "~/models/Apartment"
   import NewGuestForm from "~/lib/page-components/NewGuestForm.svelte"
@@ -9,26 +9,32 @@
 
   let apartments: Apartment[] = [
     {
+      id: 1,
       house_name: "A",
       apartment_number: 1,
     },
     {
+      id: 2,
       house_name: "A",
       apartment_number: 2,
     },
     {
+      id: 3,
       house_name: "A",
       apartment_number: 3,
     },
     {
+      id: 4,
       house_name: "A",
       apartment_number: 4,
     },
     {
+      id: 5,
       house_name: "A",
       apartment_number: 5,
     },
     {
+      id: 6,
       house_name: "A",
       apartment_number: 6,
     },
@@ -41,15 +47,13 @@
     return r
   }, Object.create(null))
 
-  // let apartmentHouseA = apartments.filter(a => a.house_name == "A")
+  let apartmentHouseA = apartments.filter(a => a.house_name == "A")
 
-  let apartmentHouseA: Apartment[]
+  // let apartmentHouseA: Apartment[]
 
-  async function retrieve_apartments() {
-    await invoke("get_apartments").then(data => (apartmentHouseA = data as Apartment[]))
-  }
-
-  onMount(() => retrieve_apartments())
+  onMount(async () => {
+    // apartmentHouseA = await invoke("get_apartments")
+  })
 </script>
 
 <div class="home-container">
@@ -57,7 +61,7 @@
     <Heading customSize="text-2xl font-bold">Casa A</Heading>
     <div class="grid grid-cols-3 gap-4">
       {#each apartmentHouseA as apartment}
-        <FilledButton on:click={() => gotoApartmentInHouse(apartment.apartment_number, apartment.house_name)}>
+        <FilledButton href={`house/${apartment.house_name}/apartment/${apartment.apartment_number}`}>
           App. {apartment.apartment_number}
         </FilledButton>
         <Tooltip placement="bottom">Vai all'appartamento {apartment.apartment_number}</Tooltip>
