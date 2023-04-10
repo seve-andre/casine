@@ -1,7 +1,7 @@
 <script lang="ts">
-  import LeftArrow from "@/lib/ui-components/icon/LeftArrow.svelte"
-  import RightArrow from "@/lib/ui-components/icon/RightArrow.svelte"
-  import { Button, Helper, Input, Label, PaginationItem, StepIndicator } from "flowbite-svelte"
+  import LeftArrow from "~/lib/ui-components/icon/LeftArrow.svelte"
+  import RightArrow from "~/lib/ui-components/icon/RightArrow.svelte"
+  import { Helper, Input, Label, PaginationItem, StepIndicator } from "flowbite-svelte"
 
   export let onDone: () => void
 
@@ -17,24 +17,15 @@
   $: nextLabel = currentStep == 1 ? "Avanti" : "Fine"
   $: nextAction = currentStep == 1 ? nextStep : onDone
 
-  const stepsTest = [
-    {
-      name: "1 - Scegli periodo",
-      nextLabel: "Avanti",
-      nextAction: nextStep,
-    },
-    {
-      name: "2 - Aggiungi capogruppo",
-      nextLabel: "Fine",
-      nextAction: onDone,
-    },
-  ]
-
   let startDate: string = ""
   let endDate: string = ""
   $: isStartDateCorrect = startDate != ""
   $: isEndDateCorrect = endDate != ""
   $: datesAreCorrect = isStartDateCorrect && isEndDateCorrect && Date.parse(startDate) < Date.parse(endDate)
+
+  let firstName: string | undefined = undefined
+  $: isFirstNameEmpty = firstName == undefined || firstName == ""
+  let firstNameTouched = false
 </script>
 
 <div class="flex flex-col gap-2">
@@ -71,7 +62,23 @@
         {/if}
       </div>
     {:else}
-      <Button>2</Button>
+      <div class="grid gap-6 md:grid-cols-2">
+        <div>
+          <Label for="first-name" color={isFirstNameEmpty && firstNameTouched ? "red" : "gray"} class="block mb-2">
+            Nome
+          </Label>
+          <Input
+            id="first-name"
+            bind:value={firstName}
+            color={isFirstNameEmpty && firstNameTouched ? "red" : "base"}
+            placeholder="Andrea"
+            on:keydown={() => (firstNameTouched = true)}
+          />
+          {#if isFirstNameEmpty && firstNameTouched}
+            <Helper class="mt-2" color="red">Il nome è obbligatorio</Helper>
+          {/if}
+        </div>
+      </div>
     {/if}
   </div>
 
