@@ -1,10 +1,8 @@
 <script lang="ts">
-  import { gotoApartmentInHouse, gotoBookings, gotoPrices } from "./navigation-utils"
-  import { Button, Heading, Tooltip } from "flowbite-svelte"
+  import { Heading, Tooltip } from "flowbite-svelte"
   import FilledButton from "~/lib/ui-components/button/FilledButton.svelte"
   import type { Apartment } from "~/models/Apartment"
   import NewGuestForm from "~/lib/page-components/NewGuestForm.svelte"
-  import { invoke } from "@tauri-apps/api/tauri"
   import { onMount } from "svelte"
 
   let apartments: Apartment[] = [
@@ -71,10 +69,10 @@
   <div class="bookings-utils flex flex-col gap-4">
     <Heading tag="h2" customSize="text-xl font-semibold">Utili</Heading>
     <div class="grid grid-cols-3 gap-4">
-      <FilledButton on:click={() => gotoBookings()}>Prenotazioni</FilledButton>
+      <FilledButton href="/bookings">Prenotazioni</FilledButton>
       <Tooltip placement="bottom">Vedi prenotazioni</Tooltip>
 
-      <FilledButton on:click={() => gotoPrices()}>Prezzi</FilledButton>
+      <FilledButton href="/prices">Prezzi</FilledButton>
       <Tooltip placement="bottom">Vedi prezzi</Tooltip>
     </div>
   </div>
