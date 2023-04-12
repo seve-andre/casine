@@ -2,17 +2,15 @@
   import "~/app.postcss"
   import { Button, Navbar } from "flowbite-svelte"
   import { page } from "$app/stores"
-  import { goBack } from "~/routes/navigation-utils"
   import LeftArrow from "~/lib/ui-components/icon/LeftArrow.svelte"
 </script>
 
 <div class="flex flex-col h-screen">
-  {#if $page.route.id != "/"}
+  {#if $page.url.pathname != "/"}
     <header class="flex-initial">
       <Navbar class="bg-gray-50 dark:bg-gray-900">
-        <Button pill on:click={() => goBack()} color="light">
-          <LeftArrow clazz="mr-2 -ml-1 w-5 h-5" />
-          Torna indietro
+        <Button href="/" pill color="light" outline>
+          <LeftArrow clazz="w-4 h-4" />
         </Button>
       </Navbar>
     </header>
