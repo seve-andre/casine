@@ -1,9 +1,9 @@
 <script lang="ts">
-  import { Heading, Tooltip } from "flowbite-svelte"
-  import FilledButton from "~/lib/ui-components/button/FilledButton.svelte"
-  import type { Apartment } from "~/models/Apartment"
-  import NewGuestForm from "~/lib/page-components/NewGuestForm.svelte"
   import { onMount } from "svelte"
+  import { Heading, Tooltip } from "flowbite-svelte"
+  import type { Apartment } from "~/models/Apartment"
+  import FilledButton from "~/lib/ui-components/button/FilledButton.svelte"
+  import NewGuestForm from "~/lib/page-components/common/NewGuestForm.svelte"
 
   let apartments: Apartment[] = [
     {
