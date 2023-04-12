@@ -1,10 +1,14 @@
 <script>
   import "~/app.postcss"
-  import { Button, Navbar } from "flowbite-svelte"
   import { page } from "$app/stores"
+  import { Button, Navbar } from "flowbite-svelte"
   import LeftArrow from "~/lib/ui-components/icon/LeftArrow.svelte"
 </script>
 
+<svelte:head>
+  <title>{$page.data.title}</title>
+  <meta name="description" content={$page.data.description} />
+</svelte:head>
 <div class="flex flex-col h-screen">
   {#if $page.url.pathname != "/"}
     <header class="flex-initial">

@@ -7,11 +7,6 @@
   export let data: PageData
 </script>
 
-<svelte:head>
-  <title>{data.title}</title>
-  <meta name="description" content={data.description} />
-</svelte:head>
-
 <div class="home-container">
   <div class="apartment-selection flex flex-col gap-4">
     <Heading customSize="text-2xl font-bold">Casa A</Heading>
