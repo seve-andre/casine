@@ -1,64 +1,17 @@
 <script lang="ts">
-  import { onMount } from "svelte"
+  import type { PageData } from "./$types"
   import { Heading, Tooltip } from "flowbite-svelte"
-  import type { Apartment } from "~/models/Apartment"
   import FilledButton from "~/lib/ui-components/button/FilledButton.svelte"
   import NewGuestForm from "~/lib/page-components/common/NewGuestForm.svelte"
 
-  let apartments: Apartment[] = [
-    {
-      id: 1,
-      house_name: "A",
-      apartment_number: 1,
-    },
-    {
-      id: 2,
-      house_name: "A",
-      apartment_number: 2,
-    },
-    {
-      id: 3,
-      house_name: "A",
-      apartment_number: 3,
-    },
-    {
-      id: 4,
-      house_name: "A",
-      apartment_number: 4,
-    },
-    {
-      id: 5,
-      house_name: "A",
-      apartment_number: 5,
-    },
-    {
-      id: 6,
-      house_name: "A",
-      apartment_number: 6,
-    },
-  ]
-
-  // apartments grouped by house_name
-  let apartmentsByHouse = apartments.reduce((r, ap) => {
-    r[ap.house_name] = r[ap.house_name] || []
-    r[ap.house_name].push(ap.apartment_number)
-    return r
-  }, Object.create(null))
-
-  let apartmentHouseA = apartments.filter(a => a.house_name == "A")
-
-  // let apartmentHouseA: Apartment[]
-
-  onMount(async () => {
-    // apartmentHouseA = await invoke("get_apartments")
-  })
+  export let data: PageData
 </script>
 
 <div class="home-container">
   <div class="apartment-selection flex flex-col gap-4">
     <Heading customSize="text-2xl font-bold">Casa A</Heading>
     <div class="grid grid-cols-3 gap-4">
-      {#each apartmentHouseA as apartment}
+      {#each data.apartments as apartment}
         <FilledButton href={`house/${apartment.house_name}/apartment/${apartment.apartment_number}`}>
           App. {apartment.apartment_number}
         </FilledButton>
