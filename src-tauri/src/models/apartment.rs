@@ -5,7 +5,7 @@ use super::house::House;
 use crate::schema::apartments;
 
 #[derive(Identifiable, Queryable, Associations, Serialize, Deserialize)]
-#[diesel(belongs_to(House, foreign_key=house_name), table_name = apartments)]
+#[diesel(table_name = apartments, belongs_to(House, foreign_key=house_name))]
 pub struct Apartment {
     pub id: i32,
     pub house_name: String,
