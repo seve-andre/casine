@@ -18,8 +18,8 @@ pub struct NewGroup<'a> {
 }
 
 #[derive(Insertable, Queryable, Associations, Serialize, Deserialize)]
-#[diesel(belongs_to(Guest), belongs_to(Group))]
 #[diesel(table_name = group_members)]
+#[diesel(belongs_to(Guest), belongs_to(Group))]
 pub struct GroupMember {
     pub guest_id: i32,
     pub group_id: i32,

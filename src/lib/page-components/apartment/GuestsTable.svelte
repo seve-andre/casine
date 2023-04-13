@@ -5,22 +5,9 @@
 
   let guestsInfo = ["Nome", "Cognome", "Data di nascita"]
 
-  // guests need to be mapped with only the values needed by the table
-  let guests: Guest[] = [
-    {
-      id: 1,
-      first_name: "Andrea",
-      last_name: "Severi",
-      birth_date: "2000-10-02",
-    },
-    {
-      id: 2,
-      first_name: "Chiara",
-      last_name: "Leonelli",
-      birth_date: "2002-07-30",
-    },
-  ]
+  export let guests: Guest[]
 
+  // guests need to be mapped with only the values needed by the table
   let guestsMapped = guests.map(guest => ({
     id: guest.id,
     firstName: guest.first_name,

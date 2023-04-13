@@ -4,8 +4,8 @@
   import GuestsTable from "~/lib/page-components/apartment/GuestsTable.svelte"
   import Stepper from "~/lib/page-components/apartment/Stepper.svelte"
 
-  let isApartmentEmpty = true
   export let data: PageData
+  let isApartmentEmpty = data.guests.length === 0
 </script>
 
 <div class="h-screen flex flex-col gap-4">
@@ -17,7 +17,7 @@
     {#if isApartmentEmpty}
       <Stepper onDone={() => (isApartmentEmpty = false)} />
     {:else}
-      <GuestsTable />
+      <GuestsTable guests={data.guests} />
     {/if}
   </div>
 </div>

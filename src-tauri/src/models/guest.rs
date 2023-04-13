@@ -10,10 +10,8 @@ pub struct Guest {
     pub first_name: String,
     pub last_name: String,
     pub birth_date: NaiveDate,
-    /*pub birthplace: Option<String>,
     pub phone_number: Option<String>,
     pub nationality: Option<String>,
-    pub residence: Option<String>,*/
 }
 
 #[derive(Insertable, Serialize)]
