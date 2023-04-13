@@ -44,8 +44,6 @@ fn get_group_id_by_apartment(apartment: &Apartment) -> Result<i32, MyError> {
     let connection = &mut establish_connection()?;
     let today_date = Utc::now().date_naive();
 
-    println!("fuck you");
-
     return Rent::belonging_to(apartment)
         // .filter(start_date.le(&today_date))
         // .filter(end_date.ge(&today_date))
@@ -85,7 +83,6 @@ pub async fn get_guests(
     // based on date and apartment_id, get group_id
 
     let group_id_result = get_group_id_by_apartment(&apartment)?;
-    println!("group_id_result: {:?}", group_id_result);
 
     // from group_id, get guest_id
     let guest_ids = get_guests_ids_by_group_id(group_id_result)?;
