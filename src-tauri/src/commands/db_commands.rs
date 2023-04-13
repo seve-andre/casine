@@ -3,10 +3,10 @@ use crate::{
     db::establish_connection,
     errors::MyError,
     models::{apartment::Apartment, guest::Guest, rent::Rent},
-    schema,
+    schema::{self, rents},
 };
-use chrono::Utc;
-use diesel::prelude::*;
+use chrono::{Local, NaiveDate};
+use diesel::{prelude::*, sql_types::Bool};
 
 /*
     SELECT *
@@ -38,15 +38,22 @@ fn get_apartment_by_house_name_and_number(
         .map_err(MyError::DatabaseQueryError);
 }
 
+type DB = diesel::mysql::Mysql;
+fn is_date_in_range(
+    date: NaiveDate,
+) -> Box<dyn BoxableExpression<rents::table, DB, SqlType = Bool>> {
+    return Box::new(rents::start_date.le(date).and(rents::end_date.ge(date)));
+}
+
 fn get_group_id_by_apartment(apartment: &Apartment) -> Result<i32, MyError> {
     use schema::rents::dsl::*;
 
     let connection = &mut establish_connection()?;
-    let today_date = Utc::now().date_naive();
+    let today_date = Local::now().date_naive();
 
+    // problem is, it
     return Rent::belonging_to(apartment)
-        // .filter(start_date.le(&today_date))
-        // .filter(end_date.ge(&today_date))
+        .filter(is_date_in_range(today_date))
         .select(group_id)
         .get_result::<i32>(connection)
         .map_err(MyError::DatabaseQueryError);
@@ -64,9 +71,9 @@ fn get_guests_ids_by_group_id(group_id_result: i32) -> Result<Vec<i32>, MyError>
         .map_err(MyError::DatabaseQueryError);
 }
 
+
 /*
-    SELECT *
-    FROM guests
+    TODO
 */
 #[tauri::command]
 pub async fn get_guests(
@@ -77,17 +84,16 @@ pub async fn get_guests(
 
     let connection = &mut establish_connection()?;
 
-    // get apartment_id from house name and number
     let apartment = get_apartment_by_house_name_and_number(p_house_name, p_apartment_number)?;
 
-    // based on date and apartment_id, get group_id
+    let group_id_result = get_group_id_by_apartment(&apartment);
+    let actual_group_id = match group_id_result {
+        Ok(it) => it,
+        Err(_) => return Result::Ok(vec![]),
+    };
 
-    let group_id_result = get_group_id_by_apartment(&apartment)?;
+    let guest_ids = get_guests_ids_by_group_id(actual_group_id)?;
 
-    // from group_id, get guest_id
-    let guest_ids = get_guests_ids_by_group_id(group_id_result)?;
-
-    // guest_ids -> Vec<Guest>
     return guests
         .filter(id.eq_any(&guest_ids))
         .load::<Guest>(connection)
