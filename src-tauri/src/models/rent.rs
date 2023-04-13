@@ -6,14 +6,14 @@ use serde::{Deserialize, Serialize};
 use super::apartment::Apartment;
 use super::group::Group;
 
-#[derive(Identifiable, Queryable, Associations, Serialize, Deserialize)]
+#[derive(Identifiable, Queryable, Associations, Serialize, Deserialize, Debug)]
 #[diesel(table_name = rents, belongs_to(Group), belongs_to(Apartment))]
 pub struct Rent {
     pub id: i32,
+    pub apartment_id: i32,
+    pub group_id: i32,
     pub start_date: NaiveDate,
     pub end_date: NaiveDate,
-    pub group_id: i32,
-    pub apartment_id: i32,
 }
 
 #[derive(Insertable, Serialize)]
