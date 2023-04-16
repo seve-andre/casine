@@ -4,13 +4,12 @@
   import "~/lib/utils/DateUtils"
   import { Heading, Table, TableBody, TableBodyCell, TableBodyRow, TableHead, TableHeadCell } from "flowbite-svelte"
 
-  let guestsInfo = ["Nome", "Cognome", "Data di nascita"]
-
   export let rent: Rent
   export let guests: Guest[]
 
+  const guestsInfo = ["Nome", "Cognome", "Data di nascita"]
   // guests need to be mapped with only the values needed by the table
-  let guestsMapped = guests.map(guest => ({
+  const guestsMapped = guests.map(guest => ({
     id: guest.id,
     firstName: guest.first_name,
     lastName: guest.last_name,
