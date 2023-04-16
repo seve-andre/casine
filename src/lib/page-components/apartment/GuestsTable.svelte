@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { Rent } from "~/models/Rent"
   import type { Guest } from "~/models/Guest"
+  import "~/lib/utils/DateUtils"
   import { Heading, Table, TableBody, TableBodyCell, TableBodyRow, TableHead, TableHeadCell } from "flowbite-svelte"
 
   let guestsInfo = ["Nome", "Cognome", "Data di nascita"]
@@ -17,7 +18,9 @@
   }))
 </script>
 
-<Heading customSize="text-xl font-semibold" tag="h2">Dal {rent.start_date} al {rent.start_date}</Heading>
+<Heading customSize="text-xl font-semibold" tag="h2">
+  Dal {rent.start_date.toItalianFormat()} al {rent.end_date.toItalianFormat()}
+</Heading>
 <Table striped>
   <TableHead>
     {#each guestsInfo as info}
@@ -29,7 +32,7 @@
       <TableBodyRow>
         <TableBodyCell>{guest.firstName}</TableBodyCell>
         <TableBodyCell>{guest.lastName}</TableBodyCell>
-        <TableBodyCell>{guest.birthDate.toLocaleDateString("it-IT")}</TableBodyCell>
+        <TableBodyCell>{guest.birthDate.toItalianFormat()}</TableBodyCell>
       </TableBodyRow>
     {/each}
   </TableBody>
