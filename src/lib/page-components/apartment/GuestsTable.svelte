@@ -1,7 +1,7 @@
 <script lang="ts">
+  import type { Rent } from "~/models/Rent"
   import type { Guest } from "~/models/Guest"
   import { Heading, Table, TableBody, TableBodyCell, TableBodyRow, TableHead, TableHeadCell } from "flowbite-svelte"
-  import type { Rent } from "~/models/Rent"
 
   let guestsInfo = ["Nome", "Cognome", "Data di nascita"]
 
