@@ -1,10 +1,11 @@
 <script lang="ts">
-  import { calculate_age } from "~/lib/utils/DateUtils"
   import type { Guest } from "~/models/Guest"
   import { Heading, Table, TableBody, TableBodyCell, TableBodyRow, TableHead, TableHeadCell } from "flowbite-svelte"
+  import type { Rent } from "~/models/Rent"
 
   let guestsInfo = ["Nome", "Cognome", "Data di nascita"]
 
+  export let rent: Rent
   export let guests: Guest[]
 
   // guests need to be mapped with only the values needed by the table
@@ -16,7 +17,7 @@
   }))
 </script>
 
-<Heading customSize="text-xl font-semibold" tag="h2">Dal ... al ...</Heading>
+<Heading customSize="text-xl font-semibold" tag="h2">Dal {rent.start_date} al {rent.start_date}</Heading>
 <Table striped>
   <TableHead>
     {#each guestsInfo as info}
