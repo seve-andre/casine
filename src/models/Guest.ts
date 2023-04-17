@@ -6,3 +6,5 @@ export const Guest = z.object({
     last_name: z.string(),
     birth_date: z.coerce.date()
 })
+
+export type Guest = z.infer<typeof Guest>

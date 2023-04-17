@@ -6,3 +6,5 @@ export const Apartment = z.object({
     house_name: z.string().regex(Constants.houseRegex),
     apartment_number: z.number().min(Constants.minApartmentNumber).max(Constants.maxApartmentNumber)
 })
+
+export type Apartment = z.infer<typeof Apartment>

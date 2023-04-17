@@ -8,3 +8,5 @@ export const Rent = z.object({
     start_date: z.coerce.date(),
     end_date: z.coerce.date(),
 })
+
+export type Rent = z.infer<typeof Rent>
