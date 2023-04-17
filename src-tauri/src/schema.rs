@@ -33,6 +33,7 @@ diesel::table! {
     group_members (guest_id, group_id) {
         guest_id -> Integer,
         group_id -> Integer,
+        is_leader -> Bool,
     }
 }
 

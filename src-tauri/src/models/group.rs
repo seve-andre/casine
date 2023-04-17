@@ -7,14 +7,13 @@ use serde::{Deserialize, Serialize};
 #[diesel(table_name = groupz)]
 pub struct Group {
     pub id: i32,
-    pub leader_id: i32,
     pub nickname: String,
 }
 
 #[derive(Insertable, Serialize)]
 #[diesel(table_name = groupz)]
 pub struct NewGroup<'a> {
-    pub nickname: &'a str
+    pub nickname: &'a str,
 }
 
 #[derive(Insertable, Queryable, Associations, Serialize, Deserialize)]
@@ -23,4 +22,5 @@ pub struct NewGroup<'a> {
 pub struct GroupMember {
     pub guest_id: i32,
     pub group_id: i32,
+    pub is_leader: bool,
 }
