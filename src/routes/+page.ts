@@ -4,10 +4,10 @@ import { z } from "zod"
 import { Apartment } from "~/models/Apartment"
 import type { PageLoad } from "./$types"
 
-const x = z.array(Apartment)
+const apartmentArrayParser = z.array(Apartment)
 
 export const load = (async () => {
-  const apartmentsResult = x.safeParse(await invoke("get_apartments"))
+  const apartmentsResult = apartmentArrayParser.safeParse(await invoke("get_apartments"))
 
   if (!apartmentsResult.success) {
     throw error(404, "Not found")
