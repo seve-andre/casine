@@ -33,7 +33,7 @@
 
   <!-- content belonging to step -->
   <div>
-    {#if currentStep == 1}
+    {#if currentStep === 1}
       <div>
         <Label for="start-date" color={datesAreCorrect ? "gray" : "red"} class="block mb-2">Giorno di arrivo</Label>
         <Input
