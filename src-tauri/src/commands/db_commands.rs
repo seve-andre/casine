@@ -71,20 +71,16 @@ fn get_guests_ids_by_group_id(group_id_result: i32) -> Result<Vec<i32>, MyError>
         .map_err(MyError::DatabaseQueryError);
 }
 
-
 /*
     TODO
 */
 #[tauri::command]
-pub async fn get_guests(
-    p_house_name: String,
-    p_apartment_number: i32,
-) -> Result<Vec<Guest>, MyError> {
+pub async fn get_guests(house_name: String, apartment_number: i32) -> Result<Vec<Guest>, MyError> {
     use schema::guests::dsl::*;
 
     let connection = &mut establish_connection()?;
 
-    let apartment = get_apartment_by_house_name_and_number(p_house_name, p_apartment_number)?;
+    let apartment = get_apartment_by_house_name_and_number(house_name, apartment_number)?;
 
     let group_id_result = get_group_id_by_apartment(&apartment);
     let actual_group_id = match group_id_result {
