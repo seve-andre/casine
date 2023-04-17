@@ -2,7 +2,7 @@
 name = "casine"
 version = "0.1.0"
 description = "Casine app"
-authors = ["Mitch"]
+authors = ["mitch"]
 license = "MIT"
 repository = "https://github.com/seve-andre/casine"
 edition = "2021"
