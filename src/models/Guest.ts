@@ -1,6 +1,8 @@
-export type Guest = {
-    id: number,
-    first_name: string,
-    last_name: string,
-    birth_date: string,
-}
+import z from "zod"
+
+export const Guest = z.object({
+    id: z.number(),
+    first_name: z.string(),
+    last_name: z.string(),
+    birth_date: z.date()
+})

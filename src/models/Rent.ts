@@ -1,7 +1,9 @@
-export type Rent = {
-    id: number,
-    apartment_id: number,
-    group_id: number,
-    start_date: Date,
-    end_date: Date,
-}
+import z from "zod"
+
+export const Rent = z.object({
+    id: z.number(),
+    apartment_id: z.number().lte(12),
+    group_id: z.number(),
+    start_date: z.date(),
+    end_date: z.date(),
+})
