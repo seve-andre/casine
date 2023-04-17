@@ -12,7 +12,7 @@
     <Heading customSize="text-2xl font-bold">Casa A</Heading>
     <div class="grid grid-cols-3 gap-4">
       {#each data.apartments as apartment}
-        <FilledButton href={`house/${apartment.house_name}/apartment/${apartment.apartment_number}`}>
+        <FilledButton href={`apartment/${apartment.id}`}>
           App. {apartment.apartment_number}
         </FilledButton>
         <Tooltip placement="bottom">Vai all'appartamento {apartment.apartment_number}</Tooltip>
