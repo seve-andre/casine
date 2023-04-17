@@ -95,3 +95,15 @@ pub async fn get_guests(house_name: String, apartment_number: i32) -> Result<Vec
         .load::<Guest>(connection)
         .map_err(MyError::DatabaseQueryError);
 }
+
+#[tauri::command]
+pub async fn get_apartment_by_id(apartment_id: i32) -> Result<Apartment, MyError> {
+    use schema::apartments::dsl::*;
+
+    let connection = &mut establish_connection()?;
+
+    return apartments
+        .find(apartment_id)
+        .first(connection)
+        .map_err(MyError::DatabaseQueryError);
+}

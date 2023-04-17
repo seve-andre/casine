@@ -15,7 +15,8 @@ fn main() {
     tauri::Builder::default()
         .invoke_handler(tauri::generate_handler![
             db_commands::get_apartments,
-            db_commands::get_guests
+            db_commands::get_guests,
+            db_commands::get_apartment_by_id
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
