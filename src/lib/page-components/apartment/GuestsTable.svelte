@@ -2,7 +2,7 @@
   import type { Rent } from "~/models/Rent"
   import type { Guest } from "~/models/Guest"
   import "~/lib/utils/DateUtils"
-  import { Heading, Table, TableBody, TableBodyCell, TableBodyRow, TableHead, TableHeadCell } from "flowbite-svelte"
+  import { Table, TableBody, TableBodyCell, TableBodyRow, TableHead, TableHeadCell } from "flowbite-svelte"
 
   export let rent: Rent
   export let guests: Guest[]
@@ -17,10 +17,13 @@
   }))
 </script>
 
-<Heading customSize="text-xl font-semibold" tag="h2">
-  Dal {rent.start_date.toItalianFormat()} al {rent.end_date.toItalianFormat()}
-</Heading>
 <Table striped>
+  <caption class="p-5 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800">
+    Famiglia {"{nome}"}
+    <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">
+      La famiglia {"{nome}"} soggiornerà in questo appartamento dal {rent.start_date.toItalianFormat()} al {rent.end_date.toItalianFormat()}
+    </p>
+  </caption>
   <TableHead>
     {#each guestsInfo as info}
       <TableHeadCell>{info}</TableHeadCell>
