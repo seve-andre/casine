@@ -1,5 +1,6 @@
 import type { ParamMatcher } from "@sveltejs/kit"
+import { Constants } from "~/lib/utils/Constants"
 
 export const match = ((param) => {
-  return /[1-6]/.test(param)
+  return Constants.apartmentRegex.test(param)
 }) satisfies ParamMatcher
