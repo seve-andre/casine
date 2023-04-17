@@ -39,7 +39,7 @@ diesel::table! {
 diesel::table! {
     groupz (id) {
         id -> Integer,
-        nickname -> Nullable<Varchar>,
+        nickname -> Varchar,
     }
 }
 
