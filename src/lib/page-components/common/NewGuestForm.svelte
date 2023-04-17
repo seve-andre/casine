@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { Button, Heading, Helper, Input, Label, Select } from "flowbite-svelte"
+  import { Heading, Helper, Input, Label, Select } from "flowbite-svelte"
   import FilledButton from "~/lib/ui-components/button/FilledButton.svelte"
   import OutlinedButton from "~/lib/ui-components/button/OutlinedButton.svelte"
-  import type { ApartmeApartmentSchema "~/models/apartment"
+  import type { Apartment } from "~/models"
 
   export let apartments: Apartment[]
 
