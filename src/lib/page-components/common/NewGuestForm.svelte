@@ -2,11 +2,14 @@
   import { Button, Heading, Helper, Input, Label, Select } from "flowbite-svelte"
   import FilledButton from "~/lib/ui-components/button/FilledButton.svelte"
   import OutlinedButton from "~/lib/ui-components/button/OutlinedButton.svelte"
+  import type { Apartment } from "~/models/Apartment"
 
-  let selectedApartment = 1
-  let apartmentNumbers = Array.from({ length: 6 }, (_, i) => ({
-    value: i + 1,
-    name: `App. ${i + 1}`,
+  export let apartments: Apartment[]
+
+  let selectedApartmentId = apartments[0].id
+  const apartmentsNames = apartments.map(a => ({
+    value: a.id,
+    name: `App. ${a.apartment_number}`,
   }))
 
   // guest data
@@ -37,8 +40,8 @@
       Scegli appartamento casa A
       <Select
         class="mt-2"
-        items={apartmentNumbers}
-        bind:value={selectedApartment}
+        items={apartmentsNames}
+        bind:value={selectedApartmentId}
         placeholder="Seleziona uno degli appartamenti"
       />
     </Label>

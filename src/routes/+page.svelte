@@ -30,7 +30,7 @@
     </div>
   </div>
   <div class="form">
-    <NewGuestForm />
+    <NewGuestForm apartments={data.apartments} />
   </div>
 </div>
 
