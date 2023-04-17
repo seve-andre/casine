@@ -4,9 +4,8 @@ import { z } from "zod"
 import { Apartment } from "~/models/Apartment"
 import type { PageLoad } from "./$types"
 
-const apartmentArrayParser = z.array(Apartment)
-
 export const load = (async () => {
+  const apartmentArrayParser = z.array(Apartment)
   const apartmentsResult = apartmentArrayParser.safeParse(await invoke("get_apartments"))
 
   if (!apartmentsResult.success) {
