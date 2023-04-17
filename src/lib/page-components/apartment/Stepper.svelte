@@ -17,8 +17,8 @@
   $: nextLabel = currentStep == 1 ? "Avanti" : "Fine"
   $: nextAction = currentStep == 1 ? nextStep : onDone
 
-  let startDate: string = ""
-  let endDate: string = ""
+  let startDate = ""
+  let endDate = ""
   $: isStartDateCorrect = startDate != ""
   $: isEndDateCorrect = endDate != ""
   $: datesAreCorrect = isStartDateCorrect && isEndDateCorrect && Date.parse(startDate) < Date.parse(endDate)
