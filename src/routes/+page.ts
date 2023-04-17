@@ -1,11 +1,11 @@
 import { error } from "@sveltejs/kit"
 import { invoke } from "@tauri-apps/api"
 import { z } from "zod"
-import { Apartment } from "~/models/Apartment"
+import { ApartmentSchema } from "~/models/apartment"
 import type { PageLoad } from "./$types"
 
 export const load = (async () => {
-  const apartmentArrayParser = z.array(Apartment)
+  const apartmentArrayParser = z.array(ApartmentSchema)
   const apartmentsResult = apartmentArrayParser.safeParse(await invoke("get_apartments"))
 
   if (!apartmentsResult.success) {

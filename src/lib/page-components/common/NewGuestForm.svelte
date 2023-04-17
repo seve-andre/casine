@@ -2,7 +2,7 @@
   import { Button, Heading, Helper, Input, Label, Select } from "flowbite-svelte"
   import FilledButton from "~/lib/ui-components/button/FilledButton.svelte"
   import OutlinedButton from "~/lib/ui-components/button/OutlinedButton.svelte"
-  import type { Apartment } from "~/models/Apartment"
+  import type { ApartmeApartmentSchema "~/models/apartment"
 
   export let apartments: Apartment[]
 

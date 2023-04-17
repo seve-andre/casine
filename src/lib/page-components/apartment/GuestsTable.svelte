@@ -1,8 +1,7 @@
 <script lang="ts">
-  import "~/lib/utils/DateUtils"
+  import "~/lib/utils/date-utils"
   import { Table, TableBody, TableBodyCell, TableBodyRow, TableHead, TableHeadCell } from "flowbite-svelte"
-  import type { Rent } from "~/models/Rent"
-  import type { Guest } from "~/models/Guest"
+  import type { Guest, Rent } from "~/models"
 
   export let rent: Rent
   export let guests: Guest[]
