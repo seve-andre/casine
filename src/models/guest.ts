@@ -6,5 +6,7 @@ export const GuestSchema = z.object({
     last_name: z.string(),
     birth_date: z.coerce.date()
 })
-
 export type Guest = z.infer<typeof GuestSchema>
+
+export const NewGuestSchema = GuestSchema.omit({ id: true})
+export type NewGuest = z.infer<typeof NewGuestSchema>
