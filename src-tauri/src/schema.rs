@@ -50,8 +50,6 @@ diesel::table! {
         first_name -> Text,
         last_name -> Text,
         birth_date -> Date,
-        phone_number -> Nullable<Text>,
-        nationality -> Nullable<Text>,
     }
 }
 
