@@ -1,30 +1,26 @@
 import type { PageLoad } from "./$types"
 import { error } from "@sveltejs/kit"
 import { invoke } from "@tauri-apps/api"
-import { ApartmentSchema } from "~/models/apartment"
 import { z } from "zod"
+import { ApartmentSchema } from "~/models/apartment"
 import { GuestSchema } from "~/models/guest"
 import { RentSchema } from "~/models/rent"
 
 export const load = (async ({ params }) => {
   const apartmentId = +params.id
-  const apartmentResult = ApartmentSchema.safeParse(await invoke("get_apartment_by_id", { apartmentId }))
+  const apartmentResult = ApartmentSchema.safeParse(
+    await invoke("get_apartment_by_id", { apartmentId })
+  )
   if (!apartmentResult.success) {
-    throw error(404, "Not found")
+    throw error(404, "Not Found")
   }
 
   const guestsArrayParser = z.array(GuestSchema)
   const guestsResult = guestsArrayParser.safeParse(
-    await invoke(
-      "get_guests",
-      {
-        houseName: apartmentResult.data.house_name,
-        apartmentNumber: apartmentResult.data.apartment_number
-      }
-    )
+    await invoke("get_guests", { apartment: apartmentResult.data })
   )
   if (!guestsResult.success) {
-    throw error(404, "Not found")
+    throw error(404, "Not Found")
   }
 
   const rentResult = RentSchema.safeParse(
@@ -37,7 +33,7 @@ export const load = (async ({ params }) => {
     }
   )
   if (!rentResult.success) {
-    throw error(404, "Not found")
+    throw error(404, "Not Found")
   }
 
 
