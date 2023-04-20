@@ -6,7 +6,7 @@ const maxApartmentId = 12
 
 export const Constants = {
     houseRegex: /A|B/,
-    apartmentRegex: new RegExp(`[${minApartmentId}-${maxApartmentId}]`),
+    apartmentRegex: /[1-9]|1[0-2]/,
     minApartmentNumber: minApartmentNumber,
     maxApartmentNumber: maxApartmentNumber,
     minApartmentId: minApartmentId,
