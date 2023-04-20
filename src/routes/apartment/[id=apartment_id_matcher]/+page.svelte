@@ -1,7 +1,8 @@
 <script lang="ts">
   import type { PageData } from "./$types"
   import { Heading } from "flowbite-svelte"
-  import { Stepper, GuestsTable } from "~/lib/page-components/apartment"
+  import Stepper from "./Stepper.svelte"
+  import GuestsTable from "./GuestsTable.svelte"
 
   export let data: PageData
   let isApartmentEmpty = data.guests.length === 0
