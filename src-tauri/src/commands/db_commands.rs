@@ -36,7 +36,6 @@ fn get_group_id_by_apartment(apartment: &Apartment) -> Result<i32, MyError> {
     let connection = &mut establish_connection()?;
     let today_date = Local::now().date_naive();
 
-    // problem is, it
     return Rent::belonging_to(apartment)
         .filter(is_date_in_range(today_date))
         .select(group_id)
@@ -56,9 +55,6 @@ fn get_guests_ids_by_group_id(group_id_result: i32) -> Result<Vec<i32>, MyError>
         .map_err(MyError::DatabaseQueryError);
 }
 
-/*
-    TODO
-*/
 #[tauri::command]
 pub async fn get_guests(apartment: Apartment) -> Result<Vec<Guest>, MyError> {
     use schema::guests::dsl::*;
