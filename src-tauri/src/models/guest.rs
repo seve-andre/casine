@@ -1,9 +1,9 @@
 use crate::schema::guests;
 use chrono::NaiveDate;
-use diesel::{Identifiable, Insertable, Queryable};
+use diesel::{Identifiable, Insertable, Queryable, Selectable};
 use serde::{Deserialize, Serialize};
 
-#[derive(Identifiable, Queryable, Serialize, Deserialize)]
+#[derive(Identifiable, Selectable, Queryable, Serialize, Deserialize, Debug)]
 #[diesel(table_name = guests)]
 pub struct Guest {
     pub id: i32,
