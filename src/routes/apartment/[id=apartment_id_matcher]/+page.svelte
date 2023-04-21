@@ -17,7 +17,7 @@
     {#if isApartmentEmpty}
       <Stepper onDone={() => (isApartmentEmpty = false)} />
     {:else}
-      <GuestsTable rent={data.rent} guests={data.guests} />
+      <GuestsTable rent={data.rent} guests={data.guests} group={data.group} />
     {/if}
   </div>
 </div>

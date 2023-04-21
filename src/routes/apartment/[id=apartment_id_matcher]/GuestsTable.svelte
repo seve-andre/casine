@@ -1,10 +1,11 @@
 <script lang="ts">
   import "~/lib/utils/date-utils"
   import { Table, TableBody, TableBodyCell, TableBodyRow, TableHead, TableHeadCell } from "flowbite-svelte"
-  import type { Guest, Rent } from "~/models"
+  import type { Group, Guest, Rent } from "~/models"
 
   export let rent: Rent
   export let guests: Guest[]
+  export let group: Group
 
   const guestsInfo = ["Nome", "Cognome", "Data di nascita"]
   // guests need to be mapped with only the values needed by the table
@@ -18,9 +19,9 @@
 
 <Table striped>
   <caption class="p-5 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800">
-    Famiglia {"{nome}"}
+    Famiglia {group.nickname}
     <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">
-      La famiglia {"{nome}"} soggiornerà in questo appartamento dal {rent.start_date.toItalianFormat()} al {rent.end_date.toItalianFormat()}
+      La famiglia {group.nickname} soggiornerà in questo appartamento dal {rent.start_date.toItalianFormat()} al {rent.end_date.toItalianFormat()}
     </p>
   </caption>
   <TableHead>

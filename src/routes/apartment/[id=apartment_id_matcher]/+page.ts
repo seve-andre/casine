@@ -5,6 +5,7 @@ import { z } from "zod"
 import { ApartmentSchema } from "~/models/apartment"
 import { GuestSchema } from "~/models/guest"
 import { RentSchema } from "~/models/rent"
+import type { Group } from "~/models/group"
 
 export const load = (async ({ params }) => {
   const apartmentId = +params.id
@@ -36,11 +37,17 @@ export const load = (async ({ params }) => {
     throw error(404, "Not Found")
   }
 
+  const group: Group = {
+    id: 1,
+    nickname: "Severi"
+  }
+
 
   return {
     title: `Casa ${apartmentResult.data.house_name} - Appartamento ${apartmentResult.data.apartment_number}`,
     description: "Vedi, aggiungi o rimuovi gli ospiti dall'appartamento",
     rent: rentResult.data,
-    guests: guestsResult.data
+    guests: guestsResult.data,
+    group: group
   }
 }) satisfies PageLoad
