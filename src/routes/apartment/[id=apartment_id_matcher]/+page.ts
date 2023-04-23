@@ -26,7 +26,7 @@ export const load = (async ({ params }) => {
     throw error(404, "Not Found")
   }
 
-  const {apartment, rent, guests, group } = pageDataResult.data
+  const { apartment, rent, guests, group } = pageDataResult.data
 
 
   return {
