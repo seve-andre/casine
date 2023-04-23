@@ -26,12 +26,14 @@ export const load = (async ({ params }) => {
     throw error(404, "Not Found")
   }
 
+  const {apartment, rent, guests, group } = pageDataResult.data
+
 
   return {
-    title: `Casa ${pageDataResult.data.apartment.house_name} - Appartamento ${pageDataResult.data.apartment.apartment_number}`,
+    title: `Casa ${apartment.house_name} - Appartamento ${apartment.apartment_number}`,
     description: "Vedi, aggiungi o rimuovi gli ospiti dall'appartamento",
-    rent: pageDataResult.data.rent,
-    guests: pageDataResult.data.guests,
-    group: pageDataResult.data.group
+    rent: rent,
+    guests: guests,
+    group: group
   }
 }) satisfies PageLoad
