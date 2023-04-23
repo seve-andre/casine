@@ -2,11 +2,16 @@
 use crate::{
     db::establish_connection,
     errors::MyError,
-    models::{apartment::Apartment, guest::Guest, rent::Rent},
+    models::{
+        apartment::Apartment,
+        group::{Group, GroupMember, NewGroup},
+        guest::{Guest, NewGuest},
+        rent::{NewRent, Rent},
+    },
     schema::{self, rents},
 };
 use chrono::{Local, NaiveDate};
-use diesel::{prelude::*, sql_types::Bool};
+use diesel::{insert_into, prelude::*, sql_types::Bool};
 
 /*
     SELECT *
@@ -56,10 +61,15 @@ fn get_guests_ids_by_group_id(group_id_result: i32) -> Result<Vec<i32>, MyError>
 }
 
 #[tauri::command]
-pub async fn get_guests(apartment: Apartment) -> Result<Vec<Guest>, MyError> {
+pub async fn get_guests_in_apartment(apartment_id: i32) -> Result<Vec<Guest>, MyError> {
+    use schema::apartments;
     use schema::guests::dsl::*;
 
     let connection = &mut establish_connection()?;
+
+    let apartment = apartments::table
+        .find(apartment_id)
+        .get_result::<Apartment>(connection)?;
 
     let group_id_result = get_group_id_by_apartment(&apartment);
     let actual_group_id = match group_id_result {
@@ -85,4 +95,83 @@ pub async fn get_apartment_by_id(apartment_id: i32) -> Result<Apartment, MyError
         .find(apartment_id)
         .first(connection)
         .map_err(MyError::DatabaseQueryError);
+}
+
+#[tauri::command]
+pub fn open_apartment(
+    apartment_id: i32,
+    start_date: NaiveDate,
+    end_date: NaiveDate,
+    new_guest: NewGuest,
+    new_group: NewGroup,
+) -> Result<(), MyError> {
+    use schema::rents;
+
+    let connection = &mut establish_connection()?;
+
+    let guest_group = create_new_group(new_group)?;
+    let group_id = guest_group.id;
+
+    add_guest_to_group(new_guest, group_id, true)?;
+
+    let new_rent = NewRent {
+        start_date: &start_date,
+        end_date: &end_date,
+        group_id,
+        apartment_id,
+    };
+
+    insert_into(rents::table)
+        .values(&new_rent)
+        .execute(connection)?;
+
+    return Ok(());
+}
+
+fn create_new_group(group: NewGroup) -> Result<Group, MyError> {
+    use schema::groupz::dsl::*;
+
+    let connection = &mut establish_connection()?;
+
+    let inserted_group = connection.transaction::<Group, MyError, _>(|connection| {
+        insert_into(groupz).values(group).execute(connection)?;
+
+        groupz
+            .order(id.desc())
+            .first(connection)
+            .map_err(MyError::DatabaseQueryError)
+    });
+
+    return inserted_group;
+}
+
+#[tauri::command]
+pub fn add_guest_to_group(guest: NewGuest, group_id: i32, is_leader: bool) -> Result<(), MyError> {
+    use schema::group_members;
+    use schema::guests;
+
+    let connection = &mut establish_connection()?;
+
+    let inserted_guest = connection.transaction::<Guest, MyError, _>(|connection| {
+        insert_into(guests::table)
+            .values(guest)
+            .execute(connection)?;
+
+        guests::table
+            .order(guests::id.desc())
+            .first(connection)
+            .map_err(MyError::DatabaseQueryError)
+    })?;
+
+    let new_group_member = GroupMember {
+        guest_id: inserted_guest.id,
+        group_id,
+        is_leader,
+    };
+
+    insert_into(group_members::table)
+        .values(&new_group_member)
+        .execute(connection)?;
+
+    return Ok(());
 }
