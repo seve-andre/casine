@@ -28,7 +28,7 @@ export const load = (async ({ params }) => {
 
 
   return {
-    title: `Casa ${pageDataResult.data.apartment.house_name} - Appartamento ${pageDataResult.data.apartment.house_name}`,
+    title: `Casa ${pageDataResult.data.apartment.house_name} - Appartamento ${pageDataResult.data.apartment.apartment_number}`,
     description: "Vedi, aggiungi o rimuovi gli ospiti dall'appartamento",
     rent: pageDataResult.data.rent,
     guests: pageDataResult.data.guests,
