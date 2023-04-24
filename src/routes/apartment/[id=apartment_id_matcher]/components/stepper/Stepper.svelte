@@ -2,11 +2,16 @@
   import { Helper, Input, Label, PaginationItem, StepIndicator } from "flowbite-svelte"
   import { LeftArrow, RightArrow } from "~/lib/ui-components"
   import { FirstStepSchema } from "./first-step"
+  import { SecondStepSchema } from "./second-step"
+  import { secondStepErrorsDefaults, type SecondStepErrors } from "./second-step-errors"
 
   export let onDone: () => void
 
   let currentStep = 1
   let steps = ["1 - Scegli periodo", "2 - Aggiungi capogruppo"]
+  $: nextLabel = currentStep === 1 ? "Avanti" : "Fine"
+  $: nextAction = currentStep === 1 ? nextStep : onStepDone
+
   const prevStep = () => (currentStep -= 1)
   const nextStep = () => {
     const firstStepResult = FirstStepSchema.safeParse({
@@ -16,13 +21,33 @@
 
     if (firstStepResult.success) {
       currentStep += 1
+      firstStepError = undefined
     } else {
-      firstStepError = firstStepResult.error.flatten().fieldErrors.startDate?.at(0)
+      firstStepError = firstStepResult.error.format()._errors.at(0)
     }
   }
 
-  $: nextLabel = currentStep === 1 ? "Avanti" : "Fine"
-  $: nextAction = currentStep === 1 ? nextStep : onDone
+  const onStepDone = () => {
+    const secondStepResult = SecondStepSchema.safeParse({
+      guest: {
+        first_name: firstName,
+        last_name: lastName,
+        birth_date: birthDate,
+      },
+    })
+
+    if (secondStepResult.success) {
+      onDone()
+    } else {
+      const formattedErrors = secondStepResult.error.format().guest
+
+      secondStepErrors = {
+        onFirstName: formattedErrors?.first_name?._errors.at(0),
+        onLastName: formattedErrors?.last_name?._errors.at(0),
+        onBirthDate: formattedErrors?.birth_date?._errors.at(0),
+      }
+    }
+  }
 
   // 1st step
   let firstStepError: string | undefined = undefined
@@ -30,8 +55,12 @@
   let endDate = ""
 
   // 2nd step
-  let secondStepError: string | undefined = undefined
+  let secondStepErrors: SecondStepErrors = {
+    ...secondStepErrorsDefaults,
+  }
   let firstName = ""
+  let lastName = ""
+  let birthDate = ""
 </script>
 
 <div class="flex flex-col gap-2">
@@ -42,38 +71,56 @@
     {#if currentStep === 1}
       <div>
         <Label for="start-date" color={firstStepError ? "red" : "gray"} class="block mb-2">Giorno di arrivo</Label>
-        <Input
-          id="start-date"
-          color={firstStepError ? "red" : "base"}
-          type="date"
-          placeholder="Scegli giorno di arrivo"
-          bind:value={startDate}
-        />
+        <Input type="date" id="start-date" bind:value={startDate} color={firstStepError ? "red" : "base"} />
         {#if firstStepError}
           <Helper class="mt-2" color="red">{firstStepError}</Helper>
         {/if}
       </div>
 
       <div>
-        <Label for="end-date" color={firstStepError ? "red" : "gray"} class="block mb-2">Giorno di partenza</Label>
-        <Input
-          id="end-date"
-          color={firstStepError ? "red" : "base"}
-          type="date"
-          placeholder="Scegli giorno di partenza"
-          bind:value={endDate}
-        />
-        {#if firstStepError}
-          <Helper class="mt-2" color="red">{firstStepError}</Helper>
-        {/if}
+        <Label for="end-date" color="gray" class="block mb-2">Giorno di partenza</Label>
+        <Input type="date" id="end-date" bind:value={endDate} color="base" />
       </div>
     {:else}
       <div class="grid gap-6 md:grid-cols-2">
         <div>
-          <Label for="first-name" color="gray" class="block mb-2">Nome</Label>
-          <Input id="first-name" bind:value={firstName} color="base" placeholder="Andrea" />
-          {#if secondStepError}
+          <Label for="first-name" color={secondStepErrors.onFirstName ? "red" : "gray"} class="block mb-2">Nome</Label>
+          <Input
+            id="first-name"
+            bind:value={firstName}
+            color={secondStepErrors.onFirstName ? "red" : "base"}
+            placeholder="Andrea"
+          />
+          {#if secondStepErrors.onFirstName}
             <Helper class="mt-2" color="red">Il nome è obbligatorio</Helper>
+          {/if}
+        </div>
+
+        <div>
+          <Label for="last-name" color={secondStepErrors.onLastName ? "red" : "gray"} class="block mb-2">Cognome</Label>
+          <Input
+            id="last-name"
+            bind:value={lastName}
+            color={secondStepErrors.onLastName ? "red" : "base"}
+            placeholder="Severi"
+          />
+          {#if secondStepErrors.onLastName}
+            <Helper class="mt-2" color="red">Il cognome è obbligatorio</Helper>
+          {/if}
+        </div>
+
+        <div>
+          <Label for="birth-date" color={secondStepErrors.onBirthDate ? "red" : "gray"} class="block mb-2">
+            Data di nascita
+          </Label>
+          <Input
+            type="date"
+            id="birth-date"
+            bind:value={birthDate}
+            color={secondStepErrors.onBirthDate ? "red" : "base"}
+          />
+          {#if secondStepErrors.onBirthDate}
+            <Helper class="mt-2" color="red">La data di nascita è obbligatoria</Helper>
           {/if}
         </div>
       </div>
