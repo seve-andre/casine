@@ -8,6 +8,7 @@
   import { page } from "$app/stores"
   import { invalidateAll } from "$app/navigation"
   import { NewGroupSchema, NewGuestSchema } from "~/models"
+  import { onMount } from "svelte"
 
   let currentStep = 1
   let steps = ["1 - Scegli periodo", "2 - Aggiungi capogruppo"]
@@ -40,15 +41,15 @@
 
     if (secondStepResult.success) {
       invoke("open_apartment", {
-        apartment_id: +$page.params.id,
-        start_date: startDate,
-        end_date: endDate,
-        new_guest: NewGuestSchema.parse({
+        apartmentId: +$page.params.id,
+        startDate: startDate,
+        endDate: endDate,
+        newGuest: NewGuestSchema.parse({
           first_name: firstName,
           last_name: lastName,
           birth_date: birthDate,
         }),
-        new_group: NewGroupSchema.parse({
+        newGroup: NewGroupSchema.parse({
           nickname: lastName,
         }),
       })
