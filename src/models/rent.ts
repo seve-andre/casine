@@ -10,4 +10,3 @@ export const RentSchema = z.object({
 })
 
 export type Rent = z.infer<typeof RentSchema>
-
