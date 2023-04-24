@@ -1,4 +1,5 @@
 import z from "zod"
+import { Constants } from "~/lib/utils/constants"
 
 export const GuestSchema = z.object({
     id: z.number().min(1),
@@ -8,5 +9,9 @@ export const GuestSchema = z.object({
 })
 export type Guest = z.infer<typeof GuestSchema>
 
-export const NewGuestSchema = GuestSchema.omit({ id: true })
+export const NewGuestSchema = GuestSchema
+    .omit({ id: true, birth_date: true })
+    .extend({
+        birth_date: z.string().regex(Constants.dateRegex)
+    })
 export type NewGuest = z.infer<typeof NewGuestSchema>
