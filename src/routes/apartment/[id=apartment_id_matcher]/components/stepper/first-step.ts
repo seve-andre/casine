@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from "zod"
 
 export const FirstStepSchema = z.object({
     startDate: z.string().pipe(z.coerce.date()),
