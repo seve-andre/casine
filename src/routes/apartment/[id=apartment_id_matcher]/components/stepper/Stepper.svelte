@@ -1,7 +1,7 @@
 <script lang="ts">
   import { Helper, Input, Label, PaginationItem, StepIndicator } from "flowbite-svelte"
   import { LeftArrow, RightArrow } from "~/lib/ui-components"
-  import { FirstStepSchema } from "./stepper/first-step"
+  import { FirstStepSchema } from "./first-step"
 
   export let onDone: () => void
 
