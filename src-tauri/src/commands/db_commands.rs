@@ -115,8 +115,8 @@ pub fn open_apartment(
     add_guest_to_group(new_guest, group_id, true)?;
 
     let new_rent = NewRent {
-        start_date: &start_date,
-        end_date: &end_date,
+        start_date,
+        end_date,
         group_id,
         apartment_id,
     };

@@ -18,11 +18,11 @@ pub struct Rent {
     pub end_date: NaiveDate,
 }
 
-#[derive(Insertable, Serialize)]
+#[derive(Insertable, Deserialize)]
 #[diesel(table_name = rents)]
-pub struct NewRent<'a> {
-    pub start_date: &'a NaiveDate,
-    pub end_date: &'a NaiveDate,
+pub struct NewRent {
+    pub start_date: NaiveDate,
+    pub end_date: NaiveDate,
     pub group_id: i32,
     pub apartment_id: i32,
 }

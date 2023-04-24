@@ -12,10 +12,10 @@ pub struct Guest {
     pub birth_date: NaiveDate,
 }
 
-#[derive(Insertable, Serialize)]
+#[derive(Insertable, Deserialize)]
 #[diesel(table_name = guests)]
 pub struct NewGuest<'a> {
     pub first_name: &'a str,
     pub last_name: &'a str,
-    pub birth_date: &'a NaiveDate,
+    pub birth_date: NaiveDate,
 }
