@@ -10,13 +10,13 @@ declare global {
     }
 }
 
-Date.prototype.toItalianFormat = function(): string {
-    const formatter = Intl.DateTimeFormat("it-IT", {
-        day: "2-digit",
-        month: "2-digit",
-        year: "numeric"
-    })
+const formatter = Intl.DateTimeFormat("it-IT", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric"
+})
 
+Date.prototype.toItalianFormat = function(): string {
     return formatter.format(this)
 }
 export {}
