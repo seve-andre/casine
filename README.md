@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./public/casine-home.svg" alt="Le Casine logo" height="300" />
+  <img src="./public/casine-rounded.png" alt="Le Casine logo" height="300" />
 </div>
 
 # Le Casine
