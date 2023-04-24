@@ -21,8 +21,8 @@
       "active": true,
       "identifier": "com.mitch.casine",
       "category": "Business",
-      "shortDescription": "Gestionale per Le casine di Cervia",
-      "longDescription": "Si tratta di un gestionale per Le casine di Cervia, che si occupa di affitti estivi di appartamenti a Cervia",
+      "shortDescription": "Gestionale per Le casine",
+      "longDescription": "Si tratta di un gestionale per Le casine, che si occupa di affitti estivi di appartamenti lungo la riviera romagnola",
       "copyright": "MIT",
       "externalBin": [],
       "icon": [
@@ -58,7 +58,7 @@
     },
     "windows": [
       {
-        "title": "Le Casine di Cervia",
+        "title": "Le Casine",
         "height": 600,
         "width": 1024,
         "minHeight": 600,
