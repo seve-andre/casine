@@ -1,6 +1,6 @@
 import { z } from "zod"
-import { GuestSchema } from "~/models"
+import { NewGuestSchema } from "~/models"
 
 export const SecondStepSchema = z.object({
-    guest: GuestSchema
+    guest: NewGuestSchema
 })
