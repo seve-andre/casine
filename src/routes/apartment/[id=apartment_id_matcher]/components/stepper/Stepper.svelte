@@ -8,7 +8,6 @@
   import { page } from "$app/stores"
   import { invalidateAll } from "$app/navigation"
   import { NewGroupSchema, NewGuestSchema } from "~/models"
-  import { onMount } from "svelte"
 
   let currentStep = 1
   let steps = ["1 - Scegli periodo", "2 - Aggiungi capogruppo"]
