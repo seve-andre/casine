@@ -5,7 +5,7 @@
   import GuestsTable from "./components/table/GuestsTable.svelte"
 
   export let data: PageData
-  let isApartmentEmpty = data.guests.length === 0
+  $: isApartmentEmpty = data.guests.length === 0
 </script>
 
 <div class="h-screen flex flex-col gap-4">
