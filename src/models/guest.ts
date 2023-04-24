@@ -8,5 +8,5 @@ export const GuestSchema = z.object({
 })
 export type Guest = z.infer<typeof GuestSchema>
 
-export const NewGuestSchema = GuestSchema.omit({ id: true})
+export const NewGuestSchema = GuestSchema.omit({ id: true })
 export type NewGuest = z.infer<typeof NewGuestSchema>
