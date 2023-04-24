@@ -10,17 +10,13 @@ declare global {
     }
 }
 
-const monthNames = [
-    "gennaio", "febbraio", "marzo",
-    "aprile", "maggio", "giugno",
-    "luglio", "agosto", "settembre",
-    "ottobre", "novembre", "dicembre"
-]
-
 Date.prototype.toItalianFormat = function(): string {
-    const dayOfMonth = this.getDate()
-    const month = monthNames[this.getMonth()]
+    const formatter = Intl.DateTimeFormat("it-IT", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric"
+    })
 
-    return `${dayOfMonth} ${month}`
+    return formatter.format(this)
 }
 export {}
