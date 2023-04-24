@@ -12,6 +12,8 @@ export type Guest = z.infer<typeof GuestSchema>
 export const NewGuestSchema = GuestSchema
     .omit({ id: true, birth_date: true })
     .extend({
+        // DB accepts DATE (NOT DATETIME), so we can't use `birth_date` of the
+        // above GuestSchema
         birth_date: z.string().regex(Constants.dateRegex)
     })
 export type NewGuest = z.infer<typeof NewGuestSchema>
