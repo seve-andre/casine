@@ -4,8 +4,10 @@
   import { FirstStepSchema } from "./first-step"
   import { SecondStepSchema } from "./second-step"
   import { secondStepErrorsDefaults, type SecondStepErrors } from "./second-step-errors"
-
-  export let onDone: () => void
+  import { invoke } from "@tauri-apps/api"
+  import { page } from "$app/stores"
+  import { invalidateAll } from "$app/navigation"
+  import { NewGroupSchema, NewGuestSchema } from "~/models"
 
   let currentStep = 1
   let steps = ["1 - Scegli periodo", "2 - Aggiungi capogruppo"]
@@ -37,7 +39,21 @@
     })
 
     if (secondStepResult.success) {
-      onDone()
+      invoke("open_apartment", {
+        apartment_id: +$page.params.id,
+        start_date: startDate,
+        end_date: endDate,
+        new_guest: NewGuestSchema.parse({
+          first_name: firstName,
+          last_name: lastName,
+          birth_date: birthDate,
+        }),
+        new_group: NewGroupSchema.parse({
+          nickname: lastName,
+        }),
+      })
+
+      invalidateAll()
     } else {
       const formattedErrors = secondStepResult.error.format().guest
 

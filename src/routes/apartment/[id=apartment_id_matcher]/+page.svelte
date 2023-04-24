@@ -15,7 +15,7 @@
 
   <div class="flex-auto">
     {#if isApartmentEmpty}
-      <Stepper onDone={() => (isApartmentEmpty = false)} />
+      <Stepper />
     {:else}
       <GuestsTable rent={data.rent} guests={data.guests} group={data.group} />
     {/if}
