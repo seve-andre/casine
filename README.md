@@ -1,8 +1,8 @@
 <div align="center">
-  <img src="https://github.com/seve-andre/casine/blob/main/public/casine.svg" alt="Le Casine di Cervia logo" height="120" />  
+  <img src="./public/casine.png" alt="Le Casine logo" height="300" />
 </div>
 
-# Le Casine di Cervia
+# Le Casine
 Apartment management system. A total of 12 apartments inside 2 houses (A and B) rented by groups of people during summer
 
 <!-- Remove heading and replace it with screenshots of the app -->
