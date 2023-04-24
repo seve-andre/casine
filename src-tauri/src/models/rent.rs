@@ -1,12 +1,12 @@
 use crate::schema::rents;
 use chrono::NaiveDate;
 use diesel::{Associations, Identifiable, Insertable, Queryable, Selectable};
-use serde::{Deserialize, Serialize};
+use serde::Serialize;
 
 use super::apartment::Apartment;
 use super::group::Group;
 
-#[derive(Identifiable, Selectable, Queryable, Associations, Serialize, Deserialize, Debug)]
+#[derive(Identifiable, Selectable, Queryable, Associations, Serialize, Debug)]
 #[diesel(belongs_to(Group))]
 #[diesel(belongs_to(Apartment))]
 #[diesel(table_name = rents)]
@@ -18,7 +18,7 @@ pub struct Rent {
     pub end_date: NaiveDate,
 }
 
-#[derive(Insertable, Deserialize)]
+#[derive(Insertable)]
 #[diesel(table_name = rents)]
 pub struct NewRent {
     pub start_date: NaiveDate,

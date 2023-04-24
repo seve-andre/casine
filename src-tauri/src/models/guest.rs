@@ -3,7 +3,7 @@ use chrono::NaiveDate;
 use diesel::{Identifiable, Insertable, Queryable, Selectable};
 use serde::{Deserialize, Serialize};
 
-#[derive(Identifiable, Selectable, Queryable, Serialize, Deserialize, Debug)]
+#[derive(Identifiable, Selectable, Queryable, Serialize, Debug)]
 #[diesel(table_name = guests)]
 pub struct Guest {
     pub id: i32,

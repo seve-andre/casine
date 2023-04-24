@@ -1,10 +1,10 @@
 use diesel::{Associations, Identifiable, Queryable, Selectable};
-use serde::{Deserialize, Serialize};
+use serde::Serialize;
 
 use super::house::House;
 use crate::schema::apartments;
 
-#[derive(Identifiable, Selectable, Queryable, Associations, Serialize, Deserialize, Debug)]
+#[derive(Identifiable, Selectable, Queryable, Associations, Serialize, Debug)]
 #[diesel(belongs_to(House, foreign_key=house_name))]
 #[diesel(table_name = apartments)]
 pub struct Apartment {

@@ -1,8 +1,8 @@
 use crate::schema::houses;
 use diesel::{Identifiable, Queryable};
-use serde::{Deserialize, Serialize};
+use serde::Serialize;
 
-#[derive(Identifiable, Queryable, Serialize, Deserialize)]
+#[derive(Identifiable, Queryable, Serialize)]
 #[diesel(table_name = houses)]
 #[diesel(primary_key(house_name))]
 pub struct House {
