@@ -1,7 +1,7 @@
 import type { PageLoad } from "./$types"
 import { error } from "@sveltejs/kit"
 import { invoke } from "@tauri-apps/api"
-import { ApartmentPageDataSchema } from "./ApartmentPageData"
+import { ApartmentPageDataSchema } from "./apartment-page-data"
 
 export const load = (async ({ params }) => {
   const apartmentId = +params.id
