@@ -6,7 +6,7 @@
   import {
     secondStepErrorsDefaults,
     type SecondStepErrors,
-  } from "~/routes/apartment/[id=apartment_id_matcher]/components/stepper/second-step-errors"
+  } from "~/routes/apartments/[id=apartment_id_matcher]/components/stepper/second-step-errors"
 
   export let apartments: Apartment[]
 
