@@ -3,7 +3,7 @@
 </div>
 
 # Le Casine
-Apartment management system. A total of 12 apartments inside 2 houses (A and B) rented by groups of people during summer
+Apartments management system. A total of 12 apartments inside 2 houses (A and B) rented by groups of people during summer
 
 <!-- Remove heading and replace it with screenshots of the app -->
 # Screenshots
