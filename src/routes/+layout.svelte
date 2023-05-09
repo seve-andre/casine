@@ -22,6 +22,9 @@
     PriceTagOutlined,
   } from "~/lib/ui-components"
   import logo from "~/lib/assets/casine-no-text.png"
+  import type { LayoutData } from "./$types"
+
+  export let data: LayoutData
 
   $: activeUrl = $page.url.pathname
   $: shouldShowSidebar = sidebarItems.map(i => i.href).includes(activeUrl)
@@ -48,7 +51,7 @@
   ]
 
   const site = {
-    name: "Casine",
+    name: data.appName,
     href: "/",
     img: logo,
   }
