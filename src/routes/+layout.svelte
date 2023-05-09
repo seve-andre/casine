@@ -1,7 +1,16 @@
 <script lang="ts">
   import "~/app.postcss"
   import { navigating, page } from "$app/stores"
-  import { Spinner, Sidebar, SidebarWrapper, SidebarGroup, SidebarItem, Navbar, Button } from "flowbite-svelte"
+  import {
+    Spinner,
+    Sidebar,
+    SidebarWrapper,
+    SidebarGroup,
+    SidebarItem,
+    Navbar,
+    Button,
+    SidebarBrand,
+  } from "flowbite-svelte"
   import {
     BookFilled,
     BookOutlined,
@@ -11,6 +20,7 @@
     PriceTagFilled,
     PriceTagOutlined,
   } from "~/lib/ui-components"
+  import logo from "~/lib/assets/casine-no-text.png"
 
   $: activeUrl = $page.url.pathname
   $: shouldShowSidebar = sidebarItems.map(i => i.href).includes(activeUrl)
@@ -35,6 +45,12 @@
       filledIcon: PriceTagFilled,
     },
   ]
+
+  const site = {
+    name: "Casine",
+    href: "/",
+    img: logo,
+  }
 </script>
 
 <!-- https://kit.svelte.dev/docs/seo#manual-setup-title-and-meta -->
@@ -54,6 +70,7 @@
         <Sidebar>
           <SidebarWrapper>
             <SidebarGroup>
+              <SidebarBrand {site} />
               {#each sidebarItems as item}
                 {@const isActive = activeUrl === item.href}
                 <SidebarItem
