@@ -44,13 +44,13 @@
 </svelte:head>
 
 {#if $navigating}
-  <div class="h-screen flex justify-center items-center">
+  <div class="spinner-wrapper">
     <Spinner />
   </div>
 {:else}
-  <div class="layout-container h-full">
+  <div class="page">
     {#if shouldShowSidebar}
-      <div class="sidebar bg-gray-50">
+      <div class="page__sidebar">
         <Sidebar>
           <SidebarWrapper>
             <SidebarGroup>
@@ -73,9 +73,9 @@
       </div>
     {/if}
 
-    <div class="content-container">
+    <div class="page__content">
       {#if !shouldShowSidebar}
-        <header>
+        <header class="page__content__header">
           <Navbar>
             <Button href="/" pill color="light" outline>
               <LeftArrow class="w-4 h-4" />
@@ -84,7 +84,7 @@
         </header>
       {/if}
 
-      <main>
+      <main class="page__content__main">
         <slot />
       </main>
     </div>
@@ -92,16 +92,40 @@
 {/if}
 
 <style>
-  .layout-container {
+  .spinner-wrapper {
+    /* make spinner fill entire page */
+    height: 100%;
+
+    /* show spinner at the center of the screen*/
     display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
-  .sidebar {
-    flex-basis: 20%;
+  .page {
+    display: flex;
+    height: 100%;
   }
 
-  .content-container {
-    flex-basis: 80%;
-    flex-grow: 1;
+  .page__sidebar {
+    flex: 0 1 20%;
+
+    /* match Flowbite Sidebar bg color */
+    background-color: rgb(249, 250, 251);
+  }
+
+  .page__content {
+    flex: 1 1 80%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .page__content__header {
+    flex: 0 1 auto;
+  }
+
+  .page__content__main {
+    /* main fills up entire page height when the header is not shown */
+    flex: 1 1 auto;
   }
 </style>
