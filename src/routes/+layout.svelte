@@ -17,7 +17,7 @@
 
   const sidebarItems = [
     {
-      name: "Home",
+      name: "Principale",
       href: "/",
       outlinedIcon: HomeOutlined,
       filledIcon: HomeFilled,
