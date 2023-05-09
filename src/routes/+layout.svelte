@@ -48,7 +48,7 @@
     <Spinner />
   </div>
 {:else}
-  <div class="layout-container h-screen">
+  <div class="layout-container h-full">
     {#if shouldShowSidebar}
       <div class="sidebar bg-gray-50">
         <Sidebar>

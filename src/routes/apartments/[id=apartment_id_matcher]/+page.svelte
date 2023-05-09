@@ -8,12 +8,12 @@
   $: isApartmentEmpty = data.guests.length === 0
 </script>
 
-<div class="h-screen flex flex-col gap-4">
-  <div class="flex-initial">
+<div class="h-full flex flex-col gap-4 p-10">
+  <div>
     <Heading customSize="text-3xl font-bold">{data.title}</Heading>
   </div>
 
-  <div class="flex-auto">
+  <div>
     {#if isApartmentEmpty}
       <Stepper />
     {:else}
