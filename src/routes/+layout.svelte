@@ -102,5 +102,6 @@
 
   .content-container {
     flex-basis: 80%;
+    flex-grow: 1;
   }
 </style>
