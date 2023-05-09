@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { PageData } from "./$types"
   import { Heading, Tooltip } from "flowbite-svelte"
-  import FilledButton from "~/lib/ui-components/button/FilledButton.svelte"
+  import { FilledButton } from "~/lib/ui-components"
 
   export let data: PageData
 </script>

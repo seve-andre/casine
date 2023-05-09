@@ -1,13 +1,13 @@
 <script lang="ts">
-  import { Helper, Input, Label, PaginationItem, StepIndicator } from "flowbite-svelte"
-  import { LeftArrow, RightArrow } from "~/lib/ui-components"
-  import { FirstStepSchema } from "./first-step"
-  import { SecondStepSchema } from "./second-step"
-  import { secondStepErrorsDefaults, type SecondStepErrors } from "./second-step-errors"
   import { invoke } from "@tauri-apps/api"
   import { page } from "$app/stores"
   import { invalidateAll } from "$app/navigation"
   import { NewGroupSchema, NewGuestSchema } from "~/models"
+  import { FirstStepSchema } from "./first-step"
+  import { SecondStepSchema } from "./second-step"
+  import { secondStepErrorsDefaults, type SecondStepErrors } from "./second-step-errors"
+  import { Helper, Input, Label, PaginationItem, StepIndicator } from "flowbite-svelte"
+  import { LeftArrow, RightArrow } from "~/lib/ui-components"
 
   let currentStep = 1
   let steps = ["1 - Scegli periodo", "2 - Aggiungi capogruppo"]
