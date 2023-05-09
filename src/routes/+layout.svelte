@@ -13,6 +13,7 @@
   } from "~/lib/ui-components"
 
   $: activeUrl = $page.url.pathname
+  $: shouldShowSidebar = sidebarItems.map(i => i.href).includes(activeUrl)
 
   const sidebarItems = [
     {
@@ -48,30 +49,32 @@
   </div>
 {:else}
   <div class="layout-container h-screen">
-    <div class="sidebar bg-gray-50">
-      <Sidebar>
-        <SidebarWrapper>
-          <SidebarGroup>
-            {#each sidebarItems as item}
-              {@const isActive = activeUrl === item.href}
-              <SidebarItem
-                label={item.name}
-                href={item.href}
-                active={isActive}
-                spanClass="{isActive ? 'font-bold' : 'font-normal'} ml-3"
-              >
-                <svelte:fragment slot="icon">
-                  <svelte:component this={isActive ? item.filledIcon : item.outlinedIcon} class="w-6 h-6" />
-                </svelte:fragment>
-              </SidebarItem>
-            {/each}
-          </SidebarGroup>
-        </SidebarWrapper>
-      </Sidebar>
-    </div>
+    {#if shouldShowSidebar}
+      <div class="sidebar bg-gray-50">
+        <Sidebar>
+          <SidebarWrapper>
+            <SidebarGroup>
+              {#each sidebarItems as item}
+                {@const isActive = activeUrl === item.href}
+                <SidebarItem
+                  label={item.name}
+                  href={item.href}
+                  active={isActive}
+                  spanClass="{isActive ? 'font-bold' : 'font-normal'} ml-3"
+                >
+                  <svelte:fragment slot="icon">
+                    <svelte:component this={isActive ? item.filledIcon : item.outlinedIcon} class="w-6 h-6" />
+                  </svelte:fragment>
+                </SidebarItem>
+              {/each}
+            </SidebarGroup>
+          </SidebarWrapper>
+        </Sidebar>
+      </div>
+    {/if}
 
     <div class="content-container">
-      {#if ["/", "/bookings", "/prices"].includes(activeUrl) === false}
+      {#if !shouldShowSidebar}
         <header>
           <Navbar>
             <Button href="/" pill color="light" outline>
