@@ -10,6 +10,7 @@
     Navbar,
     Button,
     SidebarBrand,
+    Tooltip,
   } from "flowbite-svelte"
   import {
     BookFilled,
@@ -71,6 +72,8 @@
           <SidebarWrapper>
             <SidebarGroup>
               <SidebarBrand {site} />
+              <Tooltip placement="right">Torna alla pagina principale</Tooltip>
+
               {#each sidebarItems as item}
                 {@const isActive = activeUrl === item.href}
                 <SidebarItem
