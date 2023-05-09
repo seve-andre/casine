@@ -12,6 +12,7 @@ export const load = (async () => {
     throw error(404, "Not found")
   }
 
+
   return {
     title: "Pagina principale",
     description: "Vedi le prenotazioni, i prezzi e gli appartamenti per ogni casa. Inoltre, puoi aggiungere un ospite rapidamente",
