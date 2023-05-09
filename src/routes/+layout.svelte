@@ -2,7 +2,7 @@
   import "~/app.postcss"
   import { navigating, page } from "$app/stores"
   import { Spinner, Sidebar, SidebarWrapper, SidebarGroup, SidebarItem, Navbar, Button } from "flowbite-svelte"
-  import { HomeFilled, HomeOutlined, LeftArrow } from "~/lib/ui-components"
+  import { BookFilled, BookOutlined, HomeFilled, HomeOutlined, LeftArrow } from "~/lib/ui-components"
 
   $: activeUrl = $page.url.pathname
 
@@ -16,8 +16,8 @@
     {
       name: "Bookings",
       href: "/bookings",
-      outlinedIcon: LeftArrow,
-      filledIcon: HomeFilled,
+      outlinedIcon: BookOutlined,
+      filledIcon: BookFilled,
     },
     {
       name: "Prices",
