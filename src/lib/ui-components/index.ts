@@ -8,6 +8,8 @@ export { default as HomeFilled } from "./icon/filled/HomeFilled.svelte"
 export { default as HomeOutlined } from "./icon/outlined/HomeOutlined.svelte"
 export { default as BookFilled } from "./icon/filled/BookFilled.svelte"
 export { default as BookOutlined } from "./icon/outlined/BookOutlined.svelte"
+export { default as PriceTagFilled } from "./icon/filled/PriceTagFilled.svelte"
+export { default as PriceTagOutlined } from "./icon/outlined/PriceTagOutlined.svelte"
 
 
 export { default as ErrorNotification } from "./notification/ErrorNotification.svelte"

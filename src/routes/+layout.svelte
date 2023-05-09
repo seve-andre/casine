@@ -2,7 +2,15 @@
   import "~/app.postcss"
   import { navigating, page } from "$app/stores"
   import { Spinner, Sidebar, SidebarWrapper, SidebarGroup, SidebarItem, Navbar, Button } from "flowbite-svelte"
-  import { BookFilled, BookOutlined, HomeFilled, HomeOutlined, LeftArrow } from "~/lib/ui-components"
+  import {
+    BookFilled,
+    BookOutlined,
+    HomeFilled,
+    HomeOutlined,
+    LeftArrow,
+    PriceTagFilled,
+    PriceTagOutlined,
+  } from "~/lib/ui-components"
 
   $: activeUrl = $page.url.pathname
 
@@ -22,8 +30,8 @@
     {
       name: "Prices",
       href: "/prices",
-      outlinedIcon: LeftArrow,
-      filledIcon: HomeFilled,
+      outlinedIcon: PriceTagOutlined,
+      filledIcon: PriceTagFilled,
     },
   ]
 </script>
