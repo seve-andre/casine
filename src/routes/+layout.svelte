@@ -23,13 +23,13 @@
       filledIcon: HomeFilled,
     },
     {
-      name: "Bookings",
+      name: "Prenotazioni",
       href: "/bookings",
       outlinedIcon: BookOutlined,
       filledIcon: BookFilled,
     },
     {
-      name: "Prices",
+      name: "Prezzi",
       href: "/prices",
       outlinedIcon: PriceTagOutlined,
       filledIcon: PriceTagFilled,
