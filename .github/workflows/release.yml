@@ -52,7 +52,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tagName: casine-v__VERSION__ # the action automatically replaces \_\_VERSION\_\_ with the app version
-          releaseName: "Casine v__VERSION__"
+          releaseName: "casine v__VERSION__"
           releaseBody: ${{ steps.github_release.outputs.changelog }}
           releaseDraft: true
           prerelease: false
