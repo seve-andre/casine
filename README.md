@@ -1,8 +1,8 @@
 <div align="center">
-  <img src="./public/casine-rounded.png" alt="Le Casine logo" height="300" />
+  <img src="./static/casine-rounded.png" alt="casine logo" height="300" />
 </div>
 
-# Le Casine
+# casine
 Apartments management system. A total of 12 apartments inside 2 houses (A and B) rented by groups of people during summer
 
 <!-- Remove heading and replace it with screenshots of the app -->
@@ -13,7 +13,7 @@ Apartments management system. A total of 12 apartments inside 2 houses (A and B)
 - [ ] search for guests
 - [ ] edit guests data
 - [ ] see bookings
-- [ ] see apartments prices
+- [ ] see prices
 - [ ] make it as easy as possible for non-technical users (adding UI & UX components to better understand what's going on, such as snackbars, tooltips, alerts, ...)
 
 ## Optional features
