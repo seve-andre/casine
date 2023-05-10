@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { invoke } from "@tauri-apps/api"
+  import { invoke } from "@tauri-apps/api/tauri"
   import { page } from "$app/stores"
   import { invalidateAll } from "$app/navigation"
   import { NewGroupSchema, NewGuestSchema } from "~/models"

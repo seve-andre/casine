@@ -1,5 +1,5 @@
 import { error } from "@sveltejs/kit"
-import { invoke } from "@tauri-apps/api"
+import { invoke } from "@tauri-apps/api/tauri"
 import { z } from "zod"
 import { ApartmentSchema } from "~/models/apartment"
 import type { PageLoad } from "./$types"

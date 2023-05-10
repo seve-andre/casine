@@ -1,6 +1,6 @@
 import type { PageLoad } from "./$types"
 import { error } from "@sveltejs/kit"
-import { invoke } from "@tauri-apps/api"
+import { invoke } from "@tauri-apps/api/tauri"
 import { ApartmentPageDataSchema } from "./apartment-page-data"
 
 export const load = (async ({ params }) => {
@@ -37,3 +37,5 @@ export const load = (async ({ params }) => {
     group: group
   }
 }) satisfies PageLoad
+
+export const prerender = false
