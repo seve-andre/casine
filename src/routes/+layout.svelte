@@ -21,13 +21,12 @@
     PriceTagFilled,
     PriceTagOutlined,
   } from "~/lib/ui-components"
-  import logo from "~/lib/assets/casine-no-text.png"
+  import logo from "~/lib/assets/casine.png"
   import type { LayoutData } from "./$types"
 
   export let data: LayoutData
 
   $: activeUrl = $page.url.pathname
-  $: shouldShowSidebar = sidebarItems.map(i => i.href).includes(activeUrl)
 
   const sidebarItems = [
     {
@@ -49,6 +48,7 @@
       filledIcon: PriceTagFilled,
     },
   ]
+  $: shouldShowSidebar = sidebarItems.map(i => i.href).includes(activeUrl) || activeUrl === ""
 
   const site = {
     name: data.appName,
