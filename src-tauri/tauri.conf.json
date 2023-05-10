@@ -1,12 +1,13 @@
 {
+  "$schema": "../node_modules/@tauri-apps/cli/schema.json",
   "build": {
-    "beforeDevCommand": "pnpm dev",
-    "beforeBuildCommand": "pnpm build",
-    "devPath": "http://localhost:1420",
-    "distDir": "../build"
+    "distDir": "./target/frontend-build",
+    "devPath": "http://localhost:5173",
+    "beforeDevCommand": "pnpm dev:web",
+    "beforeBuildCommand": "pnpm build:web"
   },
   "package": {
-    "productName": "Casine",
+    "productName": "casine",
     "version": "0.1.0"
   },
   "tauri": {
@@ -63,7 +64,7 @@
     },
     "windows": [
       {
-        "title": "Le Casine",
+        "title": "casine",
         "height": 600,
         "width": 1024,
         "minHeight": 600,
