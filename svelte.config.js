@@ -1,4 +1,4 @@
-import staticAdapter from "@sveltejs/adapter-static"
+import adapter from "@sveltejs/adapter-static"
 import { vitePreprocess } from "@sveltejs/kit/vite"
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -7,6 +7,11 @@ export default {
   // for more information about preprocessors
   preprocess: vitePreprocess(),
   kit: {
-    adapter: staticAdapter(),
-  },
+    adapter: adapter({
+      pages: "src-tauri/target/frontend-build",
+			assets: "src-tauri/target/frontend-build",
+			precompress: true,
+      fallback: "index.html"
+    })
+  }
 };
