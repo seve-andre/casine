@@ -12,7 +12,7 @@ use crate::{
     schema::{self, rents},
 };
 use chrono::{Local, NaiveDate};
-use diesel::{insert_into, prelude::*};
+use diesel::{insert_into, prelude::*, sql_types::Bool};
 
 /*
     SELECT *
@@ -38,18 +38,14 @@ pub async fn get_apartments() -> Result<Vec<HouseWithApartments>, MyError> {
         .zip(all_houses)
         .map(|(apartments, house)| HouseWithApartments { house, apartments })
         .collect::<Vec<HouseWithApartments>>());
-
-    // return apartments
-    //     .load::<Apartment>(connection)
-    //     .map_err(MyError::DatabaseQueryError);
 }
 
-// type DB = diesel::mysql::Mysql;
-// fn is_date_in_range(
-//     date: NaiveDate,
-// ) -> Box<dyn BoxableExpression<rents::table, DB, SqlType = Bool>> {
-//     return Box::new(rents::start_date.le(date).and(rents::end_date.ge(date)));
-// }
+type DB = diesel::sqlite::Sqlite;
+fn is_date_in_range(
+    date: NaiveDate,
+) -> Box<dyn BoxableExpression<rents::table, DB, SqlType = Bool>> {
+    return Box::new(rents::start_date.le(date).and(rents::end_date.ge(date)));
+}
 
 fn get_group_id_by_apartment(apartment: &Apartment) -> Result<i32, MyError> {
     use schema::rents::dsl::*;
@@ -58,7 +54,7 @@ fn get_group_id_by_apartment(apartment: &Apartment) -> Result<i32, MyError> {
     let today_date = Local::now().date_naive();
 
     return Rent::belonging_to(apartment)
-        // .filter(is_date_in_range(today_date))
+        .filter(is_date_in_range(today_date))
         .select(group_id)
         .get_result::<i32>(connection)
         .map_err(MyError::DatabaseQueryError);
