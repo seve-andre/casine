@@ -12,15 +12,11 @@
   },
   "tauri": {
     "allowlist": {
-      "all": false,
       "app": {
-        "all": true,
-        "show": true,
-        "hide": true
+        "all": true
       },
       "shell": {
-        "all": false,
-        "open": true
+        "all": false
       }
     },
     "bundle": {
