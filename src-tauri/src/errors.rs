@@ -1,5 +1,3 @@
-use serde_json::error;
-
 #[derive(Debug, thiserror::Error)]
 pub enum MyError {
     #[error("local_data_dir not found")]
