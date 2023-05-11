@@ -7,6 +7,9 @@ use tauri::api::path::local_data_dir;
 use crate::errors::MyError;
 
 pub fn establish_connection() -> Result<SqliteConnection, MyError> {
+    // Linux: $HOME/.local/share/com.mitch.casine/casine.db
+    // macOS: $HOME/Library/Application
+    // Windows: $HOME/AppData/Local/com.mitch.casine/casine.db
     let identifier = "com.mitch.casine";
     let db_name = "casine.db";
 
