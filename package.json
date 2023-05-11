@@ -32,7 +32,6 @@
     "timeago.js": "^4.0.2",
     "tslib": "^2.4.1",
     "typescript": "^4.9.3",
-    "url-slug": "^3.0.4",
     "vite": "^4.1.4"
   },
   "dependencies": {
