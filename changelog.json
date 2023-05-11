@@ -1,9 +1,0 @@
-{
-  "template": "#{{CHANGELOG}}\n\n<details>\n<summary>Uncategorized</summary>\n\n#{{UNCATEGORIZED}}\n</details>",
-  "categories": [
-    {
-      "title": "## 🎉 First release",
-      "labels": [""]
-    }
-  ]
-}

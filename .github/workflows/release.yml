@@ -39,20 +39,12 @@ jobs:
       - name: install frontend dependencies
         run: pnpm install
 
-      - name: "Build Changelog"
-        id: github_release
-        uses: mikepenz/release-changelog-builder-action@v3
-        with:
-          configuration: "changelog.json"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tagName: casine-v__VERSION__ # the action automatically replaces \_\_VERSION\_\_ with the app version
+          tagName: casine-v__VERSION__
           releaseName: "casine v__VERSION__"
-          releaseBody: ${{ steps.github_release.outputs.changelog }}
+          releaseBody: "See the assets to download this version and install."
           releaseDraft: true
           prerelease: false
