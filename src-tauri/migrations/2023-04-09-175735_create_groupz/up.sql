@@ -1,5 +1,6 @@
 CREATE TABLE groupz(
-    id INT AUTO_INCREMENT NOT NULL,
-    nickname VARCHAR(200) UNIQUE NOT NULL,
-    PRIMARY KEY (id)
+    id INTEGER NOT NULL,
+    nickname VARCHAR(100) NOT NULL,
+    PRIMARY KEY (id),
+    UNIQUE(nickname)
 )

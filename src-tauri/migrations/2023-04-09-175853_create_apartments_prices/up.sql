@@ -1,9 +1,10 @@
 CREATE TABLE apartments_prices(
-    id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    apartment_id INT NOT NULL,
+    id INTEGER NOT NULL,
+    apartment_id INTEGER NOT NULL,
     -- 1 to 12, where 1 is January and 12 is December
-    rent_month INT NOT NULL CHECK(rent_month >= 1 AND rent_month <= 12),
+    rent_month INTEGER NOT NULL CHECK(rent_month >= 1 AND rent_month <= 12),
     price DECIMAL(10,2) NOT NULL,
+    PRIMARY KEY (id),
     FOREIGN KEY (apartment_id) REFERENCES apartments(id),
     UNIQUE(apartment_id, rent_month)
 );

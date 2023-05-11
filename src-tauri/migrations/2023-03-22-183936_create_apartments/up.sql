@@ -1,9 +1,9 @@
 CREATE TABLE apartments(
-    id INT AUTO_INCREMENT NOT NULL,
+    id INTEGER NOT NULL,
     house_name CHAR(1) NOT NULL,
-    apartment_number INT NOT NULL,
+    apartment_number INTEGER NOT NULL,
     PRIMARY KEY (id),
-    CONSTRAINT FK_apartment_house FOREIGN KEY (house_name) REFERENCES houses(house_name),
+    FOREIGN KEY (house_name) REFERENCES houses(house_name),
     UNIQUE (house_name, apartment_number)
 );
 
@@ -15,4 +15,10 @@ VALUES
     ('A', 3),
     ('A', 4),
     ('A', 5),
-    ('A', 6);
+    ('A', 6),
+    ('B', 1),
+    ('B', 2),
+    ('B', 3),
+    ('B', 4),
+    ('B', 5),
+    ('B', 6);

@@ -7,16 +7,20 @@
 </script>
 
 <div class="homepage">
-  <div class="house">
-    <Heading customSize="house__title title-text">Casa A</Heading>
-    <div class="house__choices">
-      {#each data.apartments as apartment}
-        <FilledButton href={`apartments/${apartment.id}`}>
-          App. {apartment.apartment_number}
-        </FilledButton>
-        <Tooltip placement="bottom">Vai all'appartamento {apartment.apartment_number}</Tooltip>
-      {/each}
-    </div>
+  <div class="houses">
+    {#each data.housesWithApartments as { house, apartments }}
+      <div class="house">
+        <Heading customSize="house__title title-text">Casa {house.house_name}</Heading>
+        <div class="house__choices">
+          {#each apartments as apartment}
+            <FilledButton href={`apartments/${apartment.id}`}>
+              App. {apartment.apartment_number}
+            </FilledButton>
+            <Tooltip placement="bottom">Vai all'appartamento {apartment.apartment_number}</Tooltip>
+          {/each}
+        </div>
+      </div>
+    {/each}
   </div>
 </div>
 
@@ -27,6 +31,18 @@
     flex-direction: column;
     gap: 1rem;
     padding: 1.25rem 2.5rem;
+  }
+
+  .houses {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .house {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
   }
 
   :global(.house__title) {

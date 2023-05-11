@@ -2,7 +2,7 @@ CREATE TABLE houses(
     house_name CHAR(1) NOT NULL,
     street_type TEXT NOT NULL,
     street_name TEXT NOT NULL,
-    street_number INT NOT NULL,
+    street_number INTEGER NOT NULL,
     PRIMARY KEY(house_name),
     CHECK(street_number > 0)
 );

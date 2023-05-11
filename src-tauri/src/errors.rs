@@ -1,5 +1,11 @@
 #[derive(Debug, thiserror::Error)]
 pub enum MyError {
+    #[error("local_data_dir not found")]
+    LocalDataDirNotFound,
+
+    #[error("Cannot create app data directory")]
+    DataDirCreationFailed,
+
     #[error("A database error occurred")]
     DatabaseQueryError(#[from] diesel::result::Error),
 
