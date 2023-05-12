@@ -5,8 +5,6 @@ import { HouseWithApartmentsSchema } from "~/models/house"
 import type { PageLoad } from "./$types"
 
 export const load = (async () => {
-  await invoke("get_apartments").then(d => console.log(d))
-
   const housesWithApartmentsParser = z.array(HouseWithApartmentsSchema)
   const housesWithApartmentsResult = housesWithApartmentsParser.safeParse(await invoke("get_apartments"))
 
