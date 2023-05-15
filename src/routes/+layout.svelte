@@ -10,7 +10,6 @@
     Navbar,
     Button,
     SidebarBrand,
-    Tooltip,
   } from "flowbite-svelte"
   import {
     BookFilled,
@@ -71,9 +70,9 @@
   <div class="page">
     {#if shouldShowSidebar}
       <div class="page__sidebar">
-        <Sidebar>
+        <Sidebar asideClass="w-auto">
           <SidebarWrapper>
-            <SidebarGroup>
+            <SidebarGroup ulClass="sidebar__group">
               <SidebarBrand {site} />
               {#each sidebarItems as item}
                 {@const isActive = activeUrl === item.href}
@@ -81,10 +80,15 @@
                   label={item.name}
                   href={item.href}
                   active={isActive}
-                  spanClass="{isActive ? 'font-bold' : 'font-normal'} ml-3"
+                  spanClass={isActive ? "font-bold" : "font-normal"}
+                  aClass="sidebar__item"
+                  activeClass="sidebar__item"
                 >
+                  <!-- icon color in "class" below -->
                   <svelte:fragment slot="icon">
-                    <svelte:component this={isActive ? item.filledIcon : item.outlinedIcon} class="w-6 h-6" />
+                    <div class:sidebar__item__icon-active={isActive}>
+                      <svelte:component this={isActive ? item.filledIcon : item.outlinedIcon} class="w-6 h-6" />
+                    </div>
                   </svelte:fragment>
                 </SidebarItem>
               {/each}
@@ -113,6 +117,8 @@
 {/if}
 
 <style>
+  @import "~/lib/m3/theme.css";
+
   .spinner-wrapper {
     /* make spinner fill entire page */
     height: 100%;
@@ -129,14 +135,14 @@
   }
 
   .page__sidebar {
-    flex: 0 1 20%;
+    flex: 0 10rem;
 
     /* match Flowbite Sidebar bg color */
     background-color: rgb(249, 250, 251);
   }
 
   .page__content {
-    flex: 1 1 80%;
+    flex: 1;
     display: flex;
     flex-direction: column;
   }
@@ -148,5 +154,32 @@
   .page__content__main {
     /* main fills up entire page height when the header is not shown */
     flex: 1 1 auto;
+  }
+
+  :global(.sidebar__group) {
+    display: flex;
+    flex-direction: column;
+
+    /* gap between each item in the sidebar */
+    gap: 0.75rem;
+  }
+
+  :global(.sidebar__item) {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    /* gap between icon and label */
+    gap: 0.25rem;
+  }
+
+  :global(.sidebar__item__icon-active) {
+    background-color: var(--md-sys-color-secondary-container);
+    border-radius: 1rem;
+    height: 2rem;
+    width: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 </style>
