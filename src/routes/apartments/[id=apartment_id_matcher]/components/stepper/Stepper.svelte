@@ -3,11 +3,11 @@
   import { page } from "$app/stores"
   import { invalidateAll } from "$app/navigation"
   import { NewGroupSchema, NewGuestSchema } from "~/models"
-  import { FirstStepSchema } from "./first-step"
-  import { SecondStepSchema } from "./second-step"
-  import { secondStepErrorsDefaults, type SecondStepErrors } from "./second-step-errors"
+  import { FirstStepSchema } from "./first/first-step"
+  import { secondStepErrorsDefaults, type SecondStepErrors } from "./second/second-step-errors"
   import { Helper, Input, Label, PaginationItem, StepIndicator } from "flowbite-svelte"
   import { LeftArrow, RightArrow } from "~/lib/ui-components"
+  import FirstStep from "./first/FirstStep.svelte"
 
   let currentStep = 1
   let steps = ["1 - Scegli periodo", "2 - Aggiungi capogruppo"]
@@ -16,6 +16,18 @@
 
   const prevStep = () => (currentStep -= 1)
   const nextStep = () => {
+    // get step -> validate -> onSuccess/errors
+    /**
+     * step 1:
+     * - success -> go to the next step
+     * - error -> single error
+     */
+
+    /**
+     * step 2:
+     * - success -> insert guest
+     * - error -> multiple errors
+     */
     const firstStepResult = FirstStepSchema.safeParse({
       startDate,
       endDate,
@@ -30,12 +42,10 @@
   }
 
   const onStepDone = () => {
-    const secondStepResult = SecondStepSchema.safeParse({
-      guest: {
-        first_name: firstName,
-        last_name: lastName,
-        birth_date: birthDate,
-      },
+    const secondStepResult = NewGuestSchema.safeParse({
+      first_name: firstName,
+      last_name: lastName,
+      birth_date: birthDate,
     })
 
     if (secondStepResult.success) {
@@ -55,7 +65,7 @@
 
       invalidateAll()
     } else {
-      const formattedErrors = secondStepResult.error.format().guest
+      const formattedErrors = secondStepResult.error.format()
 
       secondStepErrors = {
         onFirstName: formattedErrors?.first_name?._errors.at(0),
@@ -85,18 +95,7 @@
   <!-- content belonging to step -->
   <div>
     {#if currentStep === 1}
-      <div>
-        <Label for="start-date" color={firstStepError ? "red" : "gray"} class="block mb-2">Giorno di arrivo</Label>
-        <Input type="date" id="start-date" bind:value={startDate} color={firstStepError ? "red" : "base"} />
-        {#if firstStepError}
-          <Helper class="mt-2" color="red">{firstStepError}</Helper>
-        {/if}
-      </div>
-
-      <div>
-        <Label for="end-date" color="gray" class="block mb-2">Giorno di partenza</Label>
-        <Input type="date" id="end-date" bind:value={endDate} color="base" />
-      </div>
+      <FirstStep bind:startDate bind:endDate bind:error={firstStepError} />
     {:else}
       <div class="grid gap-6 md:grid-cols-2">
         <div>
@@ -144,15 +143,22 @@
   </div>
 
   <div class="flex space-x-3">
-    {#if currentStep != 1}
-      <PaginationItem class="flex items-center" on:click={prevStep}>
-        <LeftArrow clazz="mr-2 w-5 h-5" />
-        Torna a scelta periodo
-      </PaginationItem>
-    {/if}
+    <!-- {#if currentStep !== 1} -->
+    <PaginationItem class="flex items-center" on:click={prevStep} normalClass="text-pag-btn">
+      <LeftArrow clazz="mr-2 w-5 h-5" />
+      Torna a scelta periodo
+    </PaginationItem>
+    <!-- {/if} -->
     <PaginationItem class="flex items-center" on:click={nextAction}>
       {nextLabel}
       <RightArrow clazz="ml-2 w-5 h-5" />
     </PaginationItem>
   </div>
 </div>
+
+<style>
+  :global(.text-pag-btn) {
+    color: blue;
+    border-radius: 10%;
+  }
+</style>

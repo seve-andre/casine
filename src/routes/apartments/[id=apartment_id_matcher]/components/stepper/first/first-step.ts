@@ -8,3 +8,9 @@ export const FirstStepSchema = z.object({
     data => data.endDate > data.startDate,
     "La data di arrivo deve essere prima della data di partenza"
 )
+
+export const FirstStep = {
+    number: 1,
+    name: "1 - Scegli periodo",
+    // validator: validateDates("", ""),
+}
