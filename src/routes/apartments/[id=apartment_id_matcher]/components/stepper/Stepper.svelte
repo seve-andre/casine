@@ -8,6 +8,8 @@
   import { Helper, Input, Label, PaginationItem, StepIndicator } from "flowbite-svelte"
   import { LeftArrow, RightArrow } from "~/lib/ui-components"
   import FirstStep from "./first/FirstStep.svelte"
+  import TextButton from "~/lib/ui-components/button/TextButton.svelte"
+  import FilledButton from "~/lib/ui-components/button/FilledButton.svelte"
 
   let currentStep = 1
   let steps = ["1 - Scegli periodo", "2 - Aggiungi capogruppo"]
@@ -144,21 +146,8 @@
 
   <div class="flex space-x-3">
     <!-- {#if currentStep !== 1} -->
-    <PaginationItem class="flex items-center" on:click={prevStep} normalClass="text-pag-btn">
-      <LeftArrow clazz="mr-2 w-5 h-5" />
-      Torna a scelta periodo
-    </PaginationItem>
+    <TextButton on:click={prevStep}>Torna a scelta periodo</TextButton>
     <!-- {/if} -->
-    <PaginationItem class="flex items-center" on:click={nextAction}>
-      {nextLabel}
-      <RightArrow clazz="ml-2 w-5 h-5" />
-    </PaginationItem>
+    <FilledButton on:click={nextAction}>{nextLabel}</FilledButton>
   </div>
 </div>
-
-<style>
-  :global(.text-pag-btn) {
-    color: blue;
-    border-radius: 10%;
-  }
-</style>
