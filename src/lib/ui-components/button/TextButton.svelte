@@ -4,6 +4,6 @@
   export let disabled = false
 </script>
 
-<Button on:click pill {disabled}>
+<Button on:click pill outline {disabled}>
   <slot />
 </Button>
