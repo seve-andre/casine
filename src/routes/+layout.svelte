@@ -98,7 +98,7 @@
       {#if !shouldShowSidebar}
         <header class="page__content__header">
           <Navbar>
-            <Button href="/" pill color="light" outline>
+            <Button href="/" pill outline>
               <LeftArrow class="w-4 h-4" />
             </Button>
           </Navbar>
