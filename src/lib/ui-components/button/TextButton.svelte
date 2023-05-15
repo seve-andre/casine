@@ -4,6 +4,19 @@
   export let disabled = false
 </script>
 
-<Button on:click pill outline {disabled}>
+<Button on:click pill outline {disabled} btnClass="btn text-btn">
   <slot />
 </Button>
+
+<style>
+  @import "~/lib/m3/theme.css";
+
+  :global(.text-btn) {
+    background-color: transparent;
+    color: var(--md-sys-color-primary);
+  }
+
+  :global(.text-btn:hover) {
+    background-color: rgb(103, 80, 164, 0.08);
+  }
+</style>
