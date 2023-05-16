@@ -1,7 +1,7 @@
 <script lang="ts">
   import { Helper, Input, Label } from "flowbite-svelte"
 
-  // form data
+  // data
   export let startDate: string
   export let endDate: string
 

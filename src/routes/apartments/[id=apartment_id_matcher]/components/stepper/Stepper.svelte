@@ -10,6 +10,7 @@
   import FirstStep from "./first/FirstStep.svelte"
   import TextButton from "~/lib/ui-components/button/TextButton.svelte"
   import FilledButton from "~/lib/ui-components/button/FilledButton.svelte"
+  import SecondStep from "./second/SecondStep.svelte"
 
   let currentStep = 1
   let steps = ["1 - Scegli periodo", "2 - Aggiungi capogruppo"]
@@ -18,18 +19,6 @@
 
   const prevStep = () => (currentStep -= 1)
   const nextStep = () => {
-    // get step -> validate -> onSuccess/errors
-    /**
-     * step 1:
-     * - success -> go to the next step
-     * - error -> single error
-     */
-
-    /**
-     * step 2:
-     * - success -> insert guest
-     * - error -> multiple errors
-     */
     const firstStepResult = FirstStepSchema.safeParse({
       startDate,
       endDate,
@@ -91,63 +80,47 @@
   let birthDate = ""
 </script>
 
-<div class="flex flex-col gap-2">
-  <StepIndicator {currentStep} {steps} />
+<div class="stepper">
+  <div class="stepper__indicator">
+    <StepIndicator {currentStep} {steps} />
+  </div>
 
   <!-- content belonging to step -->
-  <div>
+  <div class="stepper__form">
     {#if currentStep === 1}
       <FirstStep bind:startDate bind:endDate bind:error={firstStepError} />
     {:else}
-      <div class="grid gap-6 md:grid-cols-2">
-        <div>
-          <Label for="first-name" color={secondStepErrors.onFirstName ? "red" : "gray"} class="block mb-2">Nome</Label>
-          <Input
-            id="first-name"
-            bind:value={firstName}
-            color={secondStepErrors.onFirstName ? "red" : "base"}
-            placeholder="Andrea"
-          />
-          {#if secondStepErrors.onFirstName}
-            <Helper class="mt-2" color="red">Il nome è obbligatorio</Helper>
-          {/if}
-        </div>
-
-        <div>
-          <Label for="last-name" color={secondStepErrors.onLastName ? "red" : "gray"} class="block mb-2">Cognome</Label>
-          <Input
-            id="last-name"
-            bind:value={lastName}
-            color={secondStepErrors.onLastName ? "red" : "base"}
-            placeholder="Severi"
-          />
-          {#if secondStepErrors.onLastName}
-            <Helper class="mt-2" color="red">Il cognome è obbligatorio</Helper>
-          {/if}
-        </div>
-
-        <div>
-          <Label for="birth-date" color={secondStepErrors.onBirthDate ? "red" : "gray"} class="block mb-2">
-            Data di nascita
-          </Label>
-          <Input
-            type="date"
-            id="birth-date"
-            bind:value={birthDate}
-            color={secondStepErrors.onBirthDate ? "red" : "base"}
-          />
-          {#if secondStepErrors.onBirthDate}
-            <Helper class="mt-2" color="red">La data di nascita è obbligatoria</Helper>
-          {/if}
-        </div>
-      </div>
+      <SecondStep bind:firstName bind:lastName bind:birthDate bind:errors={secondStepErrors} />
     {/if}
   </div>
 
-  <div class="flex space-x-3">
-    <!-- {#if currentStep !== 1} -->
-    <TextButton on:click={prevStep}>Torna a scelta periodo</TextButton>
-    <!-- {/if} -->
+  <div class="stepper__controls">
+    {#if currentStep !== 1}
+      <TextButton on:click={prevStep}>Torna a scelta periodo</TextButton>
+    {/if}
     <FilledButton on:click={nextAction}>{nextLabel}</FilledButton>
   </div>
 </div>
+
+<style>
+  .stepper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .stepper__indicator {
+    flex: 0 1 10%;
+  }
+
+  .stepper__form {
+    flex: 1 1 70%;
+  }
+
+  .stepper__controls {
+    flex: 0 1 20%;
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+  }
+</style>
