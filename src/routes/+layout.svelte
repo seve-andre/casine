@@ -22,6 +22,7 @@
   } from "~/lib/ui-components"
   import logo from "~/lib/assets/casine.png"
   import type { LayoutData } from "./$types"
+  import IconButton from "~/lib/ui-components/button/IconButton.svelte"
 
   export let data: LayoutData
 
@@ -102,9 +103,9 @@
       {#if !shouldShowSidebar}
         <header class="page__content__header">
           <Navbar>
-            <Button href="/" pill outline>
+            <IconButton href="/">
               <LeftArrow class="w-4 h-4" />
-            </Button>
+            </IconButton>
           </Navbar>
         </header>
       {/if}
