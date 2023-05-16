@@ -3,10 +3,9 @@
   import { page } from "$app/stores"
   import { invalidateAll } from "$app/navigation"
   import { NewGroupSchema, NewGuestSchema } from "~/models"
-  import { FirstStepSchema } from "./first/first-step"
-  import { secondStepErrorsDefaults, type SecondStepErrors } from "./second/second-step-errors"
-  import { Helper, Input, Label, PaginationItem, StepIndicator } from "flowbite-svelte"
-  import { LeftArrow, RightArrow } from "~/lib/ui-components"
+  import { FirstStepSchema, type FirstStepErrors, firstStepErrorsDefaults } from "./first/first-step"
+  import { secondStepErrorsDefaults, type SecondStepErrors } from "./second/second-step"
+  import { StepIndicator } from "flowbite-svelte"
   import FirstStep from "./first/FirstStep.svelte"
   import TextButton from "~/lib/ui-components/button/TextButton.svelte"
   import FilledButton from "~/lib/ui-components/button/FilledButton.svelte"
@@ -26,9 +25,17 @@
 
     if (firstStepResult.success) {
       currentStep += 1
-      firstStepError = undefined
+
+      firstStepErrors = {
+        ...firstStepErrorsDefaults,
+      }
     } else {
-      firstStepError = firstStepResult.error.format()._errors.at(0)
+      const formattedErrors = firstStepResult.error.format()
+
+      firstStepErrors = {
+        onStartDate: formattedErrors.startDate?._errors.at(0),
+        onEndDate: formattedErrors.endDate?._errors.at(0),
+      }
     }
   }
 
@@ -67,7 +74,9 @@
   }
 
   // 1st step
-  let firstStepError: string | undefined = undefined
+  let firstStepErrors: FirstStepErrors = {
+    ...firstStepErrorsDefaults,
+  }
   let startDate = ""
   let endDate = ""
 
@@ -88,7 +97,7 @@
   <!-- content belonging to step -->
   <div class="stepper__form">
     {#if currentStep === 1}
-      <FirstStep bind:startDate bind:endDate bind:error={firstStepError} />
+      <FirstStep bind:startDate bind:endDate bind:errors={firstStepErrors} />
     {:else}
       <SecondStep bind:firstName bind:lastName bind:birthDate bind:errors={secondStepErrors} />
     {/if}
