@@ -8,10 +8,6 @@
   <slot />
 </Button>
 
-<!-- <Button href="/" pill outline>
-  <LeftArrow class="w-4 h-4" />
-</Button> -->
-
 <style>
   :global(.icon-btn) {
     background-color: transparent;
