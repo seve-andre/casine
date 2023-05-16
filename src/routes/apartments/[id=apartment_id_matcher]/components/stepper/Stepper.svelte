@@ -90,8 +90,8 @@
 </script>
 
 <div class="stepper">
-  <div class="stepper__indicator">
-    <StepIndicator {currentStep} {steps} />
+  <div class="stepper__indicator-wrapper">
+    <StepIndicator {currentStep} {steps} color="purple" />
   </div>
 
   <!-- content belonging to step -->
@@ -118,7 +118,7 @@
     flex-direction: column;
   }
 
-  .stepper__indicator {
+  .stepper__indicator-wrapper {
     flex: 0 1 10%;
   }
 
