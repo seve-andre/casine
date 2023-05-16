@@ -31,8 +31,16 @@
     padding: 1.25rem 2.5rem;
   }
 
+  .apartment__title {
+    flex: 0 1 10%;
+  }
+
   :global(.apartment__title__text) {
     font-size: 1.875rem;
     line-height: 2.25rem;
+  }
+
+  .apartment__content {
+    flex: 1 1 90%;
   }
 </style>
