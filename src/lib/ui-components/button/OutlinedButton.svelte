@@ -4,6 +4,6 @@
   export let href = ""
 </script>
 
-<Button on:click {href} pill outline color={"alternative"}>
+<Button on:click {href} pill outline color="alternative">
   <slot />
 </Button>
