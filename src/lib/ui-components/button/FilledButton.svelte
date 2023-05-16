@@ -10,8 +10,6 @@
 </Button>
 
 <style>
-  @import "~/lib/m3/theme.css";
-
   :global(.filled-btn) {
     background-color: var(--md-sys-color-primary);
     color: var(--md-sys-color-on-primary);

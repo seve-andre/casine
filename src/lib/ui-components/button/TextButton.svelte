@@ -9,8 +9,6 @@
 </Button>
 
 <style>
-  @import "~/lib/m3/theme.css";
-
   :global(.text-btn) {
     background-color: transparent;
     color: var(--md-sys-color-primary);

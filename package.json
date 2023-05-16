@@ -36,6 +36,7 @@
   },
   "dependencies": {
     "@tauri-apps/api": "^1.2.0",
+    "postcss-import": "^15.1.0",
     "zod": "^3.21.4"
   }
 }

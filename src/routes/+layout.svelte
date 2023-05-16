@@ -117,8 +117,6 @@
 {/if}
 
 <style>
-  @import "~/lib/m3/theme.css";
-
   .spinner-wrapper {
     /* make spinner fill entire page */
     height: 100%;
