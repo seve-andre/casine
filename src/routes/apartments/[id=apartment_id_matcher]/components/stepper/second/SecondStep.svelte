@@ -1,6 +1,6 @@
 <script lang="ts">
   import { Helper, Input, Label } from "flowbite-svelte"
-  import type { SecondStepErrors } from "./second-step-errors"
+  import type { SecondStepErrors } from "./second-step"
 
   // data
   export let firstName: string
