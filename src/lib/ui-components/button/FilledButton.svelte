@@ -2,10 +2,9 @@
   import { Button } from "flowbite-svelte"
 
   export let href = ""
-  export let disabled = false
 </script>
 
-<Button {href} on:click pill {disabled} btnClass="btn filled-btn">
+<Button {href} on:click pill btnClass="btn filled-btn">
   <slot />
 </Button>
 

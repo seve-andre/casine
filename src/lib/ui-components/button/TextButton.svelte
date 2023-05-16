@@ -1,10 +1,10 @@
 <script lang="ts">
   import { Button } from "flowbite-svelte"
 
-  export let disabled = false
+  export let href = ""
 </script>
 
-<Button on:click pill outline {disabled} btnClass="btn text-btn">
+<Button on:click {href} pill outline btnClass="btn text-btn">
   <slot />
 </Button>
 
