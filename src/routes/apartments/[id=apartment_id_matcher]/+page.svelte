@@ -17,6 +17,7 @@
     {#if isApartmentEmpty}
       <Stepper />
     {:else}
+      <!-- table is recreated when guests change -->
       {#key data.guests}
         <GuestsTable rent={data.rent} guests={data.guests} group={data.group} />
       {/key}
