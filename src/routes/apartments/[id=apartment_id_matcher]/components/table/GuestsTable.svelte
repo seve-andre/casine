@@ -3,7 +3,9 @@
   import { Modal, Table, TableBody, TableBodyCell, TableBodyRow, TableHead, TableHeadCell } from "flowbite-svelte"
   import type { Group, Guest, Rent } from "~/models"
   import FilledButton from "~/lib/ui-components/button/FilledButton.svelte"
-  import NewGuestForm from "~/lib/page-components/common/NewGuestForm.svelte"
+  import GuestForm from "~/lib/page-components/common/GuestForm.svelte"
+  import { invoke } from "@tauri-apps/api/tauri"
+  import { invalidateAll } from "$app/navigation"
 
   export let rent: Rent
   export let guests: Guest[]
@@ -19,6 +21,10 @@
   }))
 
   let showNewGuestForm = false
+
+  let firstName = ""
+  let lastName = ""
+  let birthDate = ""
 </script>
 
 <div class="table-container">
@@ -53,7 +59,25 @@
 
   <Modal bind:open={showNewGuestForm} size="xs" autoclose={false} class="w-full">
     <h1 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Aggiungi ospite</h1>
-    <NewGuestForm />
+    <GuestForm
+      bind:firstName
+      bind:lastName
+      bind:birthDate
+      onSubmitSuccess={() => {
+        invoke("add_guest_to_group", {
+          guest: {
+            first_name: firstName,
+            last_name: lastName,
+            birth_date: birthDate,
+          },
+          groupId: group.id,
+          isLeader: false,
+        })
+
+        showNewGuestForm = false
+        invalidateAll()
+      }}
+    />
   </Modal>
 </div>
 
