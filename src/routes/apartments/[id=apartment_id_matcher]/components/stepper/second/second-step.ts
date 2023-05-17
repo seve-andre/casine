@@ -1,11 +1,4 @@
-export type SecondStepErrors = {
-    onFirstName?: string
-    onLastName?: string
-    onBirthDate?: string
-}
+import { guestFormErrorsDefaults, type GuestFormErrors } from "~/lib/page-components/common/guest-form-errors"
 
-export const secondStepErrorsDefaults: Pick<SecondStepErrors, "onFirstName" | "onLastName" | "onBirthDate"> = {
-    onFirstName: undefined,
-    onLastName: undefined,
-    onBirthDate: undefined
-}
+export type SecondStepErrors = GuestFormErrors
+export const secondStepErrorsDefaults = guestFormErrorsDefaults
