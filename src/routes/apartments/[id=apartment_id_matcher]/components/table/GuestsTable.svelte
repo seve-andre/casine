@@ -1,20 +1,9 @@
 <script lang="ts">
   import "~/lib/utils/date-utils"
-  import {
-    Button,
-    Checkbox,
-    Input,
-    Label,
-    Modal,
-    Table,
-    TableBody,
-    TableBodyCell,
-    TableBodyRow,
-    TableHead,
-    TableHeadCell,
-  } from "flowbite-svelte"
+  import { Modal, Table, TableBody, TableBodyCell, TableBodyRow, TableHead, TableHeadCell } from "flowbite-svelte"
   import type { Group, Guest, Rent } from "~/models"
   import FilledButton from "~/lib/ui-components/button/FilledButton.svelte"
+  import NewGuestForm from "~/lib/page-components/common/NewGuestForm.svelte"
 
   export let rent: Rent
   export let guests: Guest[]
@@ -63,27 +52,8 @@
   </div>
 
   <Modal bind:open={showNewGuestForm} size="xs" autoclose={false} class="w-full">
-    <form class="flex flex-col space-y-3" action="#">
-      <h1 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Aggiungi ospite</h1>
-      <div class="grid gap-6 md:grid-cols-2">
-        <div>
-          <Label for="first-name" color="gray" class="block mb-2">Nome</Label>
-          <Input id="first-name" value="" color="base" placeholder="Andrea" />
-        </div>
-
-        <div>
-          <Label for="last-name" color="gray" class="block mb-2">Cognome</Label>
-          <Input id="last-name" value="" color="base" placeholder="Severi" />
-        </div>
-
-        <div>
-          <Label for="birth-date" color="gray" class="block mb-2">Data di nascita</Label>
-          <Input type="date" id="birth-date" value="" color="base" />
-        </div>
-      </div>
-
-      <FilledButton>Aggiungi</FilledButton>
-    </form>
+    <h1 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Aggiungi ospite</h1>
+    <NewGuestForm />
   </Modal>
 </div>
 
@@ -101,6 +71,8 @@
 
   .table__controls {
     flex: 0 1 20%;
+    display: flex;
+    justify-content: flex-end;
   }
 
   :global(.table__main) {
