@@ -75,7 +75,6 @@
         })
 
         showNewGuestForm = false
-        invalidateAll()
       }}
     />
   </Modal>

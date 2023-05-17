@@ -29,6 +29,7 @@
 
     if (guestResult.success) {
       onSubmitSuccess()
+      invalidateAll()
     } else {
       const formattedErrors = guestResult.error.format()
 
