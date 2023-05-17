@@ -1,10 +1,12 @@
 <script lang="ts">
   import { Button } from "flowbite-svelte"
+  import type { ButtonType } from "flowbite-svelte/dist/types"
 
   export let href = ""
+  export let type: ButtonType = "button"
 </script>
 
-<Button {href} on:click pill btnClass="btn filled-btn">
+<Button {href} {type} on:click pill btnClass="btn filled-btn">
   <slot />
 </Button>
 
