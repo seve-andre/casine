@@ -6,17 +6,18 @@
   import { FirstStepSchema, type FirstStepErrors, firstStepErrorsDefaults } from "./first/first-step"
   import { secondStepErrorsDefaults, type SecondStepErrors } from "./second/second-step"
   import { StepIndicator } from "flowbite-svelte"
-  import FirstStep from "./first/FirstStep.svelte"
-  import TextButton from "~/lib/ui-components/button/TextButton.svelte"
-  import FilledButton from "~/lib/ui-components/button/FilledButton.svelte"
+  import { FilledButton, TextButton } from "~/lib/ui-components"
   import SecondStep from "./second/SecondStep.svelte"
+  import FirstStep from "./first/FirstStep.svelte"
 
   let currentStep = 1
   let steps = ["1 - Scegli periodo", "2 - Aggiungi capogruppo"]
   $: nextLabel = currentStep === 1 ? "Avanti" : "Fine"
   $: nextAction = currentStep === 1 ? nextStep : onStepDone
 
-  const prevStep = () => (currentStep -= 1)
+  const prevStep = () => {
+    currentStep -= 1
+  }
   const nextStep = () => {
     const firstStepResult = FirstStepSchema.safeParse({
       startDate,
@@ -90,24 +91,29 @@
 </script>
 
 <div class="stepper">
-  <div class="stepper__indicator-wrapper">
+  <div class="stepper__indicator">
     <StepIndicator {currentStep} {steps} color="purple" />
   </div>
 
   <!-- content belonging to step -->
   <div class="stepper__form">
-    {#if currentStep === 1}
-      <FirstStep bind:startDate bind:endDate bind:errors={firstStepErrors} />
-    {:else}
-      <SecondStep bind:firstName bind:lastName bind:birthDate bind:errors={secondStepErrors} />
-    {/if}
-  </div>
+    <form on:submit|preventDefault={nextAction} class="form-container">
+      <div class="form__filling">
+        {#if currentStep === 1}
+          <FirstStep bind:startDate bind:endDate bind:errors={firstStepErrors} />
+        {:else}
+          <SecondStep bind:firstName bind:lastName bind:birthDate bind:errors={secondStepErrors} />
+        {/if}
+      </div>
 
-  <div class="stepper__controls">
-    {#if currentStep !== 1}
-      <TextButton on:click={prevStep}>Torna a scelta periodo</TextButton>
-    {/if}
-    <FilledButton on:click={nextAction}>{nextLabel}</FilledButton>
+      <div class="form__controls">
+        {#if currentStep !== 1}
+          <TextButton on:click={prevStep}>Torna a scelta periodo</TextButton>
+        {/if}
+
+        <FilledButton type="submit">{nextLabel}</FilledButton>
+      </div>
+    </form>
   </div>
 </div>
 
@@ -118,15 +124,30 @@
     flex-direction: column;
   }
 
-  .stepper__indicator-wrapper {
+  .stepper__indicator {
     flex: 0 1 10%;
   }
 
   .stepper__form {
-    flex: 1 1 70%;
+    flex: 1;
+    padding-top: 1rem;
   }
 
-  .stepper__controls {
+  .form-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .form__filling {
+    flex: 1 1 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .form__controls {
     flex: 0 1 20%;
     display: flex;
     justify-content: flex-end;
