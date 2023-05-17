@@ -17,7 +17,9 @@
     {#if isApartmentEmpty}
       <Stepper />
     {:else}
-      <GuestsTable rent={data.rent} guests={data.guests} group={data.group} />
+      {#key data.guests}
+        <GuestsTable rent={data.rent} guests={data.guests} group={data.group} />
+      {/key}
     {/if}
   </div>
 </div>
