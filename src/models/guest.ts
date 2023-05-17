@@ -14,6 +14,6 @@ export const NewGuestSchema = GuestSchema
     .extend({
         // DB accepts DATE (NOT DATETIME), so we can't use `birth_date` of the
         // above GuestSchema
-        birth_date: z.string().regex(Constants.dateRegex)
+        birth_date: z.string().regex(Constants.dateRegex, { message: "La data di nascita non è corretta" })
     })
 export type NewGuest = z.infer<typeof NewGuestSchema>
