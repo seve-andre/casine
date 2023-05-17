@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { Helper, Input, Label } from "flowbite-svelte"
   import FilledButton from "~/lib/ui-components/button/FilledButton.svelte"
   import { guestFormErrorsDefaults, type GuestFormErrors } from "./guest-form-errors"
   import { useValidation } from "~/routes/apartments/[id=apartment_id_matcher]/components/stepper/validation"
@@ -10,9 +9,9 @@
   export let onSubmitSuccess: () => void
 
   // data
-  let firstName: string
-  let lastName: string
-  let birthDate: string
+  export let firstName: string
+  export let lastName: string
+  export let birthDate: string
 
   // errors
   let errors: GuestFormErrors = {
@@ -30,7 +29,6 @@
 
     if (guestResult.success) {
       onSubmitSuccess()
-      invalidateAll()
     } else {
       const formattedErrors = guestResult.error.format()
 
