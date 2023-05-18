@@ -8,7 +8,8 @@ Apartments management system. A total of 12 apartments inside 2 houses (A and B)
 ![casine home screen](./screenshots/casine-home.png)
 
 ## Required features
-- [ ] add/remove guests
+- [x] add guests
+- [ ] remove guests
 - [ ] search for guests
 - [ ] edit guests data
 - [ ] see bookings
