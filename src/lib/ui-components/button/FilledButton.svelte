@@ -12,8 +12,8 @@
 
 <style>
   :global(.filled-btn) {
-    background-color: var(--md-sys-color-primary);
-    color: var(--md-sys-color-on-primary);
+    background-color: var(--md-sys-color-primary) !important;
+    color: var(--md-sys-color-on-primary) !important;
   }
 
   :global(.filled-btn:hover) {
