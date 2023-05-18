@@ -1,4 +1,5 @@
 export { default as FilledButton } from "./button/FilledButton.svelte"
+export { default as IconButton } from "./button/IconButton.svelte"
 export { default as OutlinedButton } from "./button/OutlinedButton.svelte"
 export { default as TextButton } from "./button/TextButton.svelte"
 

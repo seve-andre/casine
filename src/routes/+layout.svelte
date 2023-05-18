@@ -7,13 +7,13 @@
     BookOutlined,
     HomeFilled,
     HomeOutlined,
+    IconButton,
     LeftArrow,
     PriceTagFilled,
     PriceTagOutlined,
   } from "~/lib/ui-components"
   import logo from "~/lib/assets/casine.png"
   import type { LayoutData } from "./$types"
-  import IconButton from "~/lib/ui-components/button/IconButton.svelte"
 
   export let data: LayoutData
 
