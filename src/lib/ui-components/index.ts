@@ -18,3 +18,4 @@ export { default as SuccessNotification } from "./notification/SuccessNotificati
 
 export { default as TableMd } from "./table/TableMd.svelte"
 export { default as TableHeadMd } from "./table/TableHeadMd.svelte"
+export { default as TableBodyCellMd } from "./table/TableBodyCellMd.svelte"

@@ -1,10 +1,10 @@
 <script lang="ts">
   import "~/lib/utils/date-utils"
-  import { Modal, TableBody, TableBodyCell, TableBodyRow, TableHeadCell } from "flowbite-svelte"
+  import { Modal, TableBody, TableBodyRow, TableHeadCell } from "flowbite-svelte"
   import type { Group, Guest, Rent } from "~/models"
   import GuestForm from "~/lib/page-components/common/GuestForm.svelte"
   import { invoke } from "@tauri-apps/api/tauri"
-  import { FilledButton, TableHeadMd, TableMd } from "~/lib/ui-components"
+  import { FilledButton, TableBodyCellMd, TableHeadMd, TableMd } from "~/lib/ui-components"
 
   export let rent: Rent
   export let guests: Guest[]
@@ -43,9 +43,9 @@
       <TableBody>
         {#each guestsMapped as guest (guest.id)}
           <TableBodyRow>
-            <TableBodyCell>{guest.firstName}</TableBodyCell>
-            <TableBodyCell>{guest.lastName}</TableBodyCell>
-            <TableBodyCell>{guest.birthDate.toItalianFormat()}</TableBodyCell>
+            <TableBodyCellMd>{guest.firstName}</TableBodyCellMd>
+            <TableBodyCellMd>{guest.lastName}</TableBodyCellMd>
+            <TableBodyCellMd>{guest.birthDate.toItalianFormat()}</TableBodyCellMd>
           </TableBodyRow>
         {/each}
       </TableBody>
