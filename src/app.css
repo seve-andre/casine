@@ -25,12 +25,3 @@
   justify-content: center;
   align-items: center;
 }
-
-/* @layer base {
-  button,
-  input[type="button"],
-  input[type="reset"],
-  input[type="submit"] {
-    @apply btn;
-  }
-} */
