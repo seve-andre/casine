@@ -8,18 +8,9 @@ export const load = (async ({ params }) => {
 
   const pageDataResult = ApartmentPageDataSchema.safeParse({
     apartment: await invoke("get_apartment_by_id", { apartmentId }),
-    rent: {
-      id: 1,
-      apartment_id: 1,
-      group_id: 1,
-      start_date: "2023-05-01",
-      end_date: "2023-05-30",
-    },
+    rent: await invoke("get_rent_in_apartment", { apartmentId }),
     guests: await invoke("get_guests_in_apartment", { apartmentId }),
-    group: {
-      id: 1,
-      nickname: "Severi"
-    }
+    group: await invoke("get_group_in_apartment", { apartmentId })
   })
 
   if (!pageDataResult.success) {
