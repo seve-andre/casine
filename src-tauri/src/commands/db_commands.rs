@@ -47,53 +47,37 @@ fn is_date_in_range(
     return Box::new(rents::start_date.le(date).and(rents::end_date.ge(date)));
 }
 
-fn get_group_id_by_apartment(apartment: &Apartment) -> Result<i32, MyError> {
-    use schema::rents::dsl::*;
-
-    let connection = &mut establish_connection()?;
-    let today_date = Local::now().date_naive();
-
-    return Rent::belonging_to(apartment)
-        .filter(is_date_in_range(today_date))
-        .select(group_id)
-        .get_result::<i32>(connection)
-        .map_err(MyError::DatabaseQueryError);
-}
-
-fn get_guests_ids_by_group_id(group_id_result: i32) -> Result<Vec<i32>, MyError> {
-    use schema::group_members::dsl::*;
+fn get_guests_ids_by_group_id(group_id: i32) -> Result<Vec<i32>, MyError> {
+    use schema::group_members;
 
     let connection = &mut establish_connection()?;
 
-    return group_members
-        .filter(group_id.eq(&group_id_result))
-        .select(guest_id)
+    return group_members::table
+        .filter(group_members::group_id.eq(group_id))
+        .select(group_members::guest_id)
         .load::<i32>(connection)
         .map_err(MyError::DatabaseQueryError);
 }
 
 #[tauri::command]
-pub async fn get_guests_in_apartment(apartment_id: i32) -> Result<Vec<Guest>, MyError> {
-    use schema::apartments;
-    use schema::guests::dsl::*;
+pub async fn get_guests_in_apartment(apartment_id: i32) -> Result<Option<Vec<Guest>>, MyError> {
+    use schema::guests;
 
     let connection = &mut establish_connection()?;
 
-    let apartment = apartments::table
-        .find(apartment_id)
-        .get_result::<Apartment>(connection)?;
+    let maybe_group = get_group_in_apartment(apartment_id).await?;
 
-    let group_id_result = get_group_id_by_apartment(&apartment);
-    let actual_group_id = match group_id_result {
-        Ok(it) => it,
-        Err(_) => return Result::Ok(vec![]),
+    let group = match maybe_group {
+        Some(group) => group,
+        None => return Ok(None),
     };
 
-    let guest_ids = get_guests_ids_by_group_id(actual_group_id)?;
+    let guest_ids = get_guests_ids_by_group_id(group.id)?;
 
-    return guests
-        .filter(id.eq_any(&guest_ids))
+    return guests::table
+        .filter(guests::id.eq_any(&guest_ids))
         .load::<Guest>(connection)
+        .optional()
         .map_err(MyError::DatabaseQueryError);
 }
 
@@ -186,4 +170,39 @@ pub fn add_guest_to_group(guest: NewGuest, group_id: i32, is_leader: bool) -> Re
         .execute(connection)?;
 
     return Ok(());
+}
+
+#[tauri::command]
+pub async fn get_group_in_apartment(apartment_id: i32) -> Result<Option<Group>, MyError> {
+    use schema::groupz;
+
+    let connection = &mut establish_connection()?;
+    let maybe_rent = get_rent_in_apartment(apartment_id).await?;
+
+    let rent = match maybe_rent {
+        Some(rent) => rent,
+        None => return Ok(None),
+    };
+
+    return groupz::table
+        .filter(groupz::id.eq(rent.group_id))
+        .first(connection)
+        .optional()
+        .map_err(MyError::DatabaseQueryError);
+}
+
+#[tauri::command]
+pub async fn get_rent_in_apartment(apartment_id: i32) -> Result<Option<Rent>, MyError> {
+    use schema::rents;
+
+    let connection = &mut establish_connection()?;
+    let today_date = Local::now().date_naive();
+
+    return rents::table
+        .filter(rents::apartment_id.eq(apartment_id))
+        .filter(is_date_in_range(today_date))
+        .select(Rent::as_select())
+        .first(connection)
+        .optional()
+        .map_err(MyError::DatabaseQueryError);
 }
