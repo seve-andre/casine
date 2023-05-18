@@ -67,7 +67,6 @@
             <SidebarGroup ulClass="sidebar__group">
               <SidebarBrand {site} />
               {#each sidebarItems as item}
-                <!-- home sidebar active url is "" -->
                 {@const isActive = activeUrl === item.href}
                 <SidebarItem
                   label={item.name}
