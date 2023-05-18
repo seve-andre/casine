@@ -1,16 +1,7 @@
 <script lang="ts">
-  import "~/app.postcss"
+  import "~/app.css"
   import { navigating, page } from "$app/stores"
-  import {
-    Spinner,
-    Sidebar,
-    SidebarWrapper,
-    SidebarGroup,
-    SidebarItem,
-    Navbar,
-    Button,
-    SidebarBrand,
-  } from "flowbite-svelte"
+  import { Spinner, Sidebar, SidebarWrapper, SidebarGroup, SidebarItem, Navbar, SidebarBrand } from "flowbite-svelte"
   import {
     BookFilled,
     BookOutlined,
@@ -76,6 +67,7 @@
             <SidebarGroup ulClass="sidebar__group">
               <SidebarBrand {site} />
               {#each sidebarItems as item}
+                <!-- home sidebar active url is "" -->
                 {@const isActive = activeUrl === item.href}
                 <SidebarItem
                   label={item.name}
