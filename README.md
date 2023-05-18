@@ -5,7 +5,8 @@
 # casine
 Apartments management system. A total of 12 apartments inside 2 houses (A and B) rented by groups of people during summer
 
-![casine home screen](./screenshots/casine-home.png)
+![casine home page](./screenshots/homepage.png)
+![apartment filled with guests](./screenshots/apartment-with-guests.png)
 
 ## Required features
 - [x] add guests
