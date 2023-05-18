@@ -4,17 +4,17 @@
   export let href = ""
 </script>
 
-<Button on:click {href} pill outline btnClass="btn text-btn">
+<Button on:click {href} pill outline btnClass="btn icon-btn">
   <slot />
 </Button>
 
 <style>
-  :global(.text-btn) {
+  :global(.icon-btn) {
     background-color: transparent;
-    color: var(--md-sys-color-primary);
+    color: var(--md-sys-color-on-surface);
   }
 
-  :global(.text-btn:hover) {
+  :global(.icon-btn:hover) {
     background-color: rgb(103, 80, 164, 0.08);
   }
 </style>

@@ -1,10 +1,9 @@
 <script lang="ts">
   import { Button } from "flowbite-svelte"
 
-  export let disabled = false
-  export let color: "blue" | "red" | "dark" = "blue"
+  export let href = ""
 </script>
 
-<Button on:click pill outline {disabled} {color}>
+<Button on:click {href} pill outline color="alternative">
   <slot />
 </Button>

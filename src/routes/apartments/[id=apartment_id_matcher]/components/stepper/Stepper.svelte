@@ -3,18 +3,21 @@
   import { page } from "$app/stores"
   import { invalidateAll } from "$app/navigation"
   import { NewGroupSchema, NewGuestSchema } from "~/models"
-  import { FirstStepSchema } from "./first-step"
-  import { SecondStepSchema } from "./second-step"
-  import { secondStepErrorsDefaults, type SecondStepErrors } from "./second-step-errors"
-  import { Helper, Input, Label, PaginationItem, StepIndicator } from "flowbite-svelte"
-  import { LeftArrow, RightArrow } from "~/lib/ui-components"
+  import { FirstStepSchema, type FirstStepErrors, firstStepErrorsDefaults } from "./first/first-step"
+  import { secondStepErrorsDefaults, type SecondStepErrors } from "./second/second-step"
+  import { StepIndicator } from "flowbite-svelte"
+  import { FilledButton, TextButton } from "~/lib/ui-components"
+  import SecondStep from "./second/SecondStep.svelte"
+  import FirstStep from "./first/FirstStep.svelte"
 
   let currentStep = 1
   let steps = ["1 - Scegli periodo", "2 - Aggiungi capogruppo"]
   $: nextLabel = currentStep === 1 ? "Avanti" : "Fine"
   $: nextAction = currentStep === 1 ? nextStep : onStepDone
 
-  const prevStep = () => (currentStep -= 1)
+  const prevStep = () => {
+    currentStep -= 1
+  }
   const nextStep = () => {
     const firstStepResult = FirstStepSchema.safeParse({
       startDate,
@@ -23,19 +26,25 @@
 
     if (firstStepResult.success) {
       currentStep += 1
-      firstStepError = undefined
+
+      firstStepErrors = {
+        ...firstStepErrorsDefaults,
+      }
     } else {
-      firstStepError = firstStepResult.error.format()._errors.at(0)
+      const formattedErrors = firstStepResult.error.format()
+
+      firstStepErrors = {
+        onStartDate: formattedErrors.startDate?._errors.at(0),
+        onEndDate: formattedErrors.endDate?._errors.at(0),
+      }
     }
   }
 
   const onStepDone = () => {
-    const secondStepResult = SecondStepSchema.safeParse({
-      guest: {
-        first_name: firstName,
-        last_name: lastName,
-        birth_date: birthDate,
-      },
+    const secondStepResult = NewGuestSchema.safeParse({
+      first_name: firstName,
+      last_name: lastName,
+      birth_date: birthDate,
     })
 
     if (secondStepResult.success) {
@@ -55,7 +64,7 @@
 
       invalidateAll()
     } else {
-      const formattedErrors = secondStepResult.error.format().guest
+      const formattedErrors = secondStepResult.error.format()
 
       secondStepErrors = {
         onFirstName: formattedErrors?.first_name?._errors.at(0),
@@ -66,7 +75,9 @@
   }
 
   // 1st step
-  let firstStepError: string | undefined = undefined
+  let firstStepErrors: FirstStepErrors = {
+    ...firstStepErrorsDefaults,
+  }
   let startDate = ""
   let endDate = ""
 
@@ -79,80 +90,67 @@
   let birthDate = ""
 </script>
 
-<div class="flex flex-col gap-2">
-  <StepIndicator {currentStep} {steps} />
+<div class="stepper">
+  <div class="stepper__indicator">
+    <StepIndicator {currentStep} {steps} color="purple" />
+  </div>
 
   <!-- content belonging to step -->
-  <div>
-    {#if currentStep === 1}
-      <div>
-        <Label for="start-date" color={firstStepError ? "red" : "gray"} class="block mb-2">Giorno di arrivo</Label>
-        <Input type="date" id="start-date" bind:value={startDate} color={firstStepError ? "red" : "base"} />
-        {#if firstStepError}
-          <Helper class="mt-2" color="red">{firstStepError}</Helper>
+  <div class="stepper__form">
+    <form on:submit|preventDefault={nextAction} class="form-container">
+      <div class="form__filling">
+        {#if currentStep === 1}
+          <FirstStep bind:startDate bind:endDate bind:errors={firstStepErrors} />
+        {:else}
+          <SecondStep bind:firstName bind:lastName bind:birthDate bind:errors={secondStepErrors} />
         {/if}
       </div>
 
-      <div>
-        <Label for="end-date" color="gray" class="block mb-2">Giorno di partenza</Label>
-        <Input type="date" id="end-date" bind:value={endDate} color="base" />
+      <div class="form__controls">
+        {#if currentStep !== 1}
+          <TextButton on:click={prevStep}>Torna a scelta periodo</TextButton>
+        {/if}
+
+        <FilledButton type="submit">{nextLabel}</FilledButton>
       </div>
-    {:else}
-      <div class="grid gap-6 md:grid-cols-2">
-        <div>
-          <Label for="first-name" color={secondStepErrors.onFirstName ? "red" : "gray"} class="block mb-2">Nome</Label>
-          <Input
-            id="first-name"
-            bind:value={firstName}
-            color={secondStepErrors.onFirstName ? "red" : "base"}
-            placeholder="Andrea"
-          />
-          {#if secondStepErrors.onFirstName}
-            <Helper class="mt-2" color="red">Il nome è obbligatorio</Helper>
-          {/if}
-        </div>
-
-        <div>
-          <Label for="last-name" color={secondStepErrors.onLastName ? "red" : "gray"} class="block mb-2">Cognome</Label>
-          <Input
-            id="last-name"
-            bind:value={lastName}
-            color={secondStepErrors.onLastName ? "red" : "base"}
-            placeholder="Severi"
-          />
-          {#if secondStepErrors.onLastName}
-            <Helper class="mt-2" color="red">Il cognome è obbligatorio</Helper>
-          {/if}
-        </div>
-
-        <div>
-          <Label for="birth-date" color={secondStepErrors.onBirthDate ? "red" : "gray"} class="block mb-2">
-            Data di nascita
-          </Label>
-          <Input
-            type="date"
-            id="birth-date"
-            bind:value={birthDate}
-            color={secondStepErrors.onBirthDate ? "red" : "base"}
-          />
-          {#if secondStepErrors.onBirthDate}
-            <Helper class="mt-2" color="red">La data di nascita è obbligatoria</Helper>
-          {/if}
-        </div>
-      </div>
-    {/if}
-  </div>
-
-  <div class="flex space-x-3">
-    {#if currentStep != 1}
-      <PaginationItem class="flex items-center" on:click={prevStep}>
-        <LeftArrow clazz="mr-2 w-5 h-5" />
-        Torna a scelta periodo
-      </PaginationItem>
-    {/if}
-    <PaginationItem class="flex items-center" on:click={nextAction}>
-      {nextLabel}
-      <RightArrow clazz="ml-2 w-5 h-5" />
-    </PaginationItem>
+    </form>
   </div>
 </div>
+
+<style>
+  .stepper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .stepper__indicator {
+    flex: 0 1 10%;
+  }
+
+  .stepper__form {
+    flex: 1;
+    padding-top: 1rem;
+  }
+
+  .form-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .form__filling {
+    flex: 1 1 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .form__controls {
+    flex: 0 1 20%;
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+  }
+</style>

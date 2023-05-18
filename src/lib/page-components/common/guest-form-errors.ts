@@ -1,10 +1,10 @@
-export type SecondStepErrors = {
+export type GuestFormErrors = {
     onFirstName?: string
     onLastName?: string
     onBirthDate?: string
 }
 
-export const secondStepErrorsDefaults: Pick<SecondStepErrors, "onFirstName" | "onLastName" | "onBirthDate"> = {
+export const guestFormErrorsDefaults: Pick<GuestFormErrors, "onFirstName" | "onLastName" | "onBirthDate"> = {
     onFirstName: undefined,
     onLastName: undefined,
     onBirthDate: undefined

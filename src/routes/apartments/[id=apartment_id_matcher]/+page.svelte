@@ -5,7 +5,7 @@
   import GuestsTable from "./components/table/GuestsTable.svelte"
 
   export let data: PageData
-  $: isApartmentEmpty = data.guests.length === 0
+  $: isApartmentEmpty = data.guests === null
 </script>
 
 <div class="apartment">
@@ -17,7 +17,12 @@
     {#if isApartmentEmpty}
       <Stepper />
     {:else}
-      <GuestsTable rent={data.rent} guests={data.guests} group={data.group} />
+      <!-- table is recreated when guests change -->
+      {#key data.guests}
+        {#if data.guests && data.rent && data.group}
+          <GuestsTable rent={data.rent} guests={data.guests} group={data.group} />
+        {/if}
+      {/key}
     {/if}
   </div>
 </div>
@@ -31,8 +36,16 @@
     padding: 1.25rem 2.5rem;
   }
 
+  .apartment__title {
+    flex: 0 1 10%;
+  }
+
   :global(.apartment__title__text) {
     font-size: 1.875rem;
     line-height: 2.25rem;
+  }
+
+  .apartment__content {
+    flex: 1 1 90%;
   }
 </style>
