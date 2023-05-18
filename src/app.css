@@ -1,5 +1,4 @@
-/* Write your global styles here, in PostCSS syntax */
-@import "~/lib/m3/theme.css";
+@import "./css/m3/theme.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -26,3 +25,12 @@
   justify-content: center;
   align-items: center;
 }
+
+/* @layer base {
+  button,
+  input[type="button"],
+  input[type="reset"],
+  input[type="submit"] {
+    @apply btn;
+  }
+} */
