@@ -15,3 +15,6 @@ export { default as PriceTagOutlined } from "./icon/outlined/PriceTagOutlined.sv
 
 export { default as ErrorNotification } from "./notification/ErrorNotification.svelte"
 export { default as SuccessNotification } from "./notification/SuccessNotification.svelte"
+
+export { default as TableMd } from "./table/TableMd.svelte"
+export { default as TableHeadMd } from "./table/TableHeadMd.svelte"

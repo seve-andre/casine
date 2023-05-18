@@ -1,11 +1,10 @@
 <script lang="ts">
   import "~/lib/utils/date-utils"
-  import { Modal, Table, TableBody, TableBodyCell, TableBodyRow, TableHead, TableHeadCell } from "flowbite-svelte"
+  import { Modal, TableBody, TableBodyCell, TableBodyRow, TableHeadCell } from "flowbite-svelte"
   import type { Group, Guest, Rent } from "~/models"
-  import FilledButton from "~/lib/ui-components/button/FilledButton.svelte"
   import GuestForm from "~/lib/page-components/common/GuestForm.svelte"
   import { invoke } from "@tauri-apps/api/tauri"
-  import { invalidateAll } from "$app/navigation"
+  import { FilledButton, TableHeadMd, TableMd } from "~/lib/ui-components"
 
   export let rent: Rent
   export let guests: Guest[]
@@ -29,19 +28,19 @@
 
 <div class="table-container">
   <div class="table-wrapper">
-    <Table striped divClass="table__main">
+    <TableMd>
       <caption class="p-5 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800">
         Famiglia {group.nickname}
         <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">
           La famiglia {group.nickname} soggiornerà in questo appartamento dal {rent.start_date.toItalianFormat()} al {rent.end_date.toItalianFormat()}
         </p>
       </caption>
-      <TableHead theadClass="text-sm bg-gray-100 dark:bg-gray-700">
+      <TableHeadMd>
         {#each guestsInfo as info}
           <TableHeadCell>{info}</TableHeadCell>
         {/each}
-      </TableHead>
-      <TableBody tableBodyClass="table__body">
+      </TableHeadMd>
+      <TableBody>
         {#each guestsMapped as guest (guest.id)}
           <TableBodyRow>
             <TableBodyCell>{guest.firstName}</TableBodyCell>
@@ -50,7 +49,7 @@
           </TableBodyRow>
         {/each}
       </TableBody>
-    </Table>
+    </TableMd>
   </div>
 
   <div class="table__controls">
@@ -96,19 +95,5 @@
     flex: 0 1 20%;
     display: flex;
     justify-content: flex-end;
-  }
-
-  :global(.table__main) {
-    height: 100%;
-
-    /* border: 1px solid var(--md-sys-color-on-surface); */
-    border-width: 1px;
-    border-style: solid;
-    /* dark: rgba(255, 255, 255, 0.12) */
-    border-color: rgba(0, 0, 0, 0.12);
-    border-radius: 5px;
-
-    /* so that table corners don't get overlapped */
-    padding: 0.25rem;
   }
 </style>
