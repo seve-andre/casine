@@ -60,6 +60,7 @@
     },
     "windows": [
       {
+        "url": "/",
         "title": "casine",
         "height": 600,
         "width": 1024,

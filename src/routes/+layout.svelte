@@ -1,5 +1,5 @@
 <script lang="ts">
-  import "~/app.css"
+  import "../app.css"
   import { navigating, page } from "$app/stores"
   import { Spinner, Sidebar, SidebarWrapper, SidebarGroup, SidebarItem, Navbar, SidebarBrand } from "flowbite-svelte"
   import {
@@ -39,7 +39,7 @@
       filledIcon: PriceTagFilled,
     },
   ]
-  $: shouldShowSidebar = sidebarItems.map(i => i.href).includes(activeUrl) || activeUrl === ""
+  $: shouldShowSidebar = sidebarItems.map(i => i.href).includes(activeUrl)
 
   const site = {
     name: data.appName,
