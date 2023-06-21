@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./static/casine-rounded.png" alt="casine logo" height="300" />
+  <img src="./static/casine-rounded.png" alt="casine logo" title="casine logo" height="300" />
 </div>
 
 # casine
