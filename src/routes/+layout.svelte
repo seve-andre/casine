@@ -1,7 +1,16 @@
 <script lang="ts">
   import "../app.css"
-  import { navigating, page } from "$app/stores"
-  import { Spinner, Sidebar, SidebarWrapper, SidebarGroup, SidebarItem, Navbar, SidebarBrand } from "flowbite-svelte"
+  import {
+    Spinner,
+    Sidebar,
+    SidebarWrapper,
+    SidebarGroup,
+    SidebarItem,
+    Navbar,
+    SidebarBrand
+  } from "flowbite-svelte"
+
+  import logo from "~/lib/assets/casine.png"
   import {
     BookFilled,
     BookOutlined,
@@ -10,10 +19,12 @@
     IconButton,
     LeftArrow,
     PriceTagFilled,
-    PriceTagOutlined,
+    PriceTagOutlined
   } from "~/lib/ui-components"
-  import logo from "~/lib/assets/casine.png"
+
   import type { LayoutData } from "./$types"
+
+  import { navigating, page } from "$app/stores"
 
   export let data: LayoutData
 
@@ -24,27 +35,27 @@
       name: "Principale",
       href: "/",
       outlinedIcon: HomeOutlined,
-      filledIcon: HomeFilled,
+      filledIcon: HomeFilled
     },
     {
       name: "Prenotazioni",
       href: "/bookings",
       outlinedIcon: BookOutlined,
-      filledIcon: BookFilled,
+      filledIcon: BookFilled
     },
     {
       name: "Prezzi",
       href: "/prices",
       outlinedIcon: PriceTagOutlined,
-      filledIcon: PriceTagFilled,
-    },
+      filledIcon: PriceTagFilled
+    }
   ]
   $: shouldShowSidebar = sidebarItems.map(i => i.href).includes(activeUrl)
 
   const site = {
     name: data.appName,
     href: "/",
-    img: logo,
+    img: logo
   }
 </script>
 
@@ -59,7 +70,7 @@
     <Spinner />
   </div>
 {:else}
-  <div class="page">
+  <div class="flex h-full">
     {#if shouldShowSidebar}
       <div class="page__sidebar">
         <Sidebar asideClass="w-auto">
@@ -79,7 +90,10 @@
                   <!-- icon color in "class" below -->
                   <svelte:fragment slot="icon">
                     <div class:sidebar__item__icon-active={isActive}>
-                      <svelte:component this={isActive ? item.filledIcon : item.outlinedIcon} class="w-6 h-6" />
+                      <svelte:component
+                        this={isActive ? item.filledIcon : item.outlinedIcon}
+                        class="w-6 h-6"
+                      />
                     </div>
                   </svelte:fragment>
                 </SidebarItem>
@@ -117,11 +131,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-
-  .page {
-    display: flex;
-    height: 100%;
   }
 
   .page__sidebar {

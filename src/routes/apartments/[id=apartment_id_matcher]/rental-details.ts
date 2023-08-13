@@ -1,4 +1,5 @@
 import { z } from "zod"
+
 import { ApartmentSchema, GroupSchema, GuestSchema, RentSchema } from "~/models"
 
 // json returns "null" if not found, so "nullable()"

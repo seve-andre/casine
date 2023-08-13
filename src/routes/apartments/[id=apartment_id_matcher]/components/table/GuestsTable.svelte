@@ -1,10 +1,11 @@
 <script lang="ts">
   import "~/lib/utils/date-utils"
-  import { Modal, TableBody, TableBodyRow, TableHeadCell } from "flowbite-svelte"
-  import type { Group, Guest, Rent } from "~/models"
-  import GuestForm from "~/lib/page-components/common/GuestForm.svelte"
   import { invoke } from "@tauri-apps/api/tauri"
+  import { Modal, TableBody, TableBodyRow, TableHeadCell } from "flowbite-svelte"
+
+  import GuestForm from "~/lib/page-components/common/GuestForm.svelte"
   import { FilledButton, TableBodyCellMd, TableHeadMd, TableMd } from "~/lib/ui-components"
+  import type { Group, Guest, Rent } from "~/models"
 
   export let rent: Rent
   export let guests: Guest[]
@@ -16,7 +17,7 @@
     id: guest.id,
     firstName: guest.first_name,
     lastName: guest.last_name,
-    birthDate: new Date(guest.birth_date),
+    birthDate: new Date(guest.birth_date)
   }))
 
   let showNewGuestForm = false
@@ -29,10 +30,13 @@
 <div class="table-container">
   <div class="table-wrapper">
     <TableMd>
-      <caption class="p-5 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800">
+      <caption
+        class="p-5 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800"
+      >
         Famiglia {group.nickname}
         <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">
-          La famiglia {group.nickname} soggiornerà in questo appartamento dal {rent.start_date.toItalianFormat()} al {rent.end_date.toItalianFormat()}
+          La famiglia {group.nickname} soggiornerà in questo appartamento dal {rent.start_date.toItalianFormat()}
+          al {rent.end_date.toItalianFormat()}
         </p>
       </caption>
       <TableHeadMd>
@@ -67,10 +71,10 @@
           guest: {
             first_name: firstName,
             last_name: lastName,
-            birth_date: birthDate,
+            birth_date: birthDate
           },
           groupId: group.id,
-          isLeader: false,
+          isLeader: false
         })
 
         showNewGuestForm = false

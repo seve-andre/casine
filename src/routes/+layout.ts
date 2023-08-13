@@ -1,5 +1,6 @@
-import type { LayoutLoad } from "./$types"
 import { getName } from "@tauri-apps/api/app"
+
+import type { LayoutLoad } from "./$types"
 
 export const ssr = false
 export const prerender = true

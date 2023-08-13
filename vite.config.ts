@@ -1,6 +1,7 @@
 import { fileURLToPath, URL } from "url"
-import { defineConfig } from "vite"
+
 import { sveltekit } from "@sveltejs/kit/vite"
+import { defineConfig } from "vite"
 
 export default defineConfig({
   plugins: [sveltekit()],
@@ -10,7 +11,7 @@ export default defineConfig({
   // tauri expects a fixed port, fail if that port is not available
   server: {
     port: 5173,
-    strictPort: true,
+    strictPort: true
   },
   // to make use of `TAURI_DEBUG` and other env variables
   // https://tauri.studio/v1/api/config#buildconfig.beforedevcommand
@@ -21,11 +22,9 @@ export default defineConfig({
     // don't minify for debug builds
     minify: !process.env.TAURI_DEBUG ? "esbuild" : false,
     // produce sourcemaps for debug builds
-    sourcemap: !!process.env.TAURI_DEBUG,
+    sourcemap: !!process.env.TAURI_DEBUG
   },
   resolve: {
-    alias: [
-      { find: "~", replacement: fileURLToPath(new URL("./src", import.meta.url)) }
-    ]
+    alias: [{ find: "~", replacement: fileURLToPath(new URL("./src", import.meta.url)) }]
   }
 })

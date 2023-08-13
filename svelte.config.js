@@ -9,9 +9,9 @@ export default {
   kit: {
     adapter: adapter({
       pages: "src-tauri/target/frontend-build",
-			assets: "src-tauri/target/frontend-build",
-			precompress: true,
+      assets: "src-tauri/target/frontend-build",
+      precompress: true,
       fallback: "index.html"
     })
   }
-};
+}

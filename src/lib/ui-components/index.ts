@@ -12,7 +12,6 @@ export { default as BookOutlined } from "./icon/outlined/BookOutlined.svelte"
 export { default as PriceTagFilled } from "./icon/filled/PriceTagFilled.svelte"
 export { default as PriceTagOutlined } from "./icon/outlined/PriceTagOutlined.svelte"
 
-
 export { default as ErrorNotification } from "./notification/ErrorNotification.svelte"
 export { default as SuccessNotification } from "./notification/SuccessNotification.svelte"
 

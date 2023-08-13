@@ -1,6 +1,7 @@
 <script lang="ts">
-  import type { PageData } from "./$types"
   import { Heading } from "flowbite-svelte"
+
+  import type { PageData } from "./$types"
   import Stepper from "./components/stepper/Stepper.svelte"
   import GuestsTable from "./components/table/GuestsTable.svelte"
 

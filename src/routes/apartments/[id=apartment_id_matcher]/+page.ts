@@ -1,6 +1,7 @@
-import type { PageLoad } from "./$types"
 import { error } from "@sveltejs/kit"
 import { invoke } from "@tauri-apps/api/tauri"
+
+import type { PageLoad } from "./$types"
 import { RentalDetailsSchema } from "./rental-details"
 
 export const load = (async ({ params }) => {
@@ -15,7 +16,6 @@ export const load = (async ({ params }) => {
   }
 
   const { apartment, rent, guests, group } = rentailDetailsResult.data
-
 
   return {
     title: `Casa ${apartment.house_name} - Appartamento ${apartment.apartment_number}`,

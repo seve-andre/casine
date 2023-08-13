@@ -1,14 +1,21 @@
 <script lang="ts">
   import { invoke } from "@tauri-apps/api/tauri"
-  import { page } from "$app/stores"
-  import { invalidateAll } from "$app/navigation"
-  import { NewGroupSchema, NewGuestSchema } from "~/models"
-  import { FirstStepSchema, type FirstStepErrors, firstStepErrorsDefaults } from "./first/first-step"
-  import { secondStepErrorsDefaults, type SecondStepErrors } from "./second/second-step"
   import { StepIndicator } from "flowbite-svelte"
+
   import { FilledButton, TextButton } from "~/lib/ui-components"
-  import SecondStep from "./second/SecondStep.svelte"
+  import { NewGroupSchema, NewGuestSchema } from "~/models"
+
+  import {
+    FirstStepSchema,
+    type FirstStepErrors,
+    firstStepErrorsDefaults
+  } from "./first/first-step"
   import FirstStep from "./first/FirstStep.svelte"
+  import { secondStepErrorsDefaults, type SecondStepErrors } from "./second/second-step"
+  import SecondStep from "./second/SecondStep.svelte"
+
+  import { invalidateAll } from "$app/navigation"
+  import { page } from "$app/stores"
 
   let currentStep = 1
   let steps = ["1 - Scegli periodo", "2 - Aggiungi capogruppo"]
@@ -21,21 +28,21 @@
   const nextStep = () => {
     const firstStepResult = FirstStepSchema.safeParse({
       startDate,
-      endDate,
+      endDate
     })
 
     if (firstStepResult.success) {
       currentStep += 1
 
       firstStepErrors = {
-        ...firstStepErrorsDefaults,
+        ...firstStepErrorsDefaults
       }
     } else {
       const formattedErrors = firstStepResult.error.format()
 
       firstStepErrors = {
         onStartDate: formattedErrors.startDate?._errors.at(0),
-        onEndDate: formattedErrors.endDate?._errors.at(0),
+        onEndDate: formattedErrors.endDate?._errors.at(0)
       }
     }
   }
@@ -44,7 +51,7 @@
     const secondStepResult = NewGuestSchema.safeParse({
       first_name: firstName,
       last_name: lastName,
-      birth_date: birthDate,
+      birth_date: birthDate
     })
 
     if (secondStepResult.success) {
@@ -55,11 +62,11 @@
         newGuest: NewGuestSchema.parse({
           first_name: firstName,
           last_name: lastName,
-          birth_date: birthDate,
+          birth_date: birthDate
         }),
         newGroup: NewGroupSchema.parse({
-          nickname: lastName,
-        }),
+          nickname: lastName
+        })
       })
 
       invalidateAll()
@@ -69,21 +76,21 @@
       secondStepErrors = {
         onFirstName: formattedErrors?.first_name?._errors.at(0),
         onLastName: formattedErrors?.last_name?._errors.at(0),
-        onBirthDate: formattedErrors?.birth_date?._errors.at(0),
+        onBirthDate: formattedErrors?.birth_date?._errors.at(0)
       }
     }
   }
 
   // 1st step
   let firstStepErrors: FirstStepErrors = {
-    ...firstStepErrorsDefaults,
+    ...firstStepErrorsDefaults
   }
   let startDate = ""
   let endDate = ""
 
   // 2nd step
   let secondStepErrors: SecondStepErrors = {
-    ...secondStepErrorsDefaults,
+    ...secondStepErrorsDefaults
   }
   let firstName = ""
   let lastName = ""

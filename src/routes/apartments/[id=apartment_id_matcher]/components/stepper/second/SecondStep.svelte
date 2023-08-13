@@ -1,6 +1,7 @@
 <script lang="ts">
-  import type { SecondStepErrors } from "./second-step"
   import GuestFormData from "~/lib/page-components/common/GuestFormData.svelte"
+
+  import type { SecondStepErrors } from "./second-step"
 
   // data
   export let firstName: string

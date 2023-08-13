@@ -1,9 +1,11 @@
 <script lang="ts">
   import FilledButton from "~/lib/ui-components/button/FilledButton.svelte"
-  import { guestFormErrorsDefaults, type GuestFormErrors } from "./guest-form-errors"
   import { useValidation } from "~/routes/apartments/[id=apartment_id_matcher]/components/stepper/validation"
-  import { invalidateAll } from "$app/navigation"
+
+  import { guestFormErrorsDefaults, type GuestFormErrors } from "./guest-form-errors"
   import GuestFormData from "./GuestFormData.svelte"
+
+  import { invalidateAll } from "$app/navigation"
 
   // props
   export let onSubmitSuccess: () => void
@@ -15,7 +17,7 @@
 
   // errors
   let errors: GuestFormErrors = {
-    ...guestFormErrorsDefaults,
+    ...guestFormErrorsDefaults
   }
 
   // submission
@@ -24,7 +26,7 @@
     const guestResult = validateNewGuest({
       first_name: firstName,
       last_name: lastName,
-      birth_date: birthDate,
+      birth_date: birthDate
     })
 
     if (guestResult.success) {
@@ -36,7 +38,7 @@
       errors = {
         onFirstName: formattedErrors.first_name?._errors.at(0),
         onLastName: formattedErrors.last_name?._errors.at(0),
-        onBirthDate: formattedErrors.birth_date?._errors.at(0),
+        onBirthDate: formattedErrors.birth_date?._errors.at(0)
       }
     }
   }
