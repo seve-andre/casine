@@ -1,23 +1,20 @@
 import type { PageLoad } from "./$types"
 import { error } from "@sveltejs/kit"
 import { invoke } from "@tauri-apps/api/tauri"
-import { ApartmentPageDataSchema } from "./apartment-page-data"
+import { RentalDetailsSchema } from "./rental-details"
 
 export const load = (async ({ params }) => {
   const apartmentId = +params.id
 
-  const pageDataResult = ApartmentPageDataSchema.safeParse({
-    apartment: await invoke("get_apartment_by_id", { apartmentId }),
-    rent: await invoke("get_rent_in_apartment", { apartmentId }),
-    guests: await invoke("get_guests_in_apartment", { apartmentId }),
-    group: await invoke("get_group_in_apartment", { apartmentId })
-  })
+  const rentailDetailsResult = RentalDetailsSchema.safeParse(
+    await invoke("get_rental_details", { apartmentId })
+  )
 
-  if (!pageDataResult.success) {
+  if (!rentailDetailsResult.success) {
     throw error(404, "Not Found")
   }
 
-  const { apartment, rent, guests, group } = pageDataResult.data
+  const { apartment, rent, guests, group } = rentailDetailsResult.data
 
 
   return {

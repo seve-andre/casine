@@ -29,7 +29,8 @@ fn main() {
             db_commands::open_apartment,
             db_commands::add_guest_to_group,
             db_commands::get_group_in_apartment,
-            db_commands::get_rent_in_apartment
+            db_commands::get_rent_in_apartment,
+            db_commands::get_rental_details
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
