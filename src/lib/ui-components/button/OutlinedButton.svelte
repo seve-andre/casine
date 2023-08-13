@@ -1,9 +1,28 @@
 <script lang="ts">
-  import { Button } from "flowbite-svelte"
+  import BaseButton from "./BaseButton.svelte"
 
-  export let href = ""
+  export let href: string | undefined = undefined
+  export let type: "button" | "reset" = "button"
+  export let size: "xs" | "sm" | "md" | "lg" | "xl" = "md"
+  export let color: "primary" | "red" = "primary"
 </script>
 
-<Button on:click {href} pill outline color="alternative">
+<BaseButton
+  outline
+  {href}
+  {type}
+  {size}
+  {color}
+  on:click
+  on:change
+  on:keydown
+  on:keyup
+  on:touchstart
+  on:touchend
+  on:touchcancel
+  on:mouseenter
+  on:mouseleave
+  class="hover:bg-{color}-200 hover:text-{color}-700 {$$props.class ?? ''}"
+>
   <slot />
-</Button>
+</BaseButton>

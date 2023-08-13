@@ -1,7 +1,0 @@
-@import "tokens.css";
-@import "colors.module.css";
-@import "typography.module.css";
-@import "theme.light.css";
-
-/* @import url(theme.light.css) (prefers-color-scheme: light); */
-/* @import url(theme.dark.css) (prefers-color-scheme: dark); */

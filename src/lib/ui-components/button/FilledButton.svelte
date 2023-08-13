@@ -1,23 +1,26 @@
 <script lang="ts">
-  import { Button } from "flowbite-svelte"
-  import type { ButtonType } from "flowbite-svelte/dist/types"
+  import BaseButton from "./BaseButton.svelte"
 
-  export let href = ""
-  export let type: ButtonType = "button"
+  export let href: string | undefined = undefined
+  export let type: "button" | "submit" = "button"
+  export let size: "xs" | "sm" | "md" | "lg" | "xl" = "md"
+  export let color: "primary" | "red" = "primary"
 </script>
 
-<Button {href} {type} on:click pill btnClass="btn filled-btn">
+<BaseButton
+  {href}
+  {type}
+  {size}
+  {color}
+  on:click
+  on:change
+  on:keydown
+  on:keyup
+  on:touchstart
+  on:touchend
+  on:touchcancel
+  on:mouseenter
+  on:mouseleave
+>
   <slot />
-</Button>
-
-<style>
-  :global(.filled-btn) {
-    background-color: var(--md-sys-color-primary) !important;
-    color: var(--md-sys-color-on-primary) !important;
-  }
-
-  :global(.filled-btn:hover) {
-    box-shadow: 0px 1px 2px var(--md-sys-color-shadow);
-    transition: 0.3s;
-  }
-</style>
+</BaseButton>
