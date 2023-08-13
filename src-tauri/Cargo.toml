@@ -28,6 +28,9 @@ thiserror = "1.0"
 # chrono
 chrono = { version = "0.4", features = ["serde"] }
 
+# async
+tokio = { version = "1", features = ["full"] }
+
 [features]
 # by default Tauri runs in production mode
 # when `tauri dev` runs it is executed with `cargo run --no-default-features` if `devPath` is an URL
