@@ -12,8 +12,12 @@
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-    "lint": "prettier --plugin-search-dir . --check . && eslint .",
-    "format": "prettier --plugin-search-dir . --write ."
+    "lint": "pnpm lint:frontend && pnpm lint:backend",
+    "lint:frontend": "prettier --plugin-search-dir . --check . && eslint .",
+    "lint:backend": "cd src-tauri && cargo clippy",
+    "format": "pnpm format:frontend && pnpm format:backend",
+    "format:frontend": "prettier --plugin-search-dir . --write .",
+    "format:backend": "cd src-tauri && cargo fmt"
   },
   "devDependencies": {
     "@popperjs/core": "^2.11.6",
