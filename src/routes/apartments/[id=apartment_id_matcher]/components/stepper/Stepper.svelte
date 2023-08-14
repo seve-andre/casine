@@ -97,15 +97,15 @@
   let birthDate = ""
 </script>
 
-<div class="stepper">
-  <div class="stepper__indicator">
-    <StepIndicator {currentStep} {steps} color="purple" />
+<div class="h-full flex flex-col gap-4">
+  <div class="flex-initial">
+    <StepIndicator {currentStep} {steps} color="blue" />
   </div>
 
   <!-- content belonging to step -->
-  <div class="stepper__form">
-    <form on:submit|preventDefault={nextAction} class="form-container">
-      <div class="form__filling">
+  <div class="flex-auto">
+    <form on:submit|preventDefault={nextAction} class="h-full flex flex-col gap-2">
+      <div class="flex-auto basis-4/5 flex flex-col gap-4">
         {#if currentStep === 1}
           <FirstStep bind:startDate bind:endDate bind:errors={firstStepErrors} />
         {:else}
@@ -113,7 +113,7 @@
         {/if}
       </div>
 
-      <div class="form__controls">
+      <div class="flex-initial basis-1/5 flex justify-end items-center gap-2">
         {#if currentStep !== 1}
           <TextButton on:click={prevStep}>Torna a scelta periodo</TextButton>
         {/if}
@@ -123,41 +123,3 @@
     </form>
   </div>
 </div>
-
-<style>
-  .stepper {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .stepper__indicator {
-    flex: 0 1 10%;
-  }
-
-  .stepper__form {
-    flex: 1;
-    padding-top: 1rem;
-  }
-
-  .form-container {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .form__filling {
-    flex: 1 1 80%;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .form__controls {
-    flex: 0 1 20%;
-    display: flex;
-    justify-content: flex-end;
-    gap: 0.5rem;
-  }
-</style>

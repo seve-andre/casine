@@ -27,8 +27,8 @@
   let birthDate = ""
 </script>
 
-<div class="table-container">
-  <div class="table-wrapper">
+<div class="h-full flex flex-col gap-4">
+  <div class="flex-auto basis-4/5">
     <TableMd>
       <caption
         class="p-5 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800"
@@ -56,7 +56,7 @@
     </TableMd>
   </div>
 
-  <div class="table__controls">
+  <div class="flex-initial basis-1/5 flex justify-end items-center">
     <FilledButton on:click={() => (showNewGuestForm = true)}>Aggiungi ospite</FilledButton>
   </div>
 
@@ -82,22 +82,3 @@
     />
   </Modal>
 </div>
-
-<style>
-  .table-container {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .table-wrapper {
-    flex: 1 1 80%;
-  }
-
-  .table__controls {
-    flex: 0 1 20%;
-    display: flex;
-    justify-content: flex-end;
-  }
-</style>

@@ -1,7 +1,6 @@
 <script lang="ts">
   import "../app.css"
   import {
-    Spinner,
     Sidebar,
     SidebarWrapper,
     SidebarGroup,
@@ -18,6 +17,7 @@
     HomeOutlined,
     IconButton,
     LeftArrow,
+    LoadingPage,
     PriceTagFilled,
     PriceTagOutlined
   } from "~/lib/ui-components"
@@ -66,9 +66,7 @@
 </svelte:head>
 
 {#if $navigating}
-  <div class="spinner-wrapper">
-    <Spinner />
-  </div>
+  <LoadingPage />
 {:else}
   <div class="flex h-full">
     {#if shouldShowSidebar}
@@ -123,16 +121,6 @@
 {/if}
 
 <style>
-  .spinner-wrapper {
-    /* make spinner fill entire page */
-    height: 100%;
-
-    /* show spinner at the center of the screen*/
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
   .page__sidebar {
     flex: 0 10rem;
 
