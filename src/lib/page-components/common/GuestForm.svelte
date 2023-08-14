@@ -1,5 +1,5 @@
 <script lang="ts">
-  import FilledButton from "~/lib/ui-components/button/FilledButton.svelte"
+  import FilledButton from "~/lib/ui-components/buttons/FilledButton.svelte"
   import { useValidation } from "~/routes/apartments/[id=apartment_id_matcher]/components/stepper/validation"
 
   import { guestFormErrorsDefaults, type GuestFormErrors } from "./guest-form-errors"
@@ -44,25 +44,9 @@
   }
 </script>
 
-<form on:submit|preventDefault={onSubmit} class="form-container">
-  <div class="form__filling">
-    <GuestFormData bind:firstName bind:lastName bind:birthDate bind:errors />
-  </div>
-
-  <div class="form__controls">
+<form on:submit|preventDefault={onSubmit} class="flex flex-col gap-4">
+  <GuestFormData bind:firstName bind:lastName bind:birthDate bind:errors />
+  <div class="flex justify-end items-center">
     <FilledButton type="submit">Aggiungi</FilledButton>
   </div>
 </form>
-
-<style>
-  .form-container {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .form__controls {
-    display: flex;
-    justify-content: flex-end;
-  }
-</style>
