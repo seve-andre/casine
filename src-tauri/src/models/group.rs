@@ -3,7 +3,7 @@ use crate::schema::{group_members, groupz};
 use diesel::{Associations, Identifiable, Insertable, Queryable, Selectable};
 use serde::{Deserialize, Serialize};
 
-#[derive(Queryable, Selectable, Identifiable, Serialize, PartialEq, Debug)]
+#[derive(Queryable, Selectable, Identifiable, Serialize, PartialEq, Eq, Debug)]
 #[diesel(table_name = groupz)]
 pub struct Group {
     pub id: i32,

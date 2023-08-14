@@ -33,19 +33,19 @@ pub async fn get_apartments() -> Result<Vec<HouseWithApartments>, MyError> {
         .select(Apartment::as_select())
         .load(connection)?;
 
-    return Ok(apartments
+    Ok(apartments
         .grouped_by(&all_houses)
         .into_iter()
         .zip(all_houses)
         .map(|(apartments, house)| HouseWithApartments { house, apartments })
-        .collect::<Vec<HouseWithApartments>>());
+        .collect::<Vec<HouseWithApartments>>())
 }
 
 type DB = diesel::sqlite::Sqlite;
 fn is_date_in_range(
     date: NaiveDate,
 ) -> Box<dyn BoxableExpression<rents::table, DB, SqlType = Bool>> {
-    return Box::new(rents::start_date.le(date).and(rents::end_date.ge(date)));
+    Box::new(rents::start_date.le(date).and(rents::end_date.ge(date)))
 }
 
 fn get_guests_ids_by_group_id(group_id: i32) -> Result<Vec<i32>, MyError> {
@@ -53,11 +53,11 @@ fn get_guests_ids_by_group_id(group_id: i32) -> Result<Vec<i32>, MyError> {
 
     let connection = &mut establish_connection()?;
 
-    return group_members::table
+    group_members::table
         .filter(group_members::group_id.eq(group_id))
         .select(group_members::guest_id)
         .load::<i32>(connection)
-        .map_err(MyError::DatabaseQueryError);
+        .map_err(MyError::DatabaseQueryError)
 }
 
 #[tauri::command]
@@ -75,11 +75,11 @@ pub async fn get_guests_in_apartment(apartment_id: i32) -> Result<Option<Vec<Gue
 
     let guest_ids = get_guests_ids_by_group_id(group.id)?;
 
-    return guests::table
+    guests::table
         .filter(guests::id.eq_any(&guest_ids))
         .load::<Guest>(connection)
         .optional()
-        .map_err(MyError::DatabaseQueryError);
+        .map_err(MyError::DatabaseQueryError)
 }
 
 #[tauri::command]
@@ -88,10 +88,10 @@ pub async fn get_apartment_by_id(apartment_id: i32) -> Result<Apartment, MyError
 
     let connection = &mut establish_connection()?;
 
-    return apartments
+    apartments
         .find(apartment_id)
         .first(connection)
-        .map_err(MyError::DatabaseQueryError);
+        .map_err(MyError::DatabaseQueryError)
 }
 
 #[tauri::command]
@@ -122,7 +122,7 @@ pub fn open_apartment(
         .values(&new_rent)
         .execute(connection)?;
 
-    return Ok(());
+    Ok(())
 }
 
 fn create_new_group(group: NewGroup) -> Result<Group, MyError> {
@@ -130,16 +130,16 @@ fn create_new_group(group: NewGroup) -> Result<Group, MyError> {
 
     let connection = &mut establish_connection()?;
 
-    let inserted_group = connection.transaction::<Group, MyError, _>(|connection| {
+    
+
+    connection.transaction::<Group, MyError, _>(|connection| {
         insert_into(groupz).values(group).execute(connection)?;
 
         groupz
             .order(id.desc())
             .first(connection)
             .map_err(MyError::DatabaseQueryError)
-    });
-
-    return inserted_group;
+    })
 }
 
 #[tauri::command]
@@ -170,7 +170,7 @@ pub fn add_guest_to_group(guest: NewGuest, group_id: i32, is_leader: bool) -> Re
         .values(&new_group_member)
         .execute(connection)?;
 
-    return Ok(());
+    Ok(())
 }
 
 #[tauri::command]
@@ -185,11 +185,11 @@ pub async fn get_group_in_apartment(apartment_id: i32) -> Result<Option<Group>, 
         None => return Ok(None),
     };
 
-    return groupz::table
+    groupz::table
         .filter(groupz::id.eq(rent.group_id))
         .first(connection)
         .optional()
-        .map_err(MyError::DatabaseQueryError);
+        .map_err(MyError::DatabaseQueryError)
 }
 
 #[tauri::command]
@@ -232,5 +232,5 @@ pub async fn get_rental_details(apartment_id: i32) -> Result<RentalDetails, MyEr
         group: group_result?,
     };
 
-    return Ok(rental_details);
+    Ok(rental_details)
 }

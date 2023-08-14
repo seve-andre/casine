@@ -4,7 +4,7 @@ use serde::Serialize;
 
 use super::apartment::Apartment;
 
-#[derive(Identifiable, Queryable, Selectable, Serialize, Debug, PartialEq)]
+#[derive(Identifiable, Queryable, Selectable, Serialize, Debug, PartialEq, Eq)]
 #[diesel(table_name = houses)]
 #[diesel(primary_key(house_name))]
 pub struct House {

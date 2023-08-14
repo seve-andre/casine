@@ -4,7 +4,7 @@ use serde::Serialize;
 use super::house::House;
 use crate::schema::apartments;
 
-#[derive(Identifiable, Selectable, Queryable, Associations, Serialize, Debug, PartialEq)]
+#[derive(Identifiable, Selectable, Queryable, Associations, Serialize, Debug, PartialEq, Eq)]
 #[diesel(belongs_to(House, foreign_key = house_name))]
 #[diesel(table_name = apartments)]
 pub struct Apartment {
