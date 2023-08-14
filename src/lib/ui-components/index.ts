@@ -14,13 +14,15 @@ export { default as BookOutlined } from "./icons/outlined/BookOutlined.svelte"
 export { default as PriceTagFilled } from "./icons/filled/PriceTagFilled.svelte"
 export { default as PriceTagOutlined } from "./icons/outlined/PriceTagOutlined.svelte"
 
+// nav
+export { default as NavHeader } from "./nav/NavHeader.svelte"
+export { default as LoadingSpinner } from "./nav/LoadingSpinner.svelte"
+export { default as LoadingPage } from "./nav/LoadingPage.svelte"
+export { default as NavSidebar } from "./nav/sidebar/NavSidebar.svelte"
+
 // notifications
 export { default as ErrorNotification } from "./notifications/ErrorNotification.svelte"
 export { default as SuccessNotification } from "./notifications/SuccessNotification.svelte"
-
-// spinner
-export { default as LoadingSpinner } from "./spinner/LoadingSpinner.svelte"
-export { default as LoadingPage } from "./spinner/LoadingPage.svelte"
 
 // table
 export { default as TableMd } from "./table/TableMd.svelte"
