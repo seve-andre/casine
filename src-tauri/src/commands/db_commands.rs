@@ -130,8 +130,6 @@ fn create_new_group(group: NewGroup) -> Result<Group, MyError> {
 
     let connection = &mut establish_connection()?;
 
-    
-
     connection.transaction::<Group, MyError, _>(|connection| {
         insert_into(groupz).values(group).execute(connection)?;
 
