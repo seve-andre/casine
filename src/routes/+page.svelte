@@ -8,12 +8,15 @@
   export let data: PageData
 </script>
 
-<div class="homepage">
-  <div class="houses">
+<div class="h-full flex flex-col gap-4 py-5 px-10">
+  <div class="flex flex-col gap-12">
     {#each data.housesWithApartments as { house, apartments }}
-      <div class="house">
-        <Heading customSize="house__title title-text">Casa {house.house_name}</Heading>
-        <div class="house__choices">
+      <div class="flex flex-col gap-12">
+        <Heading customSize="font-bold text-2xl">Casa {house.house_name}</Heading>
+
+        <!-- show 3 buttons per line -->
+        <!-- width at 75%, so buttons don't look "weird" -->
+        <div class="grid grid-cols-3 gap-6 w-3/4">
           {#each apartments as apartment}
             <FilledButton href={`apartments/${apartment.id}`}>
               App. {apartment.apartment_number}
@@ -25,40 +28,3 @@
     {/each}
   </div>
 </div>
-
-<style>
-  .homepage {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    padding: 1.25rem 2.5rem;
-  }
-
-  .houses {
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
-  }
-
-  .house {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  :global(.house__title) {
-    font-size: 1.5rem;
-    line-height: 2rem;
-  }
-
-  .house__choices {
-    /* show 3 buttons per line */
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1.5rem;
-
-    /* don't fill entire width, so buttons don't look "weird" */
-    width: 70%;
-  }
-</style>
