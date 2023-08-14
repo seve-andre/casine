@@ -173,7 +173,7 @@
   }
 
   :global(.sidebar__item__icon-active) {
-    background-color: var(--md-sys-color-secondary-container);
+    background-color: blue;
     border-radius: 1rem;
     height: 2rem;
     width: 3.5rem;
