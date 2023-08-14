@@ -12,14 +12,6 @@
   export let group: Group
 
   const guestsInfo = ["Nome", "Cognome", "Data di nascita"]
-  // guests need to be mapped with only the values needed by the table
-  const guestsMapped = guests.map(guest => ({
-    id: guest.id,
-    firstName: guest.first_name,
-    lastName: guest.last_name,
-    birthDate: new Date(guest.birth_date)
-  }))
-
   let showNewGuestForm = false
 
   let firstName = ""
@@ -45,11 +37,11 @@
         {/each}
       </TableHeadMd>
       <TableBody>
-        {#each guestsMapped as guest (guest.id)}
+        {#each guests as guest (guest.id)}
           <TableBodyRow>
-            <TableBodyCellMd>{guest.firstName}</TableBodyCellMd>
-            <TableBodyCellMd>{guest.lastName}</TableBodyCellMd>
-            <TableBodyCellMd>{guest.birthDate.toItalianFormat()}</TableBodyCellMd>
+            <TableBodyCellMd>{guest.first_name}</TableBodyCellMd>
+            <TableBodyCellMd>{guest.last_name}</TableBodyCellMd>
+            <TableBodyCellMd>{guest.birth_date.toItalianFormat()}</TableBodyCellMd>
           </TableBodyRow>
         {/each}
       </TableBody>
