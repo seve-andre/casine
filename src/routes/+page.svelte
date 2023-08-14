@@ -11,7 +11,7 @@
 <div class="h-full flex flex-col gap-4 py-5 px-10">
   <div class="flex flex-col gap-12">
     {#each data.housesWithApartments as { house, apartments }}
-      <div class="flex flex-col gap-12">
+      <div class="flex flex-col gap-6">
         <Heading customSize="font-bold text-2xl">Casa {house.house_name}</Heading>
 
         <!-- show 3 buttons per line -->
