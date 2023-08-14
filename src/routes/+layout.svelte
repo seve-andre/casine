@@ -1,5 +1,5 @@
 <script lang="ts">
-  import "../app.css"
+  import "../app.postcss"
   import logo from "~/lib/assets/casine.png"
   import { LoadingPage } from "~/lib/ui-components"
   import NavHeader from "~/lib/ui-components/nav/NavHeader.svelte"
