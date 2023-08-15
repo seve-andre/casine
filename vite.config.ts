@@ -1,5 +1,3 @@
-import { fileURLToPath, URL } from "url"
-
 import { sveltekit } from "@sveltejs/kit/vite"
 import { defineConfig } from "vite"
 
@@ -23,8 +21,5 @@ export default defineConfig({
     minify: !process.env.TAURI_DEBUG ? "esbuild" : false,
     // produce sourcemaps for debug builds
     sourcemap: !!process.env.TAURI_DEBUG
-  },
-  resolve: {
-    alias: [{ find: "~", replacement: fileURLToPath(new URL("./src", import.meta.url)) }]
   }
 })

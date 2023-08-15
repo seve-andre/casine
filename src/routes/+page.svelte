@@ -1,7 +1,7 @@
 <script lang="ts">
   import { Heading, Tooltip } from "flowbite-svelte"
 
-  import { FilledButton } from "~/lib/ui-components"
+  import { FilledButton } from "$lib/ui-components"
 
   import type { PageData } from "./$types"
 

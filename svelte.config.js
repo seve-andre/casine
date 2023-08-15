@@ -13,5 +13,9 @@ export default {
       precompress: true,
       fallback: "index.html"
     })
+  },
+  alias: {
+    $lib: "src/lib",
+    $models: "src/models"
   }
 }

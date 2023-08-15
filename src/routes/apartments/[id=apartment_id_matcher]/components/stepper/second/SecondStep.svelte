@@ -1,5 +1,5 @@
 <script lang="ts">
-  import GuestFormData from "~/lib/page-components/common/GuestFormData.svelte"
+  import GuestFormData from "$lib/page-components/common/GuestFormData.svelte"
 
   import type { SecondStepErrors } from "./second-step"
 

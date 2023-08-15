@@ -1,10 +1,8 @@
 <script lang="ts">
   import "../app.postcss"
-  import logo from "~/lib/assets/casine.png"
-  import { LoadingPage } from "~/lib/ui-components"
-  import NavHeader from "~/lib/ui-components/nav/NavHeader.svelte"
-  import NavSidebar from "~/lib/ui-components/nav/sidebar/NavSidebar.svelte"
-  import { sidebarItems } from "~/lib/ui-components/nav/sidebar/sidebar-items"
+  import logo from "$lib/assets/casine.png"
+  import { LoadingPage, NavHeader, NavSidebar } from "$lib/ui-components"
+  import { sidebarItems } from "$lib/ui-components/nav/sidebar/sidebar-items"
 
   import type { LayoutData } from "./$types"
 
