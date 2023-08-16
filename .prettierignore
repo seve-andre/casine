@@ -13,4 +13,8 @@ pnpm-lock.yaml
 package-lock.json
 yarn.lock
 
+# skip tauri - rust uses rustfmt
 src-tauri
+
+# skip html causing DOCTYPE bug
+src/app.html
