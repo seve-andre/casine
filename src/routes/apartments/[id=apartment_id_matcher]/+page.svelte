@@ -9,7 +9,7 @@
   $: isApartmentEmpty = data.guests === null
 </script>
 
-<div class="h-full flex flex-col gap-4 py-5 px-10">
+<div class="flex h-full flex-col gap-4 py-5 px-10">
   <div class="flex-initial">
     <Heading customSize="font-bold text-3xl">{data.title}</Heading>
   </div>
