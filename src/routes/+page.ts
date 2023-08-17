@@ -2,9 +2,10 @@ import { error } from "@sveltejs/kit"
 import { invoke } from "@tauri-apps/api/tauri"
 import { z } from "zod"
 
+import { HouseWithApartmentsSchema } from "$lib/models"
+
 import type { PageLoad } from "./$types"
 
-import { HouseWithApartmentsSchema } from "$models"
 
 export const load = (async () => {
   const housesWithApartmentsParser = z.array(HouseWithApartmentsSchema)
