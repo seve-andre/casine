@@ -3,7 +3,7 @@
   import { StepIndicator } from "flowbite-svelte"
 
   import { FilledButton, TextButton } from "$lib/ui-components"
-  import { NewGroupSchema, NewGuestSchema } from "$models"
+  import { NewGroupSchema, NewGuestSchema } from "$lib/models"
 
   import {
     FirstStepSchema,
@@ -97,15 +97,15 @@
   let birthDate = ""
 </script>
 
-<div class="h-full flex flex-col gap-4">
+<div class="flex h-full flex-col gap-4">
   <div class="flex-initial">
     <StepIndicator {currentStep} {steps} color="blue" />
   </div>
 
   <!-- content belonging to step -->
   <div class="flex-auto">
-    <form on:submit|preventDefault={nextAction} class="h-full flex flex-col gap-2">
-      <div class="flex-auto basis-4/5 flex flex-col gap-4">
+    <form on:submit|preventDefault={nextAction} class="flex h-full flex-col gap-2">
+      <div class="flex flex-auto basis-4/5 flex-col gap-4">
         {#if currentStep === 1}
           <FirstStep bind:startDate bind:endDate bind:errors={firstStepErrors} />
         {:else}
@@ -113,7 +113,7 @@
         {/if}
       </div>
 
-      <div class="flex-initial basis-1/5 flex justify-end items-center gap-2">
+      <div class="flex flex-initial basis-1/5 items-center justify-end gap-2">
         {#if currentStep !== 1}
           <TextButton on:click={prevStep}>Torna a scelta periodo</TextButton>
         {/if}

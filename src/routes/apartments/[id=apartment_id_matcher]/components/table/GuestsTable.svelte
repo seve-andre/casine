@@ -5,7 +5,7 @@
 
   import GuestForm from "$lib/page-components/common/GuestForm.svelte"
   import { FilledButton, TableBodyCellMd, TableHeadMd, TableMd } from "$lib/ui-components"
-  import type { Group, Guest, Rent } from "$models"
+  import type { Group, Guest, Rent } from "$lib/models"
 
   export let rent: Rent
   export let guests: Guest[]
@@ -19,11 +19,11 @@
   let birthDate = ""
 </script>
 
-<div class="h-full flex flex-col gap-4">
+<div class="flex h-full flex-col gap-4">
   <div class="flex-auto basis-4/5">
     <TableMd>
       <caption
-        class="p-5 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800"
+        class="bg-white p-5 text-left text-lg font-semibold text-gray-900 dark:bg-gray-800 dark:text-white"
       >
         Famiglia {group.nickname}
         <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">
@@ -48,7 +48,7 @@
     </TableMd>
   </div>
 
-  <div class="flex-initial basis-1/5 flex justify-end items-center">
+  <div class="flex flex-initial basis-1/5 items-center justify-end">
     <FilledButton on:click={() => (showNewGuestForm = true)}>Aggiungi ospite</FilledButton>
   </div>
 

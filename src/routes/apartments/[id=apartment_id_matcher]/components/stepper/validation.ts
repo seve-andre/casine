@@ -1,4 +1,4 @@
-import { NewGuestSchema, type NewGuest } from "$models"
+import { NewGuestSchema, type NewGuest } from "$lib/models"
 
 import { FirstStepSchema } from "./first/first-step"
 

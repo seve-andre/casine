@@ -15,7 +15,6 @@ export default {
     })
   },
   alias: {
-    $lib: "src/lib",
-    $models: "src/models"
+    $lib: "src/lib"
   }
 }

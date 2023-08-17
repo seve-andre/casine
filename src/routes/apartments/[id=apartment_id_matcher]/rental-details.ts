@@ -1,6 +1,6 @@
 import { z } from "zod"
 
-import { ApartmentSchema, GroupSchema, GuestSchema, RentSchema } from "$models"
+import { ApartmentSchema, GroupSchema, GuestSchema, RentSchema } from "$lib/models"
 
 // json returns "null" if not found, so "nullable()"
 export const RentalDetailsSchema = z.object({

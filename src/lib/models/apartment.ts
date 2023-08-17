@@ -1,6 +1,6 @@
 import { z } from "zod"
 
-import { Constants } from "~/lib/utils/constants"
+import { Constants } from "$lib/utils/constants"
 
 export const ApartmentSchema = z.object({
   id: z.number().min(Constants.minApartmentId).max(Constants.maxApartmentId),

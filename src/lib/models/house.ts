@@ -1,6 +1,6 @@
 import { z } from "zod"
 
-import { Constants } from "~/lib/utils/constants"
+import { Constants } from "$lib/utils/constants"
 
 import { ApartmentSchema } from "./apartment"
 
