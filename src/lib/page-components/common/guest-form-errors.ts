@@ -1,14 +1,14 @@
 export type GuestFormErrors = {
   onFirstName?: string
   onLastName?: string
-  onBirthDate?: string
+  onBirthdate?: string
 }
 
 export const guestFormErrorsDefaults: Pick<
   GuestFormErrors,
-  "onFirstName" | "onLastName" | "onBirthDate"
+  "onFirstName" | "onLastName" | "onBirthdate"
 > = {
   onFirstName: undefined,
   onLastName: undefined,
-  onBirthDate: undefined
+  onBirthdate: undefined
 }

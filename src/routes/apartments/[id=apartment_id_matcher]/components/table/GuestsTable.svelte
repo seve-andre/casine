@@ -16,7 +16,7 @@
 
   let firstName = ""
   let lastName = ""
-  let birthDate = ""
+  let birthdate = ""
 </script>
 
 <div class="flex h-full flex-col gap-4">
@@ -57,13 +57,13 @@
     <GuestForm
       bind:firstName
       bind:lastName
-      bind:birthDate
+      bind:birthdate
       onSubmitSuccess={() => {
         invoke("add_guest_to_group", {
           guest: {
             first_name: firstName,
             last_name: lastName,
-            birth_date: birthDate
+            birth_date: birthdate
           },
           groupId: group.id,
           isLeader: false

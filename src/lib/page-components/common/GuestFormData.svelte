@@ -5,7 +5,7 @@
 
   export let firstName: string
   export let lastName: string
-  export let birthDate: string
+  export let birthdate: string
 
   export let errors: GuestFormErrors
 </script>
@@ -42,17 +42,17 @@
   </div>
 
   <div>
-    <Label for="birth-date" color={errors.onBirthDate ? "red" : "gray"} class="block mb-2"
+    <Label for="birth-date" color={errors.onBirthdate ? "red" : "gray"} class="block mb-2"
       >Data di nascita</Label
     >
     <Input
       type="date"
       id="birth-date"
-      bind:value={birthDate}
-      color={errors.onBirthDate ? "red" : "base"}
+      bind:value={birthdate}
+      color={errors.onBirthdate ? "red" : "base"}
     />
-    {#if errors.onBirthDate}
-      <Helper class="mt-2" color="red">{errors.onBirthDate}</Helper>
+    {#if errors.onBirthdate}
+      <Helper class="mt-2" color="red">{errors.onBirthdate}</Helper>
     {/if}
   </div>
 </div>

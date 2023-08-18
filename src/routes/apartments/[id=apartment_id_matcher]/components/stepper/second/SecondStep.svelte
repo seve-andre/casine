@@ -6,10 +6,10 @@
   // data
   export let firstName: string
   export let lastName: string
-  export let birthDate: string
+  export let birthdate: string
 
   // errors
   export let errors: SecondStepErrors
 </script>
 
-<GuestFormData bind:firstName bind:lastName bind:birthDate bind:errors />
+<GuestFormData bind:firstName bind:lastName bind:birthdate bind:errors />

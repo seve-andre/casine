@@ -51,7 +51,7 @@
     const secondStepResult = NewGuestSchema.safeParse({
       first_name: firstName,
       last_name: lastName,
-      birth_date: birthDate
+      birth_date: birthdate
     })
 
     if (secondStepResult.success) {
@@ -62,7 +62,7 @@
         newGuest: NewGuestSchema.parse({
           first_name: firstName,
           last_name: lastName,
-          birth_date: birthDate
+          birth_date: birthdate
         }),
         newGroup: NewGroupSchema.parse({
           nickname: lastName
@@ -76,7 +76,7 @@
       secondStepErrors = {
         onFirstName: formattedErrors?.first_name?._errors.at(0),
         onLastName: formattedErrors?.last_name?._errors.at(0),
-        onBirthDate: formattedErrors?.birth_date?._errors.at(0)
+        onBirthdate: formattedErrors?.birth_date?._errors.at(0)
       }
     }
   }
@@ -94,7 +94,7 @@
   }
   let firstName = ""
   let lastName = ""
-  let birthDate = ""
+  let birthdate = ""
 </script>
 
 <div class="flex h-full flex-col gap-4">
@@ -109,7 +109,7 @@
         {#if currentStep === 1}
           <FirstStep bind:startDate bind:endDate bind:errors={firstStepErrors} />
         {:else}
-          <SecondStep bind:firstName bind:lastName bind:birthDate bind:errors={secondStepErrors} />
+          <SecondStep bind:firstName bind:lastName bind:birthdate bind:errors={secondStepErrors} />
         {/if}
       </div>
 

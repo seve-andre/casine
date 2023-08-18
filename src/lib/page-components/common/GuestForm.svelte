@@ -1,5 +1,5 @@
 <script lang="ts">
-  import FilledButton from "~/lib/ui-components/buttons/FilledButton.svelte"
+  import FilledButton from "$lib/ui-components/buttons/FilledButton.svelte"
   import { useValidation } from "~/routes/apartments/[id=apartment_id_matcher]/components/stepper/validation"
 
   import { guestFormErrorsDefaults, type GuestFormErrors } from "./guest-form-errors"
@@ -13,7 +13,7 @@
   // data
   export let firstName: string
   export let lastName: string
-  export let birthDate: string
+  export let birthdate: string
 
   // errors
   let errors: GuestFormErrors = {
@@ -26,7 +26,7 @@
     const guestResult = validateNewGuest({
       first_name: firstName,
       last_name: lastName,
-      birth_date: birthDate
+      birth_date: birthdate
     })
 
     if (guestResult.success) {
@@ -38,14 +38,14 @@
       errors = {
         onFirstName: formattedErrors.first_name?._errors.at(0),
         onLastName: formattedErrors.last_name?._errors.at(0),
-        onBirthDate: formattedErrors.birth_date?._errors.at(0)
+        onBirthdate: formattedErrors.birth_date?._errors.at(0)
       }
     }
   }
 </script>
 
 <form on:submit|preventDefault={onSubmit} class="flex flex-col gap-4">
-  <GuestFormData bind:firstName bind:lastName bind:birthDate bind:errors />
+  <GuestFormData bind:firstName bind:lastName bind:birthdate bind:errors />
   <div class="flex justify-end items-center">
     <FilledButton type="submit">Aggiungi</FilledButton>
   </div>
