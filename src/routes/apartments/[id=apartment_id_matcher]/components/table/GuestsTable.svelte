@@ -3,9 +3,9 @@
   import { invoke } from "@tauri-apps/api/tauri"
   import { Modal, TableBody, TableBodyRow, TableHeadCell } from "flowbite-svelte"
 
+  import type { Group, Guest, Rent } from "$lib/models"
   import GuestForm from "$lib/page-components/common/GuestForm.svelte"
   import { FilledButton, TableBodyCellMd, TableHeadMd, TableMd } from "$lib/ui-components"
-  import type { Group, Guest, Rent } from "$lib/models"
 
   export let rent: Rent
   export let guests: Guest[]

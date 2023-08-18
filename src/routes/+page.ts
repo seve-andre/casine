@@ -6,7 +6,6 @@ import { HouseWithApartmentsSchema } from "$lib/models"
 
 import type { PageLoad } from "./$types"
 
-
 export const load = (async () => {
   const housesWithApartmentsParser = z.array(HouseWithApartmentsSchema)
   const housesWithApartmentsResult = housesWithApartmentsParser.safeParse(

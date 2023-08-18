@@ -2,8 +2,8 @@
   import { invoke } from "@tauri-apps/api/tauri"
   import { StepIndicator } from "flowbite-svelte"
 
-  import { FilledButton, TextButton } from "$lib/ui-components"
   import { NewGroupSchema, NewGuestSchema } from "$lib/models"
+  import { FilledButton, TextButton } from "$lib/ui-components"
 
   import {
     FirstStepSchema,
