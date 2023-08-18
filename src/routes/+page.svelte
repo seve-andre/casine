@@ -8,7 +8,7 @@
   export let data: PageData
 </script>
 
-<div class="h-full flex flex-col gap-4 py-5 px-10">
+<div class="flex h-full flex-col gap-4 py-5 px-10">
   <div class="flex flex-col gap-12">
     {#each data.housesWithApartments as { house, apartments }}
       <div class="flex flex-col gap-6">
@@ -16,7 +16,7 @@
 
         <!-- show 3 buttons per line -->
         <!-- width at 75%, so buttons don't look "weird" -->
-        <div class="grid grid-cols-3 gap-6 w-3/4">
+        <div class="grid w-3/4 grid-cols-3 gap-6">
           {#each apartments as apartment}
             <FilledButton href={`apartments/${apartment.id}`}>
               App. {apartment.apartment_number}

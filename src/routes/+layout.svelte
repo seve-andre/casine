@@ -34,7 +34,7 @@
       <NavSidebar {activeUrl} brand={site} class="grow-0" />
     {/if}
 
-    <div class="grow flex flex-col">
+    <div class="flex grow flex-col">
       {#if !shouldShowSidebar}
         <NavHeader class="flex-initial" />
       {/if}
