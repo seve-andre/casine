@@ -216,18 +216,18 @@ pub struct RentalDetails {
 
 #[tauri::command]
 pub async fn get_rental_details(apartment_id: i32) -> Result<RentalDetails, MyError> {
-    let (apartment_result, rent_result, guests_result, group_result) = tokio::join!(
+    let (apartment, rent, guests, group) = tokio::try_join!(
         get_apartment_by_id(apartment_id),
         get_rent_in_apartment(apartment_id),
         get_guests_in_apartment(apartment_id),
         get_group_in_apartment(apartment_id),
-    );
+    )?;
 
     let rental_details = RentalDetails {
-        apartment: apartment_result?,
-        rent: rent_result?,
-        guests: guests_result?,
-        group: group_result?,
+        apartment,
+        rent,
+        guests,
+        group,
     };
 
     Ok(rental_details)
